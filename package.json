@@ -12,6 +12,8 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore --ignore-pattern modules/ --ignore-pattern plugins/ga.js ."
   },
   "dependencies": {
+    "highlight.js": "^9.18.1",
+    "marked": "^0.8.0",
     "nuxt": "^2.0.0",
     "vuesax": "^4.0.1-alpha.8"
   },
