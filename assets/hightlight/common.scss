@@ -1,0 +1,13 @@
+.markdown-content {
+  img {
+    display: inline-block;
+  }
+  
+  :not(pre)>code {
+    margin: 0 .15rem;
+    padding: .12em .24rem;
+    border-radius: .4rem;
+    color: #fff;
+    background: #2E3440;
+  }
+}
