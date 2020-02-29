@@ -1,8 +1,9 @@
 <template>
-  <div>
+  <div class="markdown-container">
     <div class="markdown-wrapper">
       <component
         id="markdown-content"
+        class="sm:w-full"
         :is="singlePostComponent"
       />
     </div>
@@ -27,7 +28,12 @@ export default {
 </script>
 
 <style lang="scss">
+.markdown-container {
+  @apply w-full flex flex-col items-center;
+}
+
 .markdown-wrapper {
-  max-width: 1000px;
+  @apply px-5;
+  max-width: 1100px;
 }
 </style>

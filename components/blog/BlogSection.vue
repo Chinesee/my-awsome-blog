@@ -6,7 +6,7 @@
       class="mr-10"
       :to="`/blog/${blog.attributes.name}`"
     >
-      首页
+      {{ blog.attributes.name }}
     </nuxt-link>
   </div>
 </template>
