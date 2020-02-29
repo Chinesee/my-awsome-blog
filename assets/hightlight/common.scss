@@ -1,8 +1,12 @@
-.markdown-content {
+#markdown-content {
+  pre {
+    border-radius: $radius !important;
+  }
+
   img {
     display: inline-block;
   }
-  
+
   :not(pre)>code {
     margin: 0 .15rem;
     padding: .12em .24rem;
