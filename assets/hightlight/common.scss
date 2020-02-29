@@ -1,9 +1,27 @@
+/* purgecss start ignore */
 #markdown-content {
+  @apply text-gray-700;
+
+  h1 {
+    @apply my-6 text-3xl font-bold text-gray-800;
+  }
+
+  h2 {
+    @apply my-5 text-2xl;
+  }
+
+  p {
+    @apply my-3;
+    line-height: 1.8rem;
+  }
+
   pre {
-    border-radius: $radius !important;
+    margin: 1.2rem 0;
+    border-radius: 1rem !important;
   }
 
   img {
+    margin: 1rem .8rem !important;
     display: inline-block;
   }
 
@@ -15,3 +33,5 @@
     background: #2E3440;
   }
 }
+
+/* purgecss end ignore */
