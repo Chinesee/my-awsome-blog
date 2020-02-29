@@ -1,13 +1,16 @@
 <template>
   <div>
-    <component :is="singlePostComponent" />
+    <component
+      class="markdown-content"
+      :is="singlePostComponent"
+    />
   </div>
 </template>
 
 <script>
 export default {
   async asyncData({ params }) {
-    const content = await import(`~/${process.env.blogRoot}/${params.path}`)
+    const content = await import(`~/${process.env.blogRoot}/${params.slug}.md`)
     const attr = content.attributes
     return {
       name: params.slug,
