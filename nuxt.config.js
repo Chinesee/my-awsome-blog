@@ -19,13 +19,15 @@ export default {
     ],
   },
 
-  loading: { color: '#000' },
+  loading: { color: '#41B883' },
 
   css: [
-    'assets/css/main.css',
-    'assets/hightlight/common.scss',
-    'assets/hightlight/prism-nord.css',
+    '@/assets/css/main.scss',
+    '@/assets/hightlight/common.scss',
+    '@/assets/hightlight/prism-nord.css',
   ],
+
+  purgeCSS: { enabled: false },
 
   plugins: [
   ],
@@ -40,7 +42,9 @@ export default {
   ],
 
   styleResources: {
-    scss: ['~/assets/resource/variables.scss'],
+    scss: [
+      '@/assets/resource/variables.scss',
+    ],
   },
 
   build: {
