@@ -1,6 +1,7 @@
 <template>
   <div>
     <div>
+      <h1>123456</h1>
       <BlogSection :blogs="blogs" />
     </div>
   </div>

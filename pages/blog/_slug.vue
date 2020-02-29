@@ -1,9 +1,11 @@
 <template>
   <div>
-    <component
-      class="markdown-content"
-      :is="singlePostComponent"
-    />
+    <div class="markdown-wrapper">
+      <component
+        id="markdown-content"
+        :is="singlePostComponent"
+      />
+    </div>
   </div>
 </template>
 
@@ -15,19 +17,17 @@ export default {
     return {
       name: params.slug,
       title: attr.title,
-      trans: attr.trans,
       year: attr.year,
-      id: attr.id,
-      cardAlt: attr.cardAlt,
-      noMainImage: attr.noMainImage,
       description: attr.description,
       extraComponent: attr.extraComponent,
       singlePostComponent: content.vue.component,
-      image: {
-        main: attr.image && attr.image.main,
-        og: attr.image && attr.image.og
-      }
     }
   },
 }
 </script>
+
+<style lang="scss">
+.markdown-wrapper {
+  max-width: 1000px;
+}
+</style>

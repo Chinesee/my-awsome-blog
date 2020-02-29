@@ -3,6 +3,7 @@
     <nuxt-link
       v-for="(blog, i) in blogs"
       :key="i"
+      class="mr-10"
       :to="`/blog/${blog.attributes.name}`"
     >
       首页
