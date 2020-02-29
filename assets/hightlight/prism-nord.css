@@ -1,3 +1,4 @@
+/* purgecss start ignore */
 code[class*="language-"],
 pre[class*="language-"] {
   color: #f8f8f2;
@@ -113,3 +114,5 @@ pre[class*="language-"] {
 .token.entity {
   cursor: help;
 }
+
+/* purgecss end ignore */
