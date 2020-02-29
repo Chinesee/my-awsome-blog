@@ -1,7 +1,17 @@
+import fs from 'fs'
 import Mode from 'frontmatter-markdown-loader/mode'
 import MarkdownIt from 'markdown-it'
 import MarkdownItPrism from 'markdown-it-prism'
 const path = require('path')
+
+const generatePath = () => {
+  path.resolve(__dirname, 'contents')
+  return fs.readdirSync(path.resolve(__dirname, 'contents')).map(key => {
+    const arr = key.split('.')
+    const name = arr[arr.indexOf('/') + 1]
+    return `/blog/${name}`
+  })
+}
 
 export default {
   mode: 'spa',
@@ -64,8 +74,6 @@ export default {
     blogRoot: 'contents',
   },
   generate: {
-    routes: [
-      '/blog/copy',
-    ],
+    routes: generatePath(),
   },
 }
