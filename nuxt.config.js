@@ -2,24 +2,10 @@ import Mode from 'frontmatter-markdown-loader/mode'
 import MarkdownIt from 'markdown-it'
 import MarkdownItPrism from 'markdown-it-prism'
 const path = require('path')
-const glob = require('glob')
-
-function getDynamicPaths(urlFilepathTable) {
-  return [].concat(
-    ...Object.keys(urlFilepathTable).map(url => {
-      const filepathGlob = urlFilepathTable[url]
-      return glob
-        .sync(filepathGlob, { cwd: 'content' })
-        .map(filepath => `${url}/${path.basename(filepath, '.md')}`)
-    }),
-  )
-}
 
 export default {
-  mode: 'universal',
-  /*
-  ** Headers of the page
-  */
+  mode: 'spa',
+
   head: {
     htmlAttrs: { lang: 'cmn-Hans-CN' },
     title: process.env.npm_package_name || '',
@@ -32,47 +18,36 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
     ],
   },
-  /*
-  ** Customize the progress-bar color
-  */
+
   loading: { color: '#000' },
-  /*
-  ** Global CSS
-  */
+
   css: [
     'assets/css/main.css',
-    'assets/css/prism-nord.css',
-    'vuesax/dist/vuesax.css',
+    'assets/hightlight/common.scss',
+    'assets/hightlight/prism-nord.css',
   ],
-  /*
-  ** Plugins to load before mounting the App
-  */
+
   plugins: [
-    '@/plugins/vuesax',
   ],
-  /*
-  ** Nuxt.js dev-modules
-  */
+
   buildModules: [
     '@nuxtjs/eslint-module',
     '@nuxtjs/tailwindcss',
   ],
-  /*
-  ** Nuxt.js modules
-  */
+
   modules: [
+    '@nuxtjs/style-resources',
   ],
-  /*
-  ** Build configuration
-  */
+
+  styleResources: {
+    scss: ['~/assets/resource/variables.scss'],
+  },
+
   build: {
-    /*
-    ** You can extend webpack config here
-    */
     extend(config, ctx) {
       config.module.rules.push({
         test: /\.md$/,
-        include: path.resolve(__dirname, 'content'),
+        include: path.resolve(__dirname, 'contents'),
         loader: 'frontmatter-markdown-loader',
         options: {
           mode: [Mode.VUE_COMPONENT, Mode.META],
@@ -85,8 +60,8 @@ export default {
     blogRoot: 'contents',
   },
   generate: {
-    routes: getDynamicPaths({
-      '/blog': 'blog/*.md',
-    }),
+    routes: [
+      '/blog/copy',
+    ],
   },
 }

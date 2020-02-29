@@ -12,22 +12,19 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore --ignore-pattern modules/ --ignore-pattern plugins/ga.js ."
   },
   "dependencies": {
-    "highlight.js": "^9.18.1",
     "markdown-it": "^10.0.0",
     "markdown-it-prism": "2.0.3",
-    "marked": "^0.8.0",
-    "nuxt": "^2.0.0",
-    "vuesax": "^4.0.1-alpha.8"
+    "nuxt": "^2.0.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.2",
     "@nuxtjs/eslint-module": "^1.1.0",
+    "@nuxtjs/style-resources": "^1.0.0",
     "@nuxtjs/tailwindcss": "^1.3.3",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
     "frontmatter-markdown-loader": "^3.1.0",
     "node-sass": "^4.13.1",
-    "responsive-loader": "^1.2.0",
     "sass-loader": "^8.0.2"
   }
 }
