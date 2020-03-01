@@ -3,16 +3,20 @@
   @apply text-gray-700;
 
   h1 {
-    @apply my-6 text-3xl font-bold text-gray-800;
+    @apply my-6 text-4xl font-bold text-gray-800;
   }
 
   h2 {
-    @apply my-5 text-2xl;
+    @apply my-5 text-2xl font-bold;
   }
 
   p {
     @apply my-3;
     line-height: 1.8rem;
+  }
+
+  a {
+    color: $primary;
   }
 
   pre {
@@ -23,6 +27,8 @@
   img {
     margin: 1rem .8rem !important;
     display: inline-block;
+    border-radius: $radius;
+    box-shadow: $shadow;
   }
 
   :not(pre)>code {
@@ -31,6 +37,10 @@
     border-radius: .4rem;
     color: #fff;
     background: #2E3440;
+  }
+
+  ::selection {
+    background: rgba(255, 255, 255, 0.15);
   }
 }
 

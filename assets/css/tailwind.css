@@ -4,6 +4,16 @@
 /* purgecss end ignore */
 @import 'tailwindcss/utilities';
 
+/* purgecss start ignore */
+@variants hover,
+focus {
+  .primary {
+    color: rgba(var(--ns-primary), 1);
+  }
+}
+
 button:focus {
   outline: none;
 }
+
+/* purgecss end ignore */
