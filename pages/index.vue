@@ -10,6 +10,7 @@
           <NsButton>查看我的作品</NsButton>
         </div>
         <img
+          class="hidden sm:inline-block"
           style="width: 500px;"
           src="~/assets/images/img.png"
           alt="首页图片"

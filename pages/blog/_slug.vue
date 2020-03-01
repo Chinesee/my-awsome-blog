@@ -1,6 +1,6 @@
 <template>
   <div class="markdown-container">
-    <div class="markdown-wrapper">
+    <div class="markdown-wrapper py-6">
       <component
         id="markdown-content"
         class="sm:w-full"
@@ -13,10 +13,9 @@
 <script>
 export default {
   async asyncData({ params }) {
-    const content = await import(`~/${process.env.blogRoot}/${params.slug}.md`)
-    const attr = content.attributes
+    const content = await import(`~/${process.env.blogRoot}/${params.slug}`)
+    const { attributes: attr } = content
     return {
-      name: params.slug,
       title: attr.title,
       year: attr.year,
       description: attr.description,

@@ -1,9 +1,10 @@
 <template>
   <div class="header px-6 py-2 flex items-center justify-between">
     <img
-      class="w-12"
+      class="w-12 cursor-pointer"
       src="~/assets/images/logo.png"
       alt="LOGO"
+      @click="$router.push('/')"
     >
     <ul class="flex text-gray-700">
       <nuxt-link
@@ -12,6 +13,7 @@
         :to="it.route"
         tag="li"
         class="mr-5 cursor-pointer transition hover:primary"
+        :class="{'primary': it.route === $route.path}"
       >
         {{ it.text }}
       </nuxt-link>
