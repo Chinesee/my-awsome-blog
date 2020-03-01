@@ -90,3 +90,4 @@ sw.*
 *.swp
 
 stylelint.config.js
+test.js
