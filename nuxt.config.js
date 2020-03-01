@@ -18,7 +18,7 @@ export default {
 
   head: {
     htmlAttrs: { lang: 'cmn-Hans-CN' },
-    title: process.env.npm_package_name || '',
+    title: '令狐少侠的个人空间',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -40,6 +40,7 @@ export default {
   purgeCSS: { enabled: false },
 
   plugins: [
+    '~/plugins/neos',
   ],
 
   buildModules: [
