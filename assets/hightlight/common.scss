@@ -28,7 +28,7 @@
     margin: 1rem .8rem !important;
     display: inline-block;
     border-radius: $radius;
-    box-shadow: $shadow;
+    box-shadow: $light-shadow;
   }
 
   :not(pre)>code {
