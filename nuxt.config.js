@@ -4,14 +4,48 @@ import MarkdownIt from 'markdown-it'
 import MarkdownItPrism from 'markdown-it-prism'
 const path = require('path')
 
-const generatePath = () => {
-  path.resolve(__dirname, 'contents')
-  return fs.readdirSync(path.resolve(__dirname, 'contents')).map(key => {
-    const arr = key.split('.')
-    const name = arr[arr.indexOf('/') + 1]
-    return `/blog/${name}`
+// 生成静态路由文件
+const paths = []
+function fileResolve(filePath) {
+  const files = fs.readdirSync(filePath)
+  files.forEach(fileName => {
+    const fileDir = path.join(filePath, fileName)
+    const stats = fs.statSync(fileDir)
+    const isDir = stats.isDirectory()
+    if (isDir) {
+      fileResolve(fileDir)
+    } else {
+      const name = `/blog/${path.basename(fileDir).split('.')[0]}`
+      paths.push(name)
+    }
   })
 }
+const generatePath = () => {
+  const filePath = path.resolve(__dirname, 'contents')
+  fileResolve(filePath)
+  return paths
+}
+
+const md = MarkdownIt({ html: true })
+
+const defaultRender = md.renderer.rules.link_open || function (tokens, idx, options, env, self) {
+  return self.renderToken(tokens, idx, options)
+}
+
+// markdown 设置 a 标签 target=_blank
+md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
+  const aIndex = tokens[idx].attrIndex('target')
+
+  if (aIndex < 0) {
+    tokens[idx].attrPush(['target', '_blank'])
+  } else {
+    tokens[idx].attrs[aIndex][1] = '_blank'
+  }
+
+  return defaultRender(tokens, idx, options, env, self)
+}
+// markdown 设置代码高亮
+md.use(MarkdownItPrism)
 
 export default {
   mode: 'spa',
@@ -23,6 +57,7 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
+      { hid: 'keywords', name: 'keywords', content: '令狐少侠, 博客, nuxt blog, blog' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -66,7 +101,8 @@ export default {
         loader: 'frontmatter-markdown-loader',
         options: {
           mode: [Mode.VUE_COMPONENT, Mode.META],
-          markdownIt: MarkdownIt({ html: true }).use(MarkdownItPrism),
+          // markdownIt: MarkdownIt({ html: true }).use(MarkdownItPrism),
+          markdownIt: md,
         },
       })
     },
