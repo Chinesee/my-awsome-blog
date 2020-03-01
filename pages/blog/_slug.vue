@@ -34,6 +34,6 @@ export default {
 
 .markdown-wrapper {
   @apply px-5;
-  max-width: 1100px;
+  max-width: 1000px;
 }
 </style>

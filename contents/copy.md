@@ -19,7 +19,7 @@ description: |
 
 
 ## 界面展示
-<div align="center">
+<div style="display: flex; justify-content: center;">
 <img src="https://gitee.com/chinesee/images/raw/master/img/img_004.jpg" width="22%" style="margin:0 10px;" alt="首页" >
 <img src="https://gitee.com/chinesee/images/raw/master/img/img_005.jpg" width="22%" style="margin:0 10px;" alt="课表页" >
 <img src="https://gitee.com/chinesee/images/raw/master/img/img_006.jpg" width="22%" style="margin:0 10px;" alt="个人中心页" >
