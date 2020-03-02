@@ -81,6 +81,10 @@ img {
   @apply h-full overflow-hidden bg-white overflow-hidden;
 }
 
+.light-shadow {
+  box-shadow: $light-shadow;
+}
+
 .base-shadow {
   box-shadow: $base-shadow;
 }
