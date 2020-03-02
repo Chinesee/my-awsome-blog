@@ -1,29 +1,46 @@
 <template>
   <div class="default relative h-full">
-    <Header
-      class="absolute z-50 w-full bg-white"
-      style="opacity: 0.92;"
-    />
-    <VuePerfectScrollbar
-      class="h-full pt-16"
-      :settings="{
-        maxScrollbarLength: 160,
-        wheelSpeed: 0.60,
-      }"
+    <Header class="absolute z-50 top-0 left-0" />
+
+    <div
+      ref="scrollArea"
+      class="pt-16 h-full overflow-y-scroll"
     >
       <nuxt />
       <Footer />
-    </VuePerfectScrollbar>
+    </div>
   </div>
 </template>
 
 <script>
-import VuePerfectScrollbar from 'vue-perfect-scrollbar'
 import Header from '~/components/partials/Header.vue'
 import Footer from '~/components/partials/Footer.vue'
 
 export default {
-  components: { Header, Footer, VuePerfectScrollbar },
+  components: { Header, Footer },
+
+  data: () => ({
+    timer: null,
+  }),
+
+  mounted() {
+    this.$refs.scrollArea.addEventListener('scroll', this.scrollY)
+  },
+
+  methods: {
+    scrollY({ target: { scrollTop } }) {
+      if (typeof this.timer === 'number') {
+        clearTimeout(this.timer)
+      }
+      this.timer = setTimeout(() => {
+        if (scrollTop > 800) {
+          this.$store.commit('SET_HEADER_STATUS', true)
+        } else {
+          this.$store.commit('SET_HEADER_STATUS', false)
+        }
+      }, 300)
+    },
+  },
 }
 </script>
 

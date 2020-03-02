@@ -20,16 +20,50 @@
           alt="首页图片"
         >
       </div>
-      <LogoNuxt />
+
+      <div class="flex justify-center items-center">
+        <div
+          v-for="({ comp, title, desc, link }, i) in logos"
+          :key="i"
+          class="mx-12 flex items-center"
+        >
+          <component
+            :is="comp"
+            class="w-16 mr-4"
+          ></component>
+          <div>
+            <p class="mb-1 text-lg text-gray-600 font-bold ">
+              <a
+                target="_blank"
+                :href="link"
+              >{{ title }}</a>
+            </p>
+            <p class="w-40 text-xs text-gray-500">{{ desc }}</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { LogoNuxt } from '~/components/logo/LogoNuxt.vue'
+import LogoNuxt from '~/components/logo/LogoNuxt.vue'
+import LogoNetlify from '~/components/logo/LogoNetlify.vue'
+import LogoGitee from '~/components/logo/LogoGitee.vue'
+
+const logos = [
+  {
+    comp: 'LogoNuxt',
+    title: '由Nuxt提供技术支持',
+    desc: '本博客使用了 Nuxt 框架生成静态页面',
+    link: 'https://zh.nuxtjs.org/guide',
+  },
+  { comp: 'LogoNetlify', title: '部署于Netlify', desc: '结合Github', link: 'https://www.netlify.com/' },
+  { comp: 'LogoGitee', title: '源代码已托管至码云仓库', desc: '点击查看', link: 'https://gitee.com/chinesee/blog-nuxt' },
+]
 
 export default {
-  components: { LogoNuxt },
+  components: { LogoNuxt, LogoNetlify, LogoGitee },
 
   asyncData() {
     const resolve = require.context('~/contents/', true, /\.md$/)
@@ -40,5 +74,9 @@ export default {
 
     return { blogs }
   },
+
+  data: () => ({
+    logos,
+  }),
 }
 </script>
