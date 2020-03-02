@@ -1,51 +1,6 @@
-import fs from 'fs'
 import Mode from 'frontmatter-markdown-loader/mode'
-import MarkdownIt from 'markdown-it'
-import MarkdownItPrism from 'markdown-it-prism'
+import { markdownRenderer, generatePath } from './utils.js'
 const path = require('path')
-
-// 生成静态路由文件
-const paths = []
-function fileResolve(filePath) {
-  const files = fs.readdirSync(filePath)
-  files.forEach(fileName => {
-    const fileDir = path.join(filePath, fileName)
-    const stats = fs.statSync(fileDir)
-    const isDir = stats.isDirectory()
-    if (isDir) {
-      fileResolve(fileDir)
-    } else {
-      const name = `/blog/${path.basename(fileDir).replace('.md', '')}`
-      paths.push(name)
-    }
-  })
-}
-const generatePath = () => {
-  const filePath = path.resolve(__dirname, 'contents')
-  fileResolve(filePath)
-  return paths
-}
-
-const md = MarkdownIt({ html: true })
-
-const defaultRender = md.renderer.rules.link_open || function (tokens, idx, options, env, self) {
-  return self.renderToken(tokens, idx, options)
-}
-
-// markdown 设置 a 标签 target=_blank
-md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
-  const aIndex = tokens[idx].attrIndex('target')
-
-  if (aIndex < 0) {
-    tokens[idx].attrPush(['target', '_blank'])
-  } else {
-    tokens[idx].attrs[aIndex][1] = '_blank'
-  }
-
-  return defaultRender(tokens, idx, options, env, self)
-}
-// markdown 设置代码高亮
-md.use(MarkdownItPrism)
 
 export default {
   mode: 'spa',
@@ -101,8 +56,7 @@ export default {
         loader: 'frontmatter-markdown-loader',
         options: {
           mode: [Mode.VUE_COMPONENT, Mode.META],
-          // markdownIt: MarkdownIt({ html: true }).use(MarkdownItPrism),
-          markdownIt: md,
+          markdownIt: markdownRenderer(),
         },
       })
     },
