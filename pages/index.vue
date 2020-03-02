@@ -1,13 +1,17 @@
 <template>
-  <div class="index">
+  <div class="index pt-6">
     <div>
       <div class="py-10 flex justify-center items-center">
-        <div>
-          <p class="md:mr-48 text-gray-700 text-3xl font-bold">
-            令狐少侠的个人空间
+        <div class="md:mr-20">
+          <p class="text-gray-700 text-3xl font-bold">
+            生命相承，殊途同归 <br>
+            世事变幻，但时间从不作答
           </p>
-          <p class="mt-2 mb-8 text-gray-600">你好呀，等你很久了</p>
-          <NsButton>查看我的作品</NsButton>
+          <p class="mt-4 mb-10 text-gray-600 text-sm">
+            朽骨已在掩埋的宅邸中躺了多久，但纪念碑将于此山谷中永垂不朽。<br>
+            孤勇之后，世界尽在眼前。
+          </p>
+          <NsButton @click.native="$router.push('/creations')">查看我的作品</NsButton>
         </div>
         <img
           class="hidden sm:inline-block"
@@ -16,21 +20,16 @@
           alt="首页图片"
         >
       </div>
-
-      <BlogSection
-        class=""
-        :blogs="blogs"
-      />
+      <LogoNuxt />
     </div>
   </div>
 </template>
 
 <script>
-
-import BlogSection from '~/components/blog/BlogSection.vue'
+import { LogoNuxt } from '~/components/logo/LogoNuxt.vue'
 
 export default {
-  components: { BlogSection },
+  components: { LogoNuxt },
 
   asyncData() {
     const resolve = require.context('~/contents/', true, /\.md$/)

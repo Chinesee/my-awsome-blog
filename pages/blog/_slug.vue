@@ -13,7 +13,8 @@
 <script>
 export default {
   async asyncData({ params }) {
-    const content = await import(`~/${process.env.blogRoot}/${params.slug}`)
+    console.log(params)
+    const content = await import(`~/${process.env.blogRoot}/${params.slug}.md`)
     const { attributes: attr } = content
     return {
       title: attr.title,

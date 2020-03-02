@@ -8,15 +8,21 @@
     >
     <ul class="flex text-gray-700">
       <nuxt-link
-        v-for="(it, i) in nav"
+        v-for="({ route, text }, i) in nav"
         :key="i"
-        :to="it.route"
+        :to="route"
         tag="li"
-        class="mr-5 cursor-pointer transition hover:primary"
-        :class="{'primary': it.route === $route.path}"
+        class="li-item hover:primary"
+        :class="{'primary': route === $route.path}"
       >
-        {{ it.text }}
+        {{ text }}
       </nuxt-link>
+      <li class="li-item hover:primary">
+        <a
+          href="https://gitee.com/chinesee"
+          target="_blank"
+        >项目仓库</a>
+      </li>
     </ul>
   </div>
 </template>
@@ -26,7 +32,7 @@ export default {
   data: () => ({
     nav: [
       { text: '文章', route: '/articles' },
-      { text: '作品', route: '' },
+      { text: '作品', route: '/creations' },
     ],
   }),
 }
@@ -35,5 +41,9 @@ export default {
 <style lang="scss" scoped>
 .header {
   box-shadow: 0 0 25px 15px rgba(var(--ns-primary), 0.05);
+
+  .li-item {
+    @apply mr-5 cursor-pointer transition;
+  }
 }
 </style>
