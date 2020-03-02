@@ -63,6 +63,11 @@ body {
     @apply p-10 bg-gray-200;
   }
 
+  @media (min-width: 1920px) {
+    display: flex;
+    justify-content: center;
+  }
+
   transition: $transition;
   height: 100vh;
 }
@@ -75,6 +80,10 @@ img {
 #__nuxt {
   @apply h-full overflow-hidden bg-white overflow-hidden;
   border-radius: 1.5rem;
+
+  @media (min-width: 1920px) {
+    width: 1920px;
+  }
 }
 
 #__layout {
