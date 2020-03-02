@@ -1,3 +1,11 @@
+---
+name: jQuery
+title: JavaScript专题之jQuery通用遍历方法each的实现
+time: 2020年3月2日
+id: bacon-ipsum
+description: jQuery 的 each 方法，作为一个通用遍历方法，可用于遍历对象和数组。
+---
+
 # JavaScript专题之jQuery通用遍历方法each的实现
 
 ## each介绍

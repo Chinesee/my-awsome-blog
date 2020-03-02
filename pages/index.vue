@@ -66,7 +66,7 @@ const logos = [
   },
   {
     comp: 'LogoGitee',
-    title: '源代码已开源',
+    title: '源码已开源',
     desc: '所有代码已托管至码云仓库，欢迎交流学习',
     link: 'https://gitee.com/chinesee/blog-nuxt',
   },
