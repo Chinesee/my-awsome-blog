@@ -1,5 +1,9 @@
 <template>
-  <button class="ns-button block px-5 py-2 text-sm text-gray-100 radius bg-primary transition cursor-pointer">
+  <button
+    type="button"
+    class="ns-button block px-5 py-2 text-sm text-gray-100 radius bg-primary transition cursor-pointer"
+    @click="$emit('click')"
+  >
     <slot></slot>
   </button>
 </template>

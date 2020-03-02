@@ -11,7 +11,7 @@
             朽骨已在掩埋的宅邸中躺了多久，但纪念碑将于此山谷中永垂不朽。<br>
             孤勇之后，世界尽在眼前。
           </p>
-          <NsButton @click.native="$router.push('/creations')">查看我的作品</NsButton>
+          <ns-button @click="$router.push('/creations')">查看我的作品</ns-button>
         </div>
         <img
           class="hidden sm:inline-block"
@@ -29,7 +29,7 @@
         >
           <component
             :is="comp"
-            class="w-16 mr-4"
+            class="w-12 mr-4"
           ></component>
           <div>
             <p class="mb-1 text-lg text-gray-600 font-bold ">
@@ -58,8 +58,18 @@ const logos = [
     desc: '本博客使用了 Nuxt 框架生成静态页面',
     link: 'https://zh.nuxtjs.org/guide',
   },
-  { comp: 'LogoNetlify', title: '部署于Netlify', desc: '结合Github', link: 'https://www.netlify.com/' },
-  { comp: 'LogoGitee', title: '源代码已托管至码云仓库', desc: '点击查看', link: 'https://gitee.com/chinesee/blog-nuxt' },
+  {
+    comp: 'LogoNetlify',
+    title: '部署于Netlify',
+    desc: '优秀的内容管理网站，能实现网页快速部署',
+    link: 'https://www.netlify.com/',
+  },
+  {
+    comp: 'LogoGitee',
+    title: '源代码已开源',
+    desc: '所有代码已托管至码云仓库，欢迎交流学习',
+    link: 'https://gitee.com/chinesee/blog-nuxt',
+  },
 ]
 
 export default {

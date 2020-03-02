@@ -60,7 +60,7 @@ export default {
   box-shadow: 0 0 25px 15px rgba(var(--ns-primary), 0.05);
 
   .li-item {
-    @apply mr-5 cursor-pointer transition;
+    @apply mr-6 cursor-pointer transition;
   }
 }
 </style>
