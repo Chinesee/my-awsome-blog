@@ -15,7 +15,7 @@ function fileResolve(filePath) {
     if (isDir) {
       fileResolve(fileDir)
     } else {
-      const name = `/blog/${path.basename(fileDir).split('.')[0]}`
+      const name = `/blog/${path.basename(fileDir).replace('.md', '')}`
       paths.push(name)
     }
   })
@@ -52,7 +52,7 @@ export default {
 
   head: {
     htmlAttrs: { lang: 'cmn-Hans-CN' },
-    title: '令狐少侠的个人空间',
+    title: '纪念碑谷 - 令狐聪的个人空间',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -64,7 +64,7 @@ export default {
     ],
   },
 
-  loading: { color: '#41B883' },
+  loading: { color: '#2f58ff' },
 
   css: [
     '@/assets/css/main.scss',
