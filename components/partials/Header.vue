@@ -12,7 +12,7 @@
       @click="$router.push('/')"
     >
     <ul
-      class="menu"
+      class="menu select-none"
       :class="{'is-hidden': isHeaderHidden}"
     >
       <nuxt-link

@@ -1,5 +1,5 @@
 <template>
-  <div class="sm:p-4 md:p-6 lg:p-8 transition">
+  <div class="p-2 sm:p-4 md:p-6 lg:p-8 transition">
     <ul class="list">
       <li
         v-for="({ img, title, link }, i) in creations"

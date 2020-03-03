@@ -1,8 +1,6 @@
 <template>
   <svg
     class="GiteeLogo"
-    width="200"
-    height="200"
     viewBox="0 0 1024 1024"
     xmlns="http://www.w3.org/2000/svg"
   >

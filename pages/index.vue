@@ -1,38 +1,40 @@
 <template>
-  <div class="index pt-6">
+  <div class="index pt-6 px-5">
     <div>
       <div class="py-10 flex justify-center items-center">
-        <div class="md:mr-20">
-          <p class="text-gray-700 text-3xl font-bold">
-            生命相承，殊途同归 <br>
+        <div class="md:mr-20 flex flex-col justify-center xs:items-center sm:items-start">
+          <p class="text-gray-700 xs:text-xl sm:text-3xl font-bold xs:text-center sm:text-left whitespace-pre-line">
+            生命相承，殊途同归
             世事变幻，但时间从不作答
           </p>
-          <p class="mt-4 mb-10 text-gray-600 text-sm">
-            朽骨已在掩埋的宅邸中躺了多久，但纪念碑将于此山谷中永垂不朽。<br>
+          <p class="mt-4 mb-10 text-gray-600 text-sm xs:text-center sm:text-left sm:whitespace-pre-line">
+            朽骨已在掩埋的宅邸中躺了多久，但纪念碑将于此山谷中永垂不朽。
             孤勇之后，世界尽在眼前。
           </p>
-          <ns-button @click="$router.push('/creations')">查看我的作品</ns-button>
+          <div>
+            <ns-button @click="$router.push('/creations')">查看我的作品</ns-button>
+          </div>
         </div>
         <img
-          class="hidden sm:inline-block"
+          class="sm:hidden md:inline-block"
           style="width: 500px;"
           src="~/assets/images/img.png"
           alt="首页图片"
         >
       </div>
 
-      <div class="flex justify-center items-center">
+      <div class="flex xs:flex-col sm:flex-row justify-center items-center select-none">
         <div
           v-for="({ comp, title, desc, link }, i) in logos"
           :key="i"
-          class="mx-12 flex items-center"
+          class="mx-12 xs:mb-4 md:mb-0 flex items-center"
         >
           <component
             :is="comp"
             class="w-12 mr-4"
           ></component>
           <div>
-            <p class="mb-1 text-lg text-gray-600 font-bold ">
+            <p class="mb-1 xs:text-base text-lg text-gray-600 font-bold ">
               <a
                 target="_blank"
                 :href="link"
