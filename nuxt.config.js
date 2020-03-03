@@ -24,7 +24,7 @@ export default {
   css: [
     '@/assets/css/main.scss',
     '@/assets/hightlight/common.scss',
-    '@/assets/hightlight/prism-nord.css',
+    '@/assets/hightlight/prism-custom.css',
   ],
 
   purgeCSS: { enabled: false },
