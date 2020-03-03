@@ -16,7 +16,7 @@
           </div>
         </div>
         <img
-          class="sm:hidden md:inline-block"
+          class="hidden md:inline-block"
           style="width: 500px;"
           src="~/assets/images/img.png"
           alt="首页图片"
@@ -31,10 +31,10 @@
         >
           <component
             :is="comp"
-            class="w-12 mr-4"
+            class="xs:w-8 sm:w-12 mr-4"
           ></component>
           <div>
-            <p class="mb-1 xs:text-base text-lg text-gray-600 font-bold ">
+            <p class="mb-1 xs:text-sm sm:text-lg text-gray-600 font-bold ">
               <a
                 target="_blank"
                 :href="link"
