@@ -17,11 +17,17 @@
 
   a {
     color: $primary;
+    opacity: 0.75;
   }
 
   pre {
     margin: 1.2rem 0;
     border-radius: 1rem !important;
+    overflow: auto;
+
+    ::selection {
+      background: rgba(var(--ns-primary), 0.06);
+    }
   }
 
   img {
@@ -31,16 +37,16 @@
     box-shadow: $light-shadow;
   }
 
-  :not(pre)>code {
-    margin: 0 .15rem;
-    padding: .12em .24rem;
-    border-radius: .4rem;
-    color: #fff;
-    background: #2E3440;
+  blockquote {
+    @apply pl-3;
+    border-left: .25em solid #cbd5e0;
   }
 
-  ::selection {
-    background: rgba(255, 255, 255, 0.15);
+  :not(pre)>code {
+    padding: .12em .28rem;
+    border-radius: .4rem;
+    color: rgba(var(--ns-primary), 0.8);
+    background: rgba(var(--ns-primary), 0.06);
   }
 }
 

@@ -1,6 +1,6 @@
 <template>
   <div class="markdown-container">
-    <div class="markdown-wrapper py-6">
+    <div class="markdown-wrapper">
       <component
         id="markdown-content"
         class="sm:w-full"
@@ -32,7 +32,7 @@ export default {
 }
 
 .markdown-wrapper {
-  @apply px-5;
+  @apply px-5 py-6;
   max-width: 1000px;
 }
 </style>

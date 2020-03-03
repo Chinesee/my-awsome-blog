@@ -2,30 +2,30 @@
   <div
     class="header"
     style="opacity: 0.92;"
-    :class="{'px-2 flex justify-center radius': isHeaderHidden, 'px-6 justify-between': !isHeaderHidden}"
-    :style="isHeaderHidden ? 'width: 5rem': 'opacity: 0.92'"
+    :class="{'is-hidden': isHeaderHidden, 'px-6 justify-end': !isHeaderHidden}"
   >
     <img
-      class="w-12 cursor-pointer"
+      class="w-12 absolute left-0  transition cursor-pointer"
+      :class="isHeaderHidden ? 'ml-4' : 'ml-6'"
       src="~/assets/images/logo.png"
       alt="LOGO"
       @click="$router.push('/')"
     >
     <ul
-      class="flex text-gray-700"
-      :class="{'hidden': isHeaderHidden}"
+      class="menu"
+      :class="{'is-hidden': isHeaderHidden}"
     >
       <nuxt-link
         v-for="({ route, text }, i) in nav"
         :key="i"
         :to="route"
         tag="li"
-        class="li-item hover:primary"
+        class="menu-item hover:primary"
         :class="{'primary': route === $route.path}"
       >
         {{ text }}
       </nuxt-link>
-      <li class="li-item hover:primary">
+      <li class="menu-item hover:primary">
         <a
           href="https://gitee.com/chinesee"
           target="_blank"
@@ -59,8 +59,21 @@ export default {
   transition: $transition;
   box-shadow: 0 0 25px 15px rgba(var(--ns-primary), 0.05);
 
-  .li-item {
-    @apply mr-6 cursor-pointer transition;
+  &.is-hidden {
+    @apply px-2 justify-center;
+    width: 5rem;
+    border-radius: $radius;
+  }
+
+  .menu {
+    @apply flex text-gray-700;
+    &.is-hidden {
+      @apply hidden;
+    }
+
+    .menu-item {
+      @apply mr-6 cursor-pointer transition;
+    }
   }
 }
 </style>

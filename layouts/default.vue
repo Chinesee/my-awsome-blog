@@ -4,7 +4,7 @@
 
     <div
       ref="scrollArea"
-      class="pt-16 h-full overflow-y-scroll"
+      class="scroll-area"
     >
       <nuxt />
       <Footer />
@@ -46,7 +46,7 @@ export default {
 
 <style lang="scss" scoped>
 .scroll-area {
-  @apply overflow-hidden;
-  height: calc(100%);
+  @apply pt-16 h-full overflow-y-scroll;
+  overflow: overlay;
 }
 </style>
