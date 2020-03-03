@@ -9,8 +9,10 @@
   opacity: 0;
 }
 
-::selection {
-  background: rgba(var(--ns-primary), 0.1);
+::selection,
+::-moz-selection {
+  color: white;
+  background: rgba(var(--ns-primary), 0.6);
 }
 
 ::-webkit-scrollbar {
@@ -71,8 +73,8 @@ body {
 }
 
 img {
-  -webkit-user-drag: none;
   user-select: none;
+  -webkit-user-drag: none;
 }
 
 #__nuxt {
@@ -106,6 +108,10 @@ img {
 
 .bg-primary {
   background-color: rgba(var(--ns-primary), 1);
+}
+
+.ns-button {
+  user-select: none;
 }
 
 /* purgecss end ignore */

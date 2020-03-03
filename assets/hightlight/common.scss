@@ -26,6 +26,7 @@
     overflow: auto;
 
     ::selection {
+      color: inherit;
       background: rgba(var(--ns-primary), 0.06);
     }
   }
