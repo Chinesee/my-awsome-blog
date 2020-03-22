@@ -16,9 +16,8 @@
           </div>
         </div>
         <img
-          class="hidden md:inline-block"
-          style="width: 500px;"
-          src="~/assets/images/img.png"
+          class="cover"
+          src="https://gitee.com/chinesee/images/raw/master/img/img_029.png"
           alt="首页图片"
         >
       </div>
@@ -92,3 +91,29 @@ export default {
   }),
 }
 </script>
+
+<style lang="scss" scoped>
+.cover {
+  transition: $transition;
+
+  @media (max-width: 820px) {
+    display: none;
+  }
+
+  @media (min-width: 821px) {
+    width: 45%;
+  }
+
+  @media (min-width: 1040px) {
+    width: 50%;
+  }
+
+  @media (min-width: 1160px) {
+    width: 60%;
+  }
+
+  @media (min-width: 1280px) {
+    width: 700px;
+  }
+}
+</style>
