@@ -78,7 +78,7 @@ img {
 }
 
 #__nuxt {
-  @apply h-full overflow-hidden bg-white overflow-hidden;
+  @apply h-full bg-white overflow-hidden;
   border-radius: 1.5rem;
 
   @media (min-width: 1920px) {
@@ -87,7 +87,7 @@ img {
 }
 
 #__layout {
-  @apply h-full overflow-hidden bg-white overflow-hidden;
+  @apply h-full bg-white overflow-hidden;
 }
 
 .light-shadow {
