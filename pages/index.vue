@@ -3,7 +3,7 @@
     <div>
       <div class="py-10 flex justify-center items-center">
         <div class="md:mr-20 flex flex-col justify-center xs:items-center sm:items-start">
-          <p class="text-gray-700 xs:text-xl sm:text-3xl font-bold xs:text-center sm:text-left whitespace-pre-line">
+          <p class="text-gray-700 xs:text-xl sm:text-2xl md:text-3xl font-bold xs:text-center sm:text-left whitespace-pre-line">
             生命相承，殊途同归
             世事变幻，但时间从不作答
           </p>
@@ -93,6 +93,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// 封面图
 .cover {
   transition: $transition;
 

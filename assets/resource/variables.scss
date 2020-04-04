@@ -1,11 +1,26 @@
 /* purgecss start ignore */
 :root {
   --ns-primary: 47, 88, 255;
+  --ns-success: 47, 88, 255;
+  --ns-warning: 47, 88, 255;
+  --ns-danger: 47, 88, 255;
 }
 
+// Color
 $primary: rgba(var(--ns-primary), 1);
-$radius: 0.8rem;
+$success: rgba(var(--ns-success), 1);
+$warning: rgba(var(--ns-warning), 1);
+$danger: rgba(var(--ns-danger), 1);
+
+// Border
+$sm-radius: 0.45rem;
+$md-radius: 0.6rem;
+$lg-radius: 0.8rem;
+
+// Shadow
 $light-shadow: 0 0 25px 10px rgba(90, 90, 90, 0.05);
 $base-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.06);
+
+// transition
 $transition: all 0.3s;
 /* purgecss end ignore */

@@ -11,7 +11,7 @@
           target="_blank"
         >
           <div
-            class="relative radius base-shadow overflow-hidden cursor-pointer"
+            class="relative lg-radius base-shadow overflow-hidden cursor-pointer"
             style="height: 15rem;"
           >
             <img

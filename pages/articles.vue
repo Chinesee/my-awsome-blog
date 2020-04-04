@@ -6,7 +6,7 @@
         :key="i"
         :to="routeTo(path)"
         tag="li"
-        class="mb-6 p-6 radius bg-gray-100 cursor-pointer w-full"
+        class="mb-6 p-6 lg-radius bg-gray-100 cursor-pointer w-full"
       >
         <h2 class="mb-1 text-xl truncate">{{ title }}</h2>
         <p class="text-gray-600 truncate text-sm">{{ description }}</p>

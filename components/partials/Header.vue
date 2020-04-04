@@ -62,7 +62,7 @@ export default {
   &.is-hidden {
     @apply px-2 justify-center;
     width: 5rem;
-    border-radius: $radius;
+    border-radius: $lg-radius;
   }
 
   .menu {
