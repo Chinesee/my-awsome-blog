@@ -23,7 +23,11 @@ body {
   transition: $transition;
 
   &.full-screen {
-    @apply p-0 bg-white;
+    @apply p-0;
+
+    #__layout {
+      border-radius: 0;
+    }
   }
 
   @media (min-width: 480px) {

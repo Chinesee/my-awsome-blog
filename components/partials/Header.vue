@@ -46,6 +46,7 @@ export default {
   data: () => ({
     activeMenuItemClass: '',
     nav: [
+      { text: '笔记', route: '/notes' },
       { text: '文章', route: '/articles' },
       { text: '作品', route: '/creations' },
       { text: '项目仓库', href: 'https://gitee.com/chinesee' },
