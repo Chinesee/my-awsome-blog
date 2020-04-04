@@ -8,8 +8,6 @@ html {
   min-height: 100vh;
   font-family: BASE;
   font-size: 16px;
-  word-spacing: 1px;
-  box-sizing: border-box;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
@@ -17,7 +15,16 @@ html {
 }
 
 body {
-  @apply text-gray-700 overflow-hidden;
+  @apply h-screen w-screen text-gray-700 overflow-hidden;
+}
+
+#__nuxt {
+  @apply h-full bg-white overflow-hidden;
+  transition: $transition;
+
+  &.full-screen {
+    padding: 0;
+  }
 
   @media (min-width: 480px) {
     @apply p-0 bg-white;
@@ -35,22 +42,11 @@ body {
     display: flex;
     justify-content: center;
   }
-
-  height: 100vh;
-  transition: $transition;
-}
-
-#__nuxt {
-  @apply h-full bg-white overflow-hidden;
-  border-radius: 1.5rem;
-
-  @media (min-width: 1920px) {
-    width: 1920px;
-  }
 }
 
 #__layout {
   @apply h-full bg-white overflow-hidden;
+  border-radius: 1.5rem;
 }
 
 .page-enter-active,

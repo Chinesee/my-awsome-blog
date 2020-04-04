@@ -7,6 +7,7 @@
       class="scroll-area"
     >
       <nuxt />
+
       <Footer />
     </div>
   </div>
@@ -23,11 +24,25 @@ export default {
     timer: null,
   }),
 
+  watch: {
+    '$route.name': {
+      handler(routeName) {
+        if (routeName === 'index') {
+          document.getElementById('__nuxt').classList.remove('full-screen')
+        } else {
+          document.getElementById('__nuxt').classList.add('full-screen')
+        }
+      },
+      immediate: true,
+    },
+  },
+
   mounted() {
     this.$refs.scrollArea.addEventListener('scroll', this.scrollY)
   },
 
   methods: {
+    // 控制头部菜单栏的展开和收起
     scrollY({ target: { scrollTop } }) {
       if (typeof this.timer === 'number') {
         clearTimeout(this.timer)

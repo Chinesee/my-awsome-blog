@@ -12,7 +12,12 @@
             孤勇之后，世界尽在眼前。
           </p>
           <div>
-            <ns-button @click="$router.push('/creations')">查看我的作品</ns-button>
+            <ns-button
+              size="large"
+              @click="$router.push('/creations')"
+            >
+              查看我的作品
+            </ns-button>
           </div>
         </div>
         <img

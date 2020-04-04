@@ -12,8 +12,12 @@ img {
   box-shadow: $base-shadow;
 }
 
-.lg-radius {
-  border-radius: $lg-radius;
+@each $size in sm,
+md,
+lg {
+  .#{$size}-radius {
+    border-radius: map-get($radius-map, $size);
+  }
 }
 
 .transition {
