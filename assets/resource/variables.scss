@@ -1,4 +1,5 @@
 /* purgecss start ignore */
+
 :root {
   --ns-primary: 47, 88, 255;
   --ns-success: 47, 88, 255;
@@ -22,8 +23,10 @@ $radius-map: (sm: $sm-radius, md: $md-radius, lg: $lg-radius);
 // Shadow
 $light-shadow: 0 0 25px 10px rgba(90, 90, 90, 0.05);
 $base-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.06);
+$heavy-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.09);
 $shadow-map: (light: $light-shadow, base: $base-shadow);
 
 // transition
 $transition: all 0.3s;
+
 /* purgecss end ignore */

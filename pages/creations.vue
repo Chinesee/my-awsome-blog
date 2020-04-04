@@ -1,24 +1,22 @@
 <template>
   <div class="p-2 sm:p-4 md:p-6 lg:p-8 transition">
-    <ul class="list">
+    <ul class="creation-list">
       <li
         v-for="({ img, title, link }, i) in creations"
         :key="i"
-        class="item p-4"
+        class="creation-item lg-radius base-shadow"
       >
         <a
           :href="link"
           target="_blank"
         >
-          <div
-            class="relative lg-radius base-shadow overflow-hidden cursor-pointer"
-            style="height: 15rem;"
-          >
+          <div style="height: 15rem;">
             <img
               :src="img"
               class="w-full h-full object-cover"
               alt="封面图片"
             >
+
             <div class="absolute bottom-0 w-full px-3 py-2">
               <h3 class="relative z-50 text-sm font-bold">{{ title }}</h3>
               <div class="absolute top-0 left-0 z-40 w-full h-full bg-white opacity-75"></div>
@@ -61,24 +59,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.list {
+.creation-list {
   display: grid;
   grid-template-columns: 1fr;
+
+  $gap: 1.5rem;
   @media (min-width: 768px) {
-    grid-column-gap: 0.4rem;
     grid-template-columns: 1fr 1fr;
+    gap: $gap * 1.5;
   }
   @media (min-width: 1024px) {
-    grid-column-gap: 0.5rem;
     grid-template-columns: 1fr 1fr 1fr;
+    gap: $gap * 1.6;
   }
   @media (min-width: 1280px) {
-    grid-column-gap: 0.8rem;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: $gap * 1.4;
   }
 
-  .item {
-    @apply flex justify-center items-center;
+  .creation-item {
+    @apply relative flex justify-center items-center overflow-hidden cursor-pointer;
+    transition: $transition;
+    &:hover {
+      box-shadow: $heavy-shadow;
+    }
   }
 }
 </style>

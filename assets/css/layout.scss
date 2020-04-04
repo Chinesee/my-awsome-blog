@@ -23,7 +23,7 @@ body {
   transition: $transition;
 
   &.full-screen {
-    padding: 0;
+    @apply p-0 bg-white;
   }
 
   @media (min-width: 480px) {
