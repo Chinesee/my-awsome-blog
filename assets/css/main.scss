@@ -27,7 +27,8 @@ lg {
 }
 
 @each $type in light,
-base {
+base,
+heavy {
   .#{$type}-shadow {
     box-shadow: map-get($shadow-map, $type);
   }

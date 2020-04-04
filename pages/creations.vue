@@ -13,7 +13,7 @@
           <div style="height: 15rem;">
             <img
               :src="img"
-              class="w-full h-full object-cover"
+              class="cover-img w-full h-full object-cover"
               alt="封面图片"
             >
 
@@ -80,8 +80,14 @@ export default {
   .creation-item {
     @apply relative flex justify-center items-center overflow-hidden cursor-pointer;
     transition: $transition;
+    .cover-img {
+      transition: $transition;
+    }
     &:hover {
       box-shadow: $heavy-shadow;
+      .cover-img {
+        transform: scale(1.1);
+      }
     }
   }
 }
