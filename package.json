@@ -11,6 +11,14 @@
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore --ignore-pattern modules/ --ignore-pattern plugins/ga.js ."
   },
+  "browserslist": [
+    "defaults",
+    "not ie <= 8",
+    "last 2 versions",
+    "> 1%",
+    "iOS >= 7",
+    "Android >= 4.0"
+  ],
   "dependencies": {
     "markdown-it": "^10.0.0",
     "markdown-it-prism": "2.0.3",
