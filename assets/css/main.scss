@@ -4,12 +4,17 @@ img {
   -webkit-user-drag: none;
 }
 
-.light-shadow {
-  box-shadow: $light-shadow;
-}
+@each $color in primary,
+success,
+warning,
+danger {
+  .#{$color} {
+    color: map-get($color-map, $color);
+  }
 
-.base-shadow {
-  box-shadow: $base-shadow;
+  .bg-#{$color} {
+    background-color: rgba(var(--ns-#{color}), 1);
+  }
 }
 
 @each $size in sm,
@@ -20,12 +25,15 @@ lg {
   }
 }
 
-.transition {
-  transition: $transition;
+@each $type in light,
+base {
+  .#{$type}-shadow {
+    box-shadow: map-get($shadow-map, $type);
+  }
 }
 
-.bg-primary {
-  background-color: rgba(var(--ns-primary), 1);
+.transition {
+  transition: $transition;
 }
 
 /* purgecss end ignore */
