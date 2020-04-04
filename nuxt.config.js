@@ -23,6 +23,7 @@ export default {
 
   css: [
     '@/assets/css/main.scss',
+    '@/assets/css/layout.scss',
     '@/assets/hightlight/common.scss',
     '@/assets/hightlight/prism-custom.css',
   ],
