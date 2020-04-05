@@ -7,7 +7,7 @@
         class="mb-16"
       >
         <p class="mb-2">
-          <span class="mr-4 text-xl font-bold">{{ title }}</span>
+          <span class="title mr-4 text-xl font-bold hover:primary transition cursor-pointer">{{ title }}</span>
           <span class="text-sm text-gray-400">{{ time }}</span>
         </p>
         <p class="text-sm text-gray-500">{{ description }}</p>
@@ -17,7 +17,6 @@
 </template>
 
 <script>
-
 export default {
   props: {
     articles: {
@@ -30,3 +29,11 @@ export default {
   }),
 }
 </script>
+
+<style lang="scss" scoped>
+.title {
+  &:hover {
+    color: setColor(primary, 0.9);
+  }
+}
+</style>
