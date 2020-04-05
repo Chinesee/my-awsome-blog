@@ -1,26 +1,16 @@
 <template>
   <div class="error h-full">
-    <ErrorNotFound v-if="error.statusCode === 404" />
-    <div
-      v-else
-      class="h-full flex flex-col justify-center items-center"
-    >
-      <h1 class=" text-xl font-bold">应用发生错误异常 (๑°ㅁ°๑)ᵎᵎᵎ</h1>
-      <ns-button
-        class="mt-5"
-        @click="$router.replace('/')"
-      >
-        返回主页
-      </ns-button>
-    </div>
+    <error-not-found v-if="error.statusCode === 404" />
+    <error-exception v-else />
   </div>
 </template>
 
 <script>
 import ErrorNotFound from '~/components/error/ErrorNotFound.vue'
+import ErrorException from '~/components/error/ErrorException.vue'
 
 export default {
-  components: { ErrorNotFound },
+  components: { ErrorNotFound, ErrorException },
   props: {
     error: {
       type: Object,

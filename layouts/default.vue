@@ -81,10 +81,6 @@ export default {
       }
     },
   },
-
-  head: {
-    title: process.env.npm_package_description,
-  },
 }
 </script>
 

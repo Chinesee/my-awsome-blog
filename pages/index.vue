@@ -53,6 +53,7 @@
 </template>
 
 <script>
+import head from '~/mixins/head'
 import LogoNuxt from '~/components/logo/LogoNuxt.vue'
 import LogoNetlify from '~/components/logo/LogoNetlify.vue'
 import LogoGitee from '~/components/logo/LogoGitee.vue'
@@ -80,6 +81,8 @@ const logos = [
 
 export default {
   components: { LogoNuxt, LogoNetlify, LogoGitee },
+
+  mixins: [head({ headTitle: '首页' })],
 
   asyncData() {
     const resolve = require.context('~/contents/', true, /\.md$/)

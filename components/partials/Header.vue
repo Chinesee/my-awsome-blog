@@ -1,8 +1,10 @@
 <template>
   <div
     class="header"
-    :class="{'is-hidden': !isHeaderShow, 'px-6 justify-end': isHeaderShow}"
     style="opacity: 0.92;"
+    :class="{'is-hidden': !isHeaderShow, 'px-6 justify-end': isHeaderShow}"
+    @mouseenter="onHeaderShow"
+    @mouseleave="onHeaderHide"
   >
     <!-- 博客 Logo -->
     <img
@@ -15,7 +17,7 @@
 
     <!-- 菜单项 -->
     <ul
-      class="menu select-none"
+      class="menu"
       :class="[isHeaderShow ? '' : 'is-hidden', activeMenuItemClass]"
     >
       <li
@@ -51,11 +53,12 @@ export default {
       { text: '作品', route: '/creations' },
       { text: '项目仓库', href: 'https://gitee.com/chinesee' },
     ],
+    isMouseHover: false, // 菜单栏收起时，控制鼠标悬浮展开菜单栏
   }),
 
   computed: {
     isHeaderShow() {
-      return this.$store.state.isHeaderShow
+      return this.$store.state.isHeaderShow || this.isMouseHover
     },
   },
 
@@ -67,13 +70,30 @@ export default {
             this.activeMenuItemClass = `active-${i}`
             return true
           } else {
-            this.activeMenuItemClass = ''
+            this.activeMenuItemClass = 'none-active'
             return false
           }
         })
       },
       immediate: true,
     },
+  },
+
+  methods: {
+    onHeaderShow() {
+      if (!this.isHeaderShow) {
+        this.isMouseHover = true
+      }
+    },
+
+    onHeaderHide() {
+      if (this.isHeaderShow) {
+        setTimeout(() => {
+          this.isMouseHover = false
+        }, 400)
+      }
+    },
+
   },
 }
 </script>
@@ -93,7 +113,7 @@ export default {
   }
 
   .menu {
-    @apply relative flex text-gray-700;
+    @apply relative flex text-gray-700 select-none;
     &.is-hidden {
       @apply hidden;
     }
@@ -103,6 +123,12 @@ export default {
         &::after {
           opacity: 1;
           left: $menu-item-width * $i;
+        }
+      }
+
+      &.none-active {
+        &::after {
+          display: none;
         }
       }
     }

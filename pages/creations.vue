@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import head from '~/mixins/head'
+
 const creations = [
   {
     img: 'https://gitee.com/chinesee/images/raw/master/img/img_011.jpg',
@@ -52,6 +54,8 @@ const creations = [
   },
 ]
 export default {
+  mixins: [head({ headTitle: '作品' })],
+
   data: () => ({
     creations,
   }),

@@ -17,7 +17,11 @@
 </template>
 
 <script>
+import head from '~/mixins/head'
+
 export default {
+  mixins: [head({ headTitle: '文章' })],
+
   asyncData() {
     const resolve = require.context('~/contents/', true, /\.md$/)
     const articles = resolve.keys().map(key => {
