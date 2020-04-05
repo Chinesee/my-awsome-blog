@@ -30,6 +30,14 @@ body {
     }
   }
 
+  @media (max-width: 479px) {
+    @apply p-0 bg-white;
+
+    #__layout {
+      border-radius: 0;
+    }
+  }
+
   @media (min-width: 480px) {
     @apply p-0 bg-white;
   }
@@ -50,6 +58,7 @@ body {
 
 #__layout {
   @apply h-full bg-white overflow-hidden;
+  min-height: 500px;
   border-radius: 1.5rem;
 }
 
