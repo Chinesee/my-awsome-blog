@@ -4,7 +4,7 @@
       <li
         v-for="({title, time, description}, i) in articles"
         :key="i"
-        class="mb-8"
+        class="mb-16"
       >
         <p class="mb-2">
           <span class="mr-4 text-xl font-bold">{{ title }}</span>

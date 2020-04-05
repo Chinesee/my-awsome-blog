@@ -1,26 +1,31 @@
 <template>
-  <div class="default relative h-full">
-    <Header class="absolute z-50 top-0 left-0" />
+  <div
+    id="default-layout"
+    :class="{'full-screen': isFullScreen}"
+  >
+    <div id="layout-container">
+      <Header class="absolute z-50 top-0 left-0" />
 
-    <div
-      ref="scrollArea"
-      class="scroll-area"
-    >
-      <nuxt />
-
-      <Footer />
-
-      <ns-back-top
-        visible-offset="500"
-        @scrollTop="onScrollTop"
+      <div
+        ref="scrollArea"
+        class="scroll-area"
       >
-        <ns-button>
-          <img
-            class="text-white"
-            src="~/assets/icons/arrow-up.svg"
-          >
-        </ns-button>
-      </ns-back-top>
+        <nuxt />
+
+        <Footer />
+
+        <ns-back-top
+          visible-offset="500"
+          @scrollTop="onScrollTop"
+        >
+          <ns-button>
+            <img
+              class="text-white"
+              src="~/assets/icons/arrow-up.svg"
+            >
+          </ns-button>
+        </ns-back-top>
+      </div>
     </div>
   </div>
 </template>
@@ -36,16 +41,9 @@ export default {
     timer: null,
   }),
 
-  watch: {
-    '$route.name': {
-      handler(routeName) {
-        if (routeName === 'index') {
-          document.getElementById('__nuxt').classList.remove('full-screen')
-        } else {
-          document.getElementById('__nuxt').classList.add('full-screen')
-        }
-      },
-      immediate: true,
+  computed: {
+    isFullScreen() {
+      return this.$route.name !== 'index'
     },
   },
 

@@ -53,12 +53,13 @@ export default {
       { text: '作品', route: '/creations' },
       { text: '项目仓库', href: 'https://gitee.com/chinesee' },
     ],
+    whiteList: ['index', 'articles', 'creations'], // 白名单内的页面菜单不收起
     isMouseHover: false, // 菜单栏收起时，控制鼠标悬浮展开菜单栏
   }),
 
   computed: {
     isHeaderShow() {
-      return this.$store.state.isHeaderShow || this.isMouseHover
+      return this.$store.state.isHeaderShow || this.isMouseHover || this.whiteList.includes(this.$route.name)
     },
   },
 
