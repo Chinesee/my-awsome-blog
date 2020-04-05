@@ -7,10 +7,10 @@
         class="mb-16"
       >
         <p class="mb-2">
-          <span class="title mr-4 text-xl font-bold hover:primary transition cursor-pointer">{{ title }}</span>
+          <span class="title mr-4 text-2xl font-bold transition cursor-pointer">{{ title }}</span>
           <span class="text-sm text-gray-400">{{ time }}</span>
         </p>
-        <p class="text-sm text-gray-500">{{ description }}</p>
+        <p class="text-gray-500">{{ description }}</p>
       </li>
     </ul>
   </div>

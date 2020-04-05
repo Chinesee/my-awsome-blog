@@ -16,43 +16,61 @@
     >
 
     <!-- 菜单项 -->
-    <ul
-      class="menu"
-      :class="[isHeaderShow ? '' : 'is-hidden', activeMenuItemClass]"
-    >
-      <li
-        v-for="({ route, text, href }, i) in nav"
-        :key="i"
-        class="menu-item hover:primary"
+    <div class="relative">
+      <div
+        v-if="isMenuCollapse"
+        @click="showMenu()"
       >
-        <nuxt-link
-          v-if="route"
-          class="menu-item hover:primary"
-          :class="{'primary': route === $route.path}"
-          :to="route"
+        <img
+          class="toggle-btn"
+          src="~/assets/icons/menu.svg"
         >
-          {{ text }}
-        </nuxt-link>
-        <a
-          v-else-if="href"
-          target="_blank"
-          :href="href"
-        >{{ text }}</a>
-      </li>
-    </ul>
+      </div>
+
+      <ul
+        class="menu"
+        :class="[
+          isHeaderShow ? '' : 'is-hidden',
+          isMenuCollapse ? 'is-collapse' : '',
+          isMenuCollapseShow ? 'show' : 'hide',
+          activeClass,
+        ]"
+      >
+        <li
+          v-for="({ route, text, href }, i) in nav"
+          :key="i"
+          class="menu-item hover:primary"
+        >
+          <nuxt-link
+            v-if="route"
+            class="menu-item hover:primary"
+            :class="{'primary': route === $route.path}"
+            :to="route"
+          >
+            {{ text }}
+          </nuxt-link>
+          <a
+            v-else-if="href"
+            target="_blank"
+            :href="href"
+          >{{ text }}</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   data: () => ({
-    activeMenuItemClass: '',
     nav: [
       { text: '笔记', route: '/notes' },
       { text: '文章', route: '/articles' },
       { text: '作品', route: '/creations' },
       { text: '项目仓库', href: 'https://gitee.com/chinesee' },
     ],
+    activeClass: '',
+    isMenuCollapseShow: false,
     whiteList: ['index', 'articles', 'creations'], // 白名单内的页面菜单不收起
     isMouseHover: false, // 菜单栏收起时，控制鼠标悬浮展开菜单栏
   }),
@@ -61,23 +79,34 @@ export default {
     isHeaderShow() {
       return this.$store.state.isHeaderShow || this.isMouseHover || this.whiteList.includes(this.$route.name)
     },
+
+    isMenuCollapse() {
+      return this.$store.state.isMenuCollapse
+    },
   },
 
   watch: {
     '$route.path': {
       handler(path) {
-        this.nav.some((el, i) => {
-          if (el.route === this.$route.path) {
-            this.activeMenuItemClass = `active-${i}`
+        for (const [i, v] of this.nav.entries()) {
+          if (v.route === path) {
+            this.activeClass = `active-${i}`
             return true
           } else {
-            this.activeMenuItemClass = 'none-active'
-            return false
+            this.activeClass = 'none-active'
           }
-        })
+        }
       },
       immediate: true,
     },
+  },
+
+  mounted() {
+    window.onclick = ({ target }) => {
+      if (!target.matches('.toggle-btn')) {
+        this.isMenuCollapseShow = false
+      }
+    }
   },
 
   methods: {
@@ -95,13 +124,16 @@ export default {
       }
     },
 
+    showMenu() {
+      this.isMenuCollapseShow = !this.isMenuCollapseShow
+    },
   },
 }
 </script>
 
 <style lang="scss" scoped>
 .header {
-  @apply w-full h-16 flex items-center bg-white overflow-hidden;
+  @apply w-full h-16 flex items-center bg-white;
   height: $header-height;
   line-height: $header-height;
   transition: $transition;
@@ -114,7 +146,7 @@ export default {
   }
 
   .menu {
-    @apply relative flex text-gray-700 select-none;
+    @apply relative flex text-gray-700 select-none overflow-hidden;
     &.is-hidden {
       @apply hidden;
     }
@@ -152,6 +184,42 @@ export default {
         display: block;
       }
     }
+  }
+}
+
+.menu.is-collapse {
+  @apply absolute top-0 right-0 z-50 w-32 flex-col items-center bg-white;
+  margin-top: $header-height - 0.5rem;
+  border-radius: $md-radius;
+  box-shadow: $base-shadow;
+  &.show {
+    animation: menuShow 0.3s ease-out forwards;
+  }
+  &.hide {
+    animation: menuHide 0.3s ease-out forwards;
+  }
+  @keyframes menuShow {
+    from {
+      max-height: 0;
+      opacity: 0;
+    }
+    to {
+      max-height: 400px;
+      opacity: 1;
+    }
+  }
+  @keyframes menuHide {
+    from {
+      max-height: 400px;
+      opacity: 1;
+    }
+    to {
+      max-height: 0;
+      opacity: 0;
+    }
+  }
+  &::after {
+    display: none;
   }
 }
 </style>

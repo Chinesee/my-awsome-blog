@@ -31,6 +31,8 @@
 </template>
 
 <script>
+import _debounce from 'lodash.debounce'
+
 import Header from '~/components/partials/Header.vue'
 import Footer from '~/components/partials/Footer.vue'
 
@@ -38,7 +40,6 @@ export default {
   components: { Header, Footer },
 
   data: () => ({
-    timer: null,
   }),
 
   computed: {
@@ -48,34 +49,37 @@ export default {
   },
 
   mounted() {
-    this.$refs.scrollArea.addEventListener('scroll', this.scrollY)
+    this.onResize()
+    window.addEventListener('resize', _debounce(this.onResize, 300))
+    this.$refs.scrollArea.addEventListener('scroll', _debounce(this.onScroll, 300))
   },
 
   methods: {
-    // 控制头部菜单栏的展开和收起
-    scrollY({ target: { scrollTop } }) {
-      if (typeof this.timer === 'number') {
-        clearTimeout(this.timer)
-      }
-      this.timer = setTimeout(() => {
-        if (scrollTop > 800) {
-          this.$store.commit('SET_BACK_TOP_STATUS', true)
-          this.$store.commit('SET_HEADER_STATUS', false)
-        } else {
-          this.$store.commit('SET_BACK_TOP_STATUS', false)
-          this.$store.commit('SET_HEADER_STATUS', true)
-        }
-      }, 300)
-    },
-
     // 回到顶部
     onScrollTop() {
       const scrollDelay = setTimeout(this.onScrollTop, 10)
-
       this.$refs.scrollArea.scrollTop -= 150
-
       if (this.$refs.scrollArea.scrollTop <= 0) {
         clearTimeout(scrollDelay)
+      }
+    },
+
+    // 控制头部菜单栏的展开和收起
+    onScroll({ target: { scrollTop } }) {
+      if (scrollTop > 800) {
+        this.$store.commit('SET_BACK_TOP_STATUS', true)
+        this.$store.commit('SET_HEADER_STATUS', false)
+      } else {
+        this.$store.commit('SET_BACK_TOP_STATUS', false)
+        this.$store.commit('SET_HEADER_STATUS', true)
+      }
+    },
+
+    onResize() {
+      if (document.body.clientWidth < 400) {
+        this.$store.commit('SET_HEADER_MENU_STATUS', true)
+      } else {
+        this.$store.commit('SET_HEADER_MENU_STATUS', false)
       }
     },
   },
