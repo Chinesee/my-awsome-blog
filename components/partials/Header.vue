@@ -1,22 +1,22 @@
 <template>
   <div
     class="header"
+    :class="{'is-hidden': !isHeaderShow, 'px-6 justify-end': isHeaderShow}"
     style="opacity: 0.92;"
-    :class="{'is-hidden': isHeaderHidden, 'px-6 justify-end': !isHeaderHidden}"
   >
     <!-- 博客 Logo -->
     <img
-      class="w-12 absolute left-0  transition cursor-pointer"
-      :class="isHeaderHidden ? 'ml-4' : 'ml-6'"
-      src="~/assets/images/logo.png"
       alt="LOGO"
+      class="w-12 absolute left-0  transition cursor-pointer"
+      src="~/assets/images/logo.png"
+      :class="isHeaderShow ? 'ml-6' : 'ml-4'"
       @click="$router.push('/')"
     >
 
     <!-- 菜单项 -->
     <ul
       class="menu select-none"
-      :class="[isHeaderHidden ? 'is-hidden' : '', activeMenuItemClass]"
+      :class="[isHeaderShow ? '' : 'is-hidden', activeMenuItemClass]"
     >
       <li
         v-for="({ route, text, href }, i) in nav"
@@ -25,16 +25,16 @@
       >
         <nuxt-link
           v-if="route"
-          :to="route"
           class="menu-item hover:primary"
           :class="{'primary': route === $route.path}"
+          :to="route"
         >
           {{ text }}
         </nuxt-link>
         <a
           v-else-if="href"
-          :href="href"
           target="_blank"
+          :href="href"
         >{{ text }}</a>
       </li>
     </ul>
@@ -54,8 +54,8 @@ export default {
   }),
 
   computed: {
-    isHeaderHidden() {
-      return this.$store.state.isHeaderHidden
+    isHeaderShow() {
+      return this.$store.state.isHeaderShow
     },
   },
 
@@ -74,17 +74,6 @@ export default {
       },
       immediate: true,
     },
-  },
-
-  methods: {
-    // setActiveClass(route, i) {
-    //   if (route === this.$route.path) {
-
-    //   }
-    //   if (this.$route.path === 'index') {
-    //     this.activeMenuItemClass = 'active'
-    //   }
-    // },
   },
 }
 </script>

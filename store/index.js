@@ -1,9 +1,14 @@
 export const state = () => ({
-  isHeaderHidden: false,
+  isHeaderShow: false,
+  isBackTopShow: false,
 })
 
 export const mutations = {
   SET_HEADER_STATUS(state, status) {
-    state.isHeaderHidden = status
+    state.isHeaderShow = status
+  },
+
+  SET_BACK_TOP_STATUS(state, status) {
+    state.isBackTopShow = status
   },
 }

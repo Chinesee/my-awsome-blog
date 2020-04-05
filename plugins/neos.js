@@ -1,8 +1,10 @@
 import Vue from 'vue'
-import NsButton from '@/components/neos/NsButton.vue'
+import NsBackTop from '~/components/neos/NsBackTop.vue'
+import NsButton from '~/components/neos/NsButton.vue'
 
-const components = { NsButton }
+const components = { NsBackTop, NsButton }
 
 Object.entries(components).forEach(([name, component]) => {
+  Vue.component(name, NsBackTop)
   Vue.component(name, component)
 })

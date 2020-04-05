@@ -13,6 +13,8 @@
 
 <script>
 export default {
+  name: 'BlogSection',
+
   props: {
     blogs: { type: Array, required: true },
   },

@@ -9,6 +9,18 @@
       <nuxt />
 
       <Footer />
+
+      <ns-back-top
+        visible-offset="500"
+        @scrollTop="onScrollTop"
+      >
+        <ns-button>
+          <img
+            class="text-white"
+            src="~/assets/icons/arrow-up.svg"
+          >
+        </ns-button>
+      </ns-back-top>
     </div>
   </div>
 </template>
@@ -49,12 +61,29 @@ export default {
       }
       this.timer = setTimeout(() => {
         if (scrollTop > 800) {
-          this.$store.commit('SET_HEADER_STATUS', true)
-        } else {
+          this.$store.commit('SET_BACK_TOP_STATUS', true)
           this.$store.commit('SET_HEADER_STATUS', false)
+        } else {
+          this.$store.commit('SET_BACK_TOP_STATUS', false)
+          this.$store.commit('SET_HEADER_STATUS', true)
         }
       }, 300)
     },
+
+    // 回到顶部
+    onScrollTop() {
+      const scrollDelay = setTimeout(this.onScrollTop, 10)
+
+      this.$refs.scrollArea.scrollTop -= 150
+
+      if (this.$refs.scrollArea.scrollTop <= 0) {
+        clearTimeout(scrollDelay)
+      }
+    },
+  },
+
+  head: {
+    title: process.env.npm_package_description,
   },
 }
 </script>
