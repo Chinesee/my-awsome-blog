@@ -1,6 +1,7 @@
 /* purgecss start ignore */
+
 #markdown-content {
-  @apply text-gray-700;
+  @apply text-lg text-gray-700;
 
   h1 {
     @apply my-6 text-4xl font-bold text-gray-800;
@@ -32,7 +33,7 @@
   }
 
   img {
-    margin: 1rem .8rem !important;
+    margin: 1rem 0 !important;
     display: inline-block;
     border-radius: $lg-radius;
     box-shadow: $light-shadow;

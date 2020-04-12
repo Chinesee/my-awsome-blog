@@ -1,5 +1,4 @@
 import MarkdownIt from 'markdown-it'
-import MarkdownItPrism from 'markdown-it-prism'
 const fs = require('fs')
 const path = require('path')
 
@@ -31,7 +30,7 @@ export function markdownRenderer() {
     return self.renderToken(tokens, idx, options)
   }
 
-  // markdown 设置 a 标签 target=_blank
+  // 设置 a 标签 target=_blank
   md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
     const aIndex = tokens[idx].attrIndex('target')
 
@@ -43,8 +42,13 @@ export function markdownRenderer() {
 
     return defaultRender(tokens, idx, options, env, self)
   }
-  // markdown 设置代码高亮
-  md.use(MarkdownItPrism)
+
+  md
+    .use(require('markdown-it-prism')) // markdown 设置代码高亮
+    .use(require('markdown-it-abbr')) // 添加标注
+    .use(require('markdown-it-image-lazy-loading')) // 图片懒加载
+
+  md.render('![](example.png "image title")')
 
   return md
 }

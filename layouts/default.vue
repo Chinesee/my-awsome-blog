@@ -76,7 +76,7 @@ export default {
     },
 
     onResize() {
-      if (document.body.clientWidth < 400) {
+      if (document.body.clientWidth < 500) {
         this.$store.commit('SET_HEADER_MENU_STATUS', true)
       } else {
         this.$store.commit('SET_HEADER_MENU_STATUS', false)

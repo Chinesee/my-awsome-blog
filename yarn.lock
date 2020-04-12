@@ -5297,6 +5297,16 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
+markdown-it-abbr@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.npm.taobao.org/markdown-it-abbr/download/markdown-it-abbr-1.0.4.tgz#d66b5364521cbb3dd8aa59dadfba2fb6865c8fd8"
+  integrity sha1-1mtTZFIcuz3Yqlna37ovtoZcj9g=
+
+markdown-it-image-lazy-loading@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npm.taobao.org/markdown-it-image-lazy-loading/download/markdown-it-image-lazy-loading-1.0.2.tgz#fbacba9818a9657286295b2a9a15ec722b27d550"
+  integrity sha1-+6y6mBipZXKGKVsqmhXscisn1VA=
+
 markdown-it-prism@2.0.3:
   version "2.0.3"
   resolved "https://registry.npm.taobao.org/markdown-it-prism/download/markdown-it-prism-2.0.3.tgz#7bb335459c310cd4a4d9ed96ac280ce9e99bc709"

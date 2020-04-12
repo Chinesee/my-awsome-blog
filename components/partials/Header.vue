@@ -88,6 +88,7 @@ export default {
   watch: {
     '$route.path': {
       handler(path) {
+        // 控制导航菜单的激活状态
         for (const [i, v] of this.nav.entries()) {
           if (v.route === path) {
             this.activeClass = `active-${i}`

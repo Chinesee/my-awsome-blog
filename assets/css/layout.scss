@@ -89,9 +89,9 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gray-200;
   border-radius: 10px;
   border: 2px solid #ffffff;
+  background: #edf3fe;
 }
 
 ::-webkit-scrollbar-track-piece {

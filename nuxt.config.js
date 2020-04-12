@@ -63,7 +63,7 @@ export default {
     },
   },
   env: {
-    blogRoot: 'contents',
+    blogRoot: 'contents', // 博客文章存放的根路径
   },
   generate: {
     routes: generatePath(),

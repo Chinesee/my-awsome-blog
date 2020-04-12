@@ -11,10 +11,13 @@
 </template>
 
 <script>
+import head from '~/mixins/head'
+
 export default {
   async asyncData({ params }) {
     const content = await import(`~/${process.env.blogRoot}/${params.slug}.md`)
     const { attributes: attr } = content
+    
     return {
       title: attr.title,
       year: attr.year,
@@ -23,6 +26,8 @@ export default {
       singlePostComponent: content.vue.component,
     }
   },
+
+  mixins: [head({ headTitle: '文章' })],
 }
 </script>
 

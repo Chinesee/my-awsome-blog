@@ -28,7 +28,10 @@
 
     <banner class="my-16"></banner>
 
-    <recent-articles :articles="filterArticles"></recent-articles>
+    <recent-articles
+      class="pt-10"
+      :articles="filterArticles"
+    ></recent-articles>
   </div>
 </template>
 
@@ -39,6 +42,7 @@ import RecentArticles from '~/components/home/RecentArticles'
 
 export default {
   components: { Banner, RecentArticles },
+
   mixins: [head({ headTitle: '首页' })],
 
   asyncData() {

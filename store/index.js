@@ -5,14 +5,15 @@ export const state = () => ({
 })
 
 export const mutations = {
+  // 控制导航栏的展开和收起
   SET_HEADER_STATUS(state, status) {
     state.isHeaderShow = status
   },
-
+  // 控制菜单是否折叠：适配移动端
   SET_HEADER_MENU_STATUS(state, status) {
     state.isMenuCollapse = status
   },
-
+  // 控制回到顶部按钮的显隐
   SET_BACK_TOP_STATUS(state, status) {
     state.isBackTopShow = status
   },
