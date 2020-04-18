@@ -32,6 +32,18 @@
     }
   }
 
+  code {
+    font-weight: 600;
+    font-size: 18px;
+    font-family: Consolas;
+
+    .token.comment {
+      font-weight: normal;
+      font-size: 16px;
+      font-family: 'Microsoft YaHei';
+    }
+  }
+
   img {
     margin: 1rem 0 !important;
     display: inline-block;

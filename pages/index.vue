@@ -64,6 +64,10 @@ export default {
 
   data: () => ({
   }),
+
+  created() {
+    console.log('用自己的方式发布热爱的事物')
+  },
 }
 </script>
 

@@ -170,7 +170,8 @@ export default {
     &::after {
       @apply absolute bottom-0 mb-2 opacity-0;
       content: "";
-      width: $menu-item-width / 2;
+      z-index: 999999;
+      width: 2.5em;
       height: 0.25rem;
       border-radius: 1.5rem;
       background: setColor(primary, 0.9);

@@ -14,8 +14,8 @@
           >
 
           <div class="absolute bottom-0 w-full px-3 py-2">
-            <div class="relative z-50 ">
-              <h3 class="text-sm font-bold">{{ title }}</h3>
+            <div class="relative z-50 flex items-center justify-between">
+              <h3 class="font-bold truncate">{{ title }}</h3>
               <ul class="flex justify-end items-center">
                 <template v-for="(key, index) in Object.keys(links)">
                   <li
