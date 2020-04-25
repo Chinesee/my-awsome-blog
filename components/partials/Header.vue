@@ -1,7 +1,6 @@
 <template>
   <div
     class="header"
-    style="opacity: 0.92;"
     :class="{'is-hidden': !isHeaderShow, 'px-6 justify-end': isHeaderShow}"
     @mouseenter="onHeaderShow"
     @mouseleave="onHeaderHide"
@@ -9,7 +8,7 @@
     <!-- 博客 Logo -->
     <img
       alt="LOGO"
-      class="w-12 absolute left-0  transition cursor-pointer"
+      class="w-12 absolute left-0 z-50 transition cursor-pointer"
       src="~/assets/images/logo.png"
       :class="isHeaderShow ? 'ml-6' : 'ml-4'"
       @click="$router.push('/')"
@@ -139,15 +138,17 @@ export default {
   line-height: $header-height;
   transition: $transition;
   box-shadow: 0 0 25px 15px rgba(var(--ns-primary), 0.05);
+  background-color: hsla(0, 0%, 100%, 0.8);
+  backdrop-filter: saturate(180%) blur(5px);
 
   &.is-hidden {
-    @apply px-2 justify-center;
+    @apply px-2 justify-center bg-white;
     width: 5rem;
-    border-radius: $lg-radius;
+    border-radius: 0 0 $lg-radius 0;
   }
 
   .menu {
-    @apply relative flex text-gray-700 select-none overflow-hidden;
+    @apply relative z-50 flex text-gray-700 select-none overflow-hidden;
     &.is-hidden {
       @apply hidden;
     }

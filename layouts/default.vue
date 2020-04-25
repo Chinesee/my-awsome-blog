@@ -48,6 +48,13 @@ export default {
     },
   },
 
+  watch: {
+    $route() {
+      // 跳转到新路由是滚动到顶部
+      this.$refs.scrollArea.scrollTop = 0
+    },
+  },
+
   mounted() {
     this.onResize()
     window.addEventListener('resize', _debounce(this.onResize, 300))

@@ -28,6 +28,12 @@ export default {
   },
 
   mixins: [head({ headTitle: '文章' })],
+
+  mounted() {
+    document.getElementsByTagName('img').onclick = () => {
+console.log(123)
+    }
+  },
 }
 </script>
 

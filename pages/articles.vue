@@ -17,12 +17,22 @@
 </template>
 
 <script>
+// import Prismic from 'prismic-javascript'
+// import PrismicDom from 'prismic-dom'
+// import PrismicConfig from '~/prismic.config.js'
+
 import head from '~/mixins/head'
 
 export default {
   mixins: [head({ headTitle: '文章' })],
 
   asyncData() {
+    // const api = await Prismic.getApi(PrismicConfig.apiEndpoint)
+    // const results = await api.query(
+    //   Prismic.Predicates.at('document.type', 'blog-post'),
+    // )
+    // console.log(results)
+
     const resolve = require.context('~/contents/', true, /\.md$/)
     const articles = resolve.keys().map(key => {
       const { attributes: { title, description, time }, meta: { resourcePath } } = resolve(key)

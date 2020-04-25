@@ -1,5 +1,5 @@
 <template>
-  <div class="py-2 sm:px-4 md:px-10 lg:px-16 xl:px-24">
+  <div class="py-2 xs:p-3 sm:px-4 md:px-10 lg:px-16 xl:px-24">
     <ul>
       <nuxt-link
         v-for="({title, time, description, path}, i) in articles"
