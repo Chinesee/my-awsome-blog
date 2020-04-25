@@ -32,6 +32,7 @@
 
 <script>
 import _debounce from 'lodash.debounce'
+import { SCROLL_TOP, RESIZE_DELAY, SCROLL_DELAY, CLIENT_WIDTH } from '~/config/config'
 
 import Header from '~/components/partials/Header.vue'
 import Footer from '~/components/partials/Footer.vue'
@@ -57,8 +58,8 @@ export default {
 
   mounted() {
     this.onResize()
-    window.addEventListener('resize', _debounce(this.onResize, 300))
-    this.$refs.scrollArea.addEventListener('scroll', _debounce(this.onScroll, 300))
+    window.addEventListener('resize', _debounce(this.onResize, RESIZE_DELAY))
+    this.$refs.scrollArea.addEventListener('scroll', _debounce(this.onScroll, SCROLL_DELAY))
   },
 
   methods: {
@@ -73,7 +74,7 @@ export default {
 
     // 控制头部菜单栏的展开和收起
     onScroll({ target: { scrollTop } }) {
-      if (scrollTop > 800) {
+      if (scrollTop > SCROLL_TOP) {
         this.$store.commit('SET_BACK_TOP_STATUS', true)
         this.$store.commit('SET_HEADER_STATUS', false)
       } else {
@@ -83,7 +84,7 @@ export default {
     },
 
     onResize() {
-      if (document.body.clientWidth < 500) {
+      if (document.body.clientWidth < CLIENT_WIDTH) {
         this.$store.commit('SET_HEADER_MENU_STATUS', true)
       } else {
         this.$store.commit('SET_HEADER_MENU_STATUS', false)

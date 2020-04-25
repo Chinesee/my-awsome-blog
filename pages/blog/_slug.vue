@@ -30,6 +30,7 @@ export default {
   mixins: [head({ headTitle: '文章' })],
 
   mounted() {
+    console.log(document.getElementsByTagName('img'))
     document.getElementsByTagName('img').onclick = () => {
 console.log(123)
     }
