@@ -1,5 +1,6 @@
 import Mode from 'frontmatter-markdown-loader/mode'
-import { markdownRenderer, generatePath } from './utils.js'
+import { markdownRenderer, generatePath } from './utils'
+import { BLOG_ROOT } from './config/config'
 const path = require('path')
 
 export default {
@@ -53,7 +54,7 @@ export default {
     extend(config, ctx) {
       config.module.rules.push({
         test: /\.md$/,
-        include: path.resolve(__dirname, 'contents'),
+        include: path.resolve(__dirname, BLOG_ROOT),
         loader: 'frontmatter-markdown-loader',
         options: {
           mode: [Mode.VUE_COMPONENT, Mode.META],
@@ -64,7 +65,7 @@ export default {
   },
 
   env: {
-    blogRoot: 'contents', // 博客文章存放的根路径
+    blogRoot: BLOG_ROOT, // 博客文章存放的根路径
   },
 
   generate: {

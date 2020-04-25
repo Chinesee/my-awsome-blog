@@ -1,4 +1,5 @@
 import MarkdownIt from 'markdown-it'
+import { BLOG_ROOT } from './config/config.js'
 const fs = require('fs')
 const path = require('path')
 
@@ -18,7 +19,7 @@ export function generatePath() {
       }
     })
   }
-  const filePath = path.resolve(__dirname, 'contents')
+  const filePath = path.resolve(__dirname, BLOG_ROOT)
   fileResolve(filePath)
   return paths
 }

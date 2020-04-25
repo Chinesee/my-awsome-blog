@@ -17,14 +17,20 @@
   }
 
   a {
-    color: $primary;
-    opacity: 0.75;
+    color: rgba(var(--ns-primary), 0.75);
   }
 
   pre {
-    margin: 1.2rem 0;
+    width: calc(100% - 1rem);
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
     border-radius: 1rem !important;
-    overflow: auto;
+    white-space: pre-wrap;
+    overflow: auto hidden;
+
+    @media (max-width: 500px) {
+      width: calc(100vw - 3rem);
+    }
 
     ::selection {
       color: inherit;
@@ -32,7 +38,7 @@
     }
   }
 
-  code {
+  pre>code {
     font-weight: 600;
     font-size: 18px;
     font-family: Consolas;
@@ -56,6 +62,7 @@
     border-left: .25em solid #cbd5e0;
   }
 
+  // 行内代码块
   :not(pre)>code {
     padding: .12em .28rem;
     border-radius: .4rem;

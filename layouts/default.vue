@@ -57,6 +57,8 @@ export default {
   },
 
   mounted() {
+    console.log('用自己的方式发布热爱的事物')
+
     this.onResize()
     window.addEventListener('resize', _debounce(this.onResize, RESIZE_DELAY))
     this.$refs.scrollArea.addEventListener('scroll', _debounce(this.onScroll, SCROLL_DELAY))
