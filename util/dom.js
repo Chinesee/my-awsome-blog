@@ -1,21 +1,28 @@
+/* eslint-disable */
 export function getPosition(el) {
-  let scale = '1'
-  const SIDE_PADDING = 100
+  let scale = 1
+  const SIDE_PADDING = 200
 
   const rect = el.getBoundingClientRect()
 
-  const { top, width, height } = rect
+  const { top, left, width, height } = rect
   const { naturalWidth: nw, naturalHeight: nh } = el
   const { innerWidth: iw, innerHeight: ih } = window
 
   if (iw > nw) {
-    scale = (nw - SIDE_PADDING) / width
-  }
-  if (ih > nh) {
-    scale = (nh - SIDE_PADDING) / height
+    if (ih > nh) {
+      scale = 1
+    }
+    if ((iw - nw) < 200) {
+      scale = (nw - SIDE_PADDING) / width
+    } else {
+      scale = nw / width
+    }
   }
 
-  const translateY = (window.innerHeight / 2) - (height * scale / 2 + top)
-  const transform = `transform: scale(${scale}) translate(0, ${translateY}px);`
+  const translateX = (iw / 2) - (width / 2 + left)
+  const translateY = (ih / 2) - (height / 2 + top)
+  const transform = `transform: translate(${translateX}px, ${translateY + 30}px) scale(${scale});`
+
   return transform
 }

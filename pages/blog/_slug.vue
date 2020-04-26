@@ -12,7 +12,8 @@
 
 <script>
 import head from '~/mixins/head'
-import { getPosition, getImgScale } from "~/util/dom.js"
+import { IMG_SCROLL_VIEW } from '~/config/config'
+import { getPosition } from "~/util/dom"
 
 export default {
   async asyncData({ params }) {
@@ -30,35 +31,64 @@ export default {
 
   head() {
     return {
-      title: this.title
+      title: this.title,
+      scrollAreaTop: null,
+
+      img: null,
+      wrapper: null,
+      scrollArea: null,
     }
   },
 
   mounted() {
-    const wrapper = document.getElementsByClassName('markdown-container')[0]
+    this.wrapper = document.getElementsByClassName('markdown-container')[0]
+    this.scrollArea = document.getElementsByClassName('scroll-area')[0]
+
     const imgs = document.getElementById('markdown-content').getElementsByTagName('img')
+
     if (imgs.length > 0) {
       for(let i = 0; i < imgs.length; i += 1) {
         imgs[i].onclick = (e) => {
           const { target } = e
           const { idx } = target.dataset
 
-          const el = imgs[idx]
-          const zoomIn = imgs[idx].classList.contains('zoom-in')
+          this.img = imgs[idx]
+          const { img: el, wrapper, scrollArea } = this
 
-          if (zoomIn) {
+          if (imgs[idx].classList.contains('zoom-in')) {
             el.style.cssText = ''
-            el.classList.add('zoom-out')
             el.classList.remove('zoom-in')
             wrapper.classList.remove('bg-blur')
-          } else if (imgs[idx].classList.contains('zoom-out') || !zoomIn) {
+            scrollArea.removeEventListener('scroll', this.onScroll)
+            this.scrollAreaTop = null
+          } else {
             el.style.cssText = getPosition(el)
             el.classList.add('zoom-in')
-            el.classList.remove('zoom-out')
             wrapper.classList.add('bg-blur')
+            scrollArea.addEventListener('scroll', this.onScroll)
+            this.scrollAreaTop = scrollArea.scrollTop
           }
         }
         imgs[i].dataset.idx = i
+      }
+    }
+  },
+
+  beforeDestroy() {
+    this.scrollArea.removeEventListener('scroll', this.onScroll)
+  },
+
+  methods: {
+    onScroll({ target: { scrollTop } }) {
+      const { img, wrapper, scrollArea, scrollAreaTop } = this
+      const abs = Math.abs(scrollTop - scrollAreaTop)
+      console.log('scroll')
+      if (abs > IMG_SCROLL_VIEW) {
+        img.style.cssText = ''
+        img.classList.add('zoom-out')
+        img.classList.remove('zoom-in')
+        wrapper.classList.remove('bg-blur')
+        scrollArea.removeEventListener('scroll', this.onScroll)
       }
     }
   },
@@ -73,7 +103,8 @@ export default {
     content: "";
     background: rgba(255, 255, 255, 0.8);
     background-color: hsla(0, 0%, 100%, 0.8);
-    backdrop-filter: saturate(180%) blur(5px);
+    backdrop-filter: saturate(180%) blur(3px);
+    transition: $transition;
   }
 }
 
@@ -83,12 +114,10 @@ export default {
 
   img {
     @apply cursor-pointer;
+    transform-origin: 50% 50%;
     transition: transform 300ms cubic-bezier(0.2, 0, 0.2, 1);
     &.zoom-in {
       @apply relative z-50;
-    }
-    &.zoom-out {
-      // transform: scale(1) translate(-1.15971px, -45.7577px);
     }
   }
 }

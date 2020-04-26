@@ -10,5 +10,7 @@
   "vetur.validation.script": false,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
-  }
+  },
+  "less.validate": false,
+  "css.validate": false
 }
