@@ -3,6 +3,7 @@ export function getPosition(el) {
   const SIDE_PADDING = 100
 
   const rect = el.getBoundingClientRect()
+
   const { top, width, height } = rect
   const { naturalWidth: nw, naturalHeight: nh } = el
   const { innerWidth: iw, innerHeight: ih } = window

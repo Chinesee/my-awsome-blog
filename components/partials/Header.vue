@@ -133,7 +133,8 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-  @apply w-full h-16 flex items-center bg-white;
+  @apply absolute top-0 left-0 w-full h-16 flex items-center bg-white;
+  z-index: 999999;
   height: $header-height;
   line-height: $header-height;
   transition: $transition;

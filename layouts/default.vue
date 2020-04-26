@@ -4,7 +4,7 @@
     :class="{'full-screen': isFullScreen}"
   >
     <div id="layout-container">
-      <Header class="absolute z-50 top-0 left-0" />
+      <Header />
 
       <div
         ref="scrollArea"
