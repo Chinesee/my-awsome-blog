@@ -1,7 +1,7 @@
 /* eslint-disable */
 export function getPosition(el) {
   let scale = 1
-  const SIDE_PADDING = 200
+  const SIDE_PADDING = 100
 
   const rect = el.getBoundingClientRect()
 
@@ -10,7 +10,7 @@ export function getPosition(el) {
   const { innerWidth: iw, innerHeight: ih } = window
 
   if (iw > nw) {
-    if (ih > nh) {
+    if ((ih - nh) < 100) {
       scale = 1
     }
     if ((iw - nw) < 200) {
@@ -18,6 +18,11 @@ export function getPosition(el) {
     } else {
       scale = nw / width
     }
+  } else {
+    if ((iw - SIDE_PADDING) > width) {
+      scale = (iw - SIDE_PADDING) / width
+    }
+    scale = 1
   }
 
   const translateX = (iw / 2) - (width / 2 + left)

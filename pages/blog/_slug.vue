@@ -4,13 +4,20 @@
       <h1 class="mt-3 mb-4 text-4xl text-gray-700 font-bold">{{ title }}</h1>
       <div class="mb-4 flex items-center cursor-default">
         <div
-          class="mr-4 px-2 py-1 rounded-md text-sm"
+          class="w-12 h-6 mr-4 flex justify-center items-center rounded-md text-sm select-none"
           :class="types[type].classObj"
         >{{ types[type].text }}</div>
         <span
           title="本文作者"
           class="mr-4"
-        >{{ author }}</span>
+        >{{ author || '佚名' }}</span>
+        <a
+          v-if="from"
+          title="文章来源"
+          target="_blank"
+          class="mr-4 primary opacity-75 cursor-pointer"
+          :href="from_url"
+        >{{ from }}</a>
         <div
           title="发布时间"
           class="text-gray-500"
@@ -37,14 +44,10 @@ export default {
   async asyncData({ params }) {
     const content = await import(`~/${process.env.blogRoot}/${params.slug}.md`)
     const { attributes: attr } = content
-    const { title, author, time, description, type } = attr
+    const { title, author, from, from_url, time, description, type } = attr
     
     return {
-      title,
-      author,
-      time,
-      description,
-      type,
+      title, author, from, from_url, time, description, type,
       singlePostComponent: content.vue.component,
     }
   },
@@ -69,6 +72,10 @@ export default {
         },
         reprint: { 
           text: '转载',
+          classObj: ['bg-gray-200', 'text-gray-600'],
+        },
+        undefined: { 
+          text: '文章',
           classObj: ['bg-gray-200', 'text-gray-600'],
         },
       }
@@ -116,8 +123,9 @@ export default {
   methods: {
     onScroll({ target: { scrollTop } }) {
       const { img, wrapper, scrollArea, scrollAreaTop } = this
+      // 计算图片滚动的绝对距离
       const abs = Math.abs(scrollTop - scrollAreaTop)
-      console.log('scroll')
+
       if (abs > IMG_SCROLL_VIEW) {
         img.style.cssText = ''
         img.classList.add('zoom-out')
@@ -145,7 +153,7 @@ export default {
 
 .markdown-wrapper {
   @apply px-5 py-10;
-  max-width: 1000px;
+  max-width: 900px;
 
   img {
     @apply cursor-pointer;
