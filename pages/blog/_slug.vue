@@ -1,6 +1,24 @@
 <template>
   <div class="markdown-container">
     <div class="markdown-wrapper">
+      <h1 class="mt-3 mb-4 text-4xl text-gray-700 font-bold">{{ title }}</h1>
+      <div class="mb-4 flex items-center cursor-default">
+        <div
+          class="mr-4 px-2 py-1 rounded-md text-sm"
+          :class="types[type].classObj"
+        >{{ types[type].text }}</div>
+        <span
+          title="本文作者"
+          class="mr-4"
+        >{{ author }}</span>
+        <div
+          title="发布时间"
+          class="text-gray-500"
+        >{{ time }}</div>
+      </div>
+      <p class="mb-6 text-gray-600">
+        {{ description }}
+      </p>
       <component
         id="markdown-content"
         class="sm:w-full"
@@ -19,12 +37,14 @@ export default {
   async asyncData({ params }) {
     const content = await import(`~/${process.env.blogRoot}/${params.slug}.md`)
     const { attributes: attr } = content
+    const { title, author, time, description, type } = attr
     
     return {
-      title: attr.title,
-      year: attr.year,
-      description: attr.description,
-      extraComponent: attr.extraComponent,
+      title,
+      author,
+      time,
+      description,
+      type,
       singlePostComponent: content.vue.component,
     }
   },
@@ -37,6 +57,21 @@ export default {
       img: null,
       wrapper: null,
       scrollArea: null,
+    }
+  },
+
+  data() {
+    return {
+      types: {
+        original: {
+          text: '原创',
+          classObj: ['bg-primary', 'text-white'],
+        },
+        reprint: { 
+          text: '转载',
+          classObj: ['bg-gray-200', 'text-gray-600'],
+        },
+      }
     }
   },
 
@@ -109,7 +144,7 @@ export default {
 }
 
 .markdown-wrapper {
-  @apply px-5 py-6;
+  @apply px-5 py-10;
   max-width: 1000px;
 
   img {

@@ -13,7 +13,7 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
-      { hid: 'keywords', name: 'keywords', content: '令狐少侠, 博客, nuxt blog, blog' },
+      { hid: 'keywords', name: 'keywords', content: '令狐少侠,个人博客,nuxt blog,blog' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -46,7 +46,7 @@ export default {
 
   styleResources: {
     scss: [
-      '@/assets/resource/variables.scss',
+      '@/assets/css/variables.scss',
     ],
   },
 

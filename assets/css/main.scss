@@ -14,7 +14,7 @@ danger {
   }
 
   .bg-#{$color} {
-    background-color: rgba(var(--ns-#{color}), 1);
+    background-color: rgba(var(--ns-#{$color}), 1);
   }
 }
 
