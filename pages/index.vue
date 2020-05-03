@@ -26,12 +26,24 @@
       >
     </div>
 
-    <banner class="my-16"></banner>
+    <div class="mt-10 mb-16 px-10">
+      <h2 class="mb-5 text-xl font-bold">联系我</h2>
+      <ul class="text-gray-600">
+        <li class="mb-1">微信：czc12580520</li>
+        <li class="mb-1">QQ：czc12580520</li>
+        <li class="mb-1">邮箱：czc12580520@gmail.com</li>
+      </ul>
+    </div>
 
-    <recent-articles
-      class="pt-10"
-      :articles="filterArticles"
-    ></recent-articles>
+    <div class="mb-10 px-10">
+      <h2 class="mb-5 text-xl font-bold">最近文章</h2>
+      <recent-articles
+        class="pt-10"
+        :articles="filterArticles"
+      ></recent-articles>
+    </div>
+
+    <banner class="my-16"></banner>
   </div>
 </template>
 

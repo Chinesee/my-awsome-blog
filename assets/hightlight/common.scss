@@ -39,14 +39,14 @@
   }
 
   pre>code {
-    font-weight: 600;
-    font-size: 18px;
+    font-weight: bold;
+    font-size: 17px;
     font-family: Consolas;
 
     .token.comment {
       font-weight: normal;
       font-size: 16px;
-      font-family: 'Microsoft YaHei';
+      // font-family: Consola;
     }
   }
 

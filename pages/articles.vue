@@ -1,17 +1,35 @@
 <template>
   <div class="p-5 sm:p-8 md:p-10">
-    <ul class="sm:w-full md:w-1/2">
-      <nuxt-link
-        v-for="({ path, title, description, time }, i) in articles"
+    <ul class="sm:w-full">
+      <li
+        class="article-item"
+        v-for="({ path, cover,title, description, time }, i) in articles"
         :key="i"
-        :to="routeTo(path)"
-        tag="li"
-        class="mb-6 p-6 lg-radius bg-gray-100 cursor-pointer w-full"
       >
-        <h2 class="mb-1 text-xl truncate">{{ title }}</h2>
-        <p class="text-gray-600 truncate text-sm">{{ description }}</p>
-        <p class="text-gray-600 text-sm">—— {{ time }}</p>
-      </nuxt-link>
+        <div class="w-1/3 mr-20">
+          <img
+            class="w-full h-full object-cover"
+            alt="文章封面"
+            :src="cover"
+          >
+        </div>
+        <div class="w-2/3">
+          <nuxt-link
+            tag="li"
+            class="w-full cursor-pointer"
+            :to="routeTo(path)"
+          >
+            <h2
+              class="mb-1 text-xl font-bold truncate"
+              style="letter-spacing: 0.1rem;"
+            >
+              {{ title }}
+            </h2>
+          </nuxt-link>
+          <p class="mt-4 mb-5 text-gray-600 truncate text-sm">{{ description }}</p>
+          <p class="text-gray-500 text-sm">—— {{ time }}</p>
+        </div>
+      </li>
     </ul>
   </div>
 </template>
@@ -34,12 +52,18 @@ export default {
     // console.log(results)
 
     const resolve = require.context('~/contents/', true, /\.md$/)
-    const articles = resolve.keys().map(key => {
-      const { attributes: { title, description, time }, meta: { resourcePath } } = resolve(key)
-      const paths = resourcePath.split('\\')
-      const path = paths.slice(paths.indexOf(`${process.env.blogRoot}`) + 1).join('/').replace('.md', '')
-      return { path, title, description, time }
-    })
+    const articles = resolve
+      .keys()
+      .reduce((res, key) => {
+        const { attributes: { cover, title, description, time }, meta: { resourcePath } } = resolve(key)
+        const paths = resourcePath.split('\\')
+        const path = paths
+          .slice(paths.indexOf(`${process.env.blogRoot}`) + 1)
+          .join('/')
+          .replace('.md', '')
+        res.push({ cover, path, title, description, time })
+        return res
+      }, [])
     return { articles }
   },
 
@@ -53,3 +77,10 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.article-item {
+  @apply w-full mb-6 p-10 flex items-center;
+  border-bottom: 1px solid #eee;
+}
+</style>

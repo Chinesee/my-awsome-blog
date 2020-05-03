@@ -20,6 +20,7 @@
     "Android >= 4.0"
   ],
   "dependencies": {
+    "@nuxtjs/google-analytics": "^2.2.3",
     "lodash.clonedeep": "^4.5.0",
     "lodash.debounce": "^4.0.8",
     "markdown-it": "^10.0.0",

@@ -42,12 +42,17 @@ export default {
 
   modules: [
     '@nuxtjs/style-resources',
+    '@nuxtjs/google-analytics',
   ],
 
   styleResources: {
     scss: [
       '@/assets/css/variables.scss',
     ],
+  },
+
+  googleAnalytics: {
+    id: 'UA-165410828-1',
   },
 
   build: {

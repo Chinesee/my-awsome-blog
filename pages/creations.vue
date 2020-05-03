@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 md:p-8 lg:p-10 transition">
+  <div class="p-6 md:p-8 lg:p-10 transition">
     <ul class="creation-list">
       <li
         v-for="({ img, title, links }, i) in creations"
@@ -103,11 +103,11 @@ export default {
   $gap: 1.5rem;
   display: grid;
   grid-template-columns: 1fr;
-  gap: $gap;
+  gap: $gap + 0.5rem;
 
   @media (min-width: 768px) {
     grid-template-columns: 1fr 1fr;
-    gap: $gap * 1.5;
+    gap: $gap * 1.6;
   }
   @media (min-width: 1024px) {
     grid-template-columns: 1fr 1fr 1fr;
