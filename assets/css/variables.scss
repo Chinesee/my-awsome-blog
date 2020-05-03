@@ -2,20 +2,23 @@
 
 :root {
   --ns-primary: 47, 88, 255;
-  --ns-success: 47, 88, 255;
-  --ns-warning: 47, 88, 255;
-  --ns-danger: 47, 88, 255;
+  --ns-success: 70, 201, 58;
+  --ns-warning: 255, 186, 0;
+  --ns-danger: 255, 71, 87;
+  --ns-dark: 30, 30, 30;
 }
 
 // Width And Height
 $header-height: 4rem;
 $menu-item-width: 5rem;
+$article-content-width: 800px;
 
 // Color
 $primary: rgba(var(--ns-primary), 1);
 $success: rgba(var(--ns-success), 1);
 $warning: rgba(var(--ns-warning), 1);
 $danger: rgba(var(--ns-danger), 1);
+$dark: rgba(var(--ns-dark), 1);
 
 @function setColor($color, $alpha) {
   @return rgba(var(--ns-#{$color}), $alpha)

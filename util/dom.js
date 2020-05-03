@@ -27,7 +27,7 @@ export function getPosition(el) {
 
   const translateX = (iw / 2) - (width / 2 + left)
   const translateY = (ih / 2) - (height / 2 + top)
-  const transform = `transform: translate(${translateX}px, ${translateY + 30}px) scale(${scale});`
+  const transform = `transform: translate(${translateX}px, ${translateY}px) scale(${scale});`
 
   return transform
 }

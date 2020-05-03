@@ -8,7 +8,8 @@ img {
 @each $color in primary,
 success,
 warning,
-danger {
+danger,
+dark {
   .#{$color} {
     color: map-get($color-map, $color);
   }

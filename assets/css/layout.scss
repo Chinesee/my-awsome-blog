@@ -1,6 +1,6 @@
 @font-face {
   font-family: BASE;
-  src: local(Helvetica), local(Consolas), local("思源黑体"), local("Microsoft YaHei");
+  src: local(Helvetica), local("思源黑体"), local("Microsoft YaHei");
 }
 
 html {
@@ -16,6 +16,7 @@ html {
 
 body {
   @apply h-screen w-screen text-gray-700 overflow-hidden;
+  font-size: 16px;
 
   #__nuxt,
   #__layout {

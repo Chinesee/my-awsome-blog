@@ -1,9 +1,13 @@
 <template>
   <div class="markdown-container">
     <div class="markdown-wrapper">
-      <h1 class="mt-3 mb-4 text-4xl text-gray-700 font-bold">{{ title }}</h1>
+      <!-- 文章标题 -->
+      <h1 class="mt-3 mb-4 text-4xl text-gray-800 font-bold">{{ title }}</h1>
+
+      <!-- 文章信息 -->
       <div class="mb-4 flex items-center cursor-default">
         <div
+          v-if="types[type]"
           class="w-12 h-6 mr-4 flex justify-center items-center rounded-md text-sm select-none"
           :class="types[type].classObj"
         >{{ types[type].text }}</div>
@@ -23,9 +27,16 @@
           class="text-gray-500"
         >{{ time }}</div>
       </div>
-      <p class="mb-6 text-gray-600">
+
+      <!-- 文章描述 -->
+      <p
+        v-if="description"
+        class="mb-6 text-gray-600"
+      >
         {{ description }}
       </p>
+
+      <!-- 正文内容 -->
       <component
         id="markdown-content"
         class="sm:w-full"
@@ -74,6 +85,10 @@ export default {
           text: '转载',
           classObj: ['bg-gray-200', 'text-gray-600'],
         },
+        translate: { 
+          text: '翻译',
+          classObj: ['bg-success', 'text-white'],
+        },
         undefined: { 
           text: '文章',
           classObj: ['bg-gray-200', 'text-gray-600'],
@@ -83,37 +98,7 @@ export default {
   },
 
   mounted() {
-    this.wrapper = document.getElementsByClassName('markdown-container')[0]
-    this.scrollArea = document.getElementsByClassName('scroll-area')[0]
-
-    const imgs = document.getElementById('markdown-content').getElementsByTagName('img')
-
-    if (imgs.length > 0) {
-      for(let i = 0; i < imgs.length; i += 1) {
-        imgs[i].onclick = (e) => {
-          const { target } = e
-          const { idx } = target.dataset
-
-          this.img = imgs[idx]
-          const { img: el, wrapper, scrollArea } = this
-
-          if (imgs[idx].classList.contains('zoom-in')) {
-            el.style.cssText = ''
-            el.classList.remove('zoom-in')
-            wrapper.classList.remove('bg-blur')
-            scrollArea.removeEventListener('scroll', this.onScroll)
-            this.scrollAreaTop = null
-          } else {
-            el.style.cssText = getPosition(el)
-            el.classList.add('zoom-in')
-            wrapper.classList.add('bg-blur')
-            scrollArea.addEventListener('scroll', this.onScroll)
-            this.scrollAreaTop = scrollArea.scrollTop
-          }
-        }
-        imgs[i].dataset.idx = i
-      }
-    }
+    this.injectEventOnImg()
   },
 
   beforeDestroy() {
@@ -121,11 +106,45 @@ export default {
   },
 
   methods: {
+    injectEventOnImg() {
+      this.wrapper = document.getElementsByClassName('markdown-container')[0]
+      this.scrollArea = document.getElementsByClassName('scroll-area')[0]
+
+      const imgs = document.getElementById('markdown-content').getElementsByTagName('img')
+
+      if (imgs.length > 0) {
+        for(let i = 0; i < imgs.length; i += 1) {
+          imgs[i].onclick = (e) => {
+            const { target } = e
+            const { idx } = target.dataset
+
+            this.img = imgs[idx]
+            const { img: el, wrapper, scrollArea } = this
+
+            if (imgs[idx].classList.contains('zoom-in')) {
+              el.style.cssText = ''
+              el.classList.remove('zoom-in')
+              wrapper.classList.remove('bg-blur')
+              scrollArea.removeEventListener('scroll', this.onScroll)
+              this.scrollAreaTop = null
+            } else {
+              el.style.cssText = getPosition(el)
+              el.classList.add('zoom-in')
+              wrapper.classList.add('bg-blur')
+              scrollArea.addEventListener('scroll', this.onScroll)
+              this.scrollAreaTop = scrollArea.scrollTop
+            }
+          }
+          imgs[i].dataset.idx = i
+        }
+      }
+    },
+
     onScroll({ target: { scrollTop } }) {
       const { img, wrapper, scrollArea, scrollAreaTop } = this
-      // 计算图片滚动的绝对距离
-      const abs = Math.abs(scrollTop - scrollAreaTop)
 
+      // 如果图片滚动距离超过规定范围，则关闭图片预览
+      const abs = Math.abs(scrollTop - scrollAreaTop)
       if (abs > IMG_SCROLL_VIEW) {
         img.style.cssText = ''
         img.classList.add('zoom-out')
@@ -153,7 +172,7 @@ export default {
 
 .markdown-wrapper {
   @apply px-5 py-10;
-  max-width: 900px;
+  max-width: $article-content-width;
 
   img {
     @apply cursor-pointer;
@@ -163,5 +182,9 @@ export default {
       @apply relative z-50;
     }
   }
+}
+
+#markdown-content {
+  padding-top: 2rem;
 }
 </style>

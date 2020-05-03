@@ -128,7 +128,7 @@ pre[class*="language-"] {
 }
 
 /*
- * Line highlighting
+ * 行内代码块
  */
 pre[data-line] {
   position: relative;

@@ -48,13 +48,29 @@ export default {
 
   asyncData() {
     const resolve = require.context('~/contents/', true, /\.md$/)
-    const articles = resolve.keys().map(key => {
-      const { attributes: { title, description, time }, meta: { resourcePath } } = resolve(key)
-      const paths = resourcePath.split('\\')
-      const path = paths.slice(paths.indexOf(`${process.env.blogRoot}`) + 1).join('/').replace('.md', '')
-      const timestamp = new Date(time.replace(/[(年)|(月)|(日)]/g, '/')).getTime()
-      return { path, title, description, time, timestamp }
-    })
+    const articles = resolve
+      .keys()
+      .reduce((res, key) => {
+        const { attributes: { title, description, time }, meta: { resourcePath } } = resolve(key)
+        if (title) {
+          const paths = resourcePath.split('\\')
+          const path = paths
+            .slice(paths.indexOf(`${process.env.blogRoot}`) + 1)
+            .join('/')
+            .replace('.md', '')
+          const timestamp = new Date(time.replace(/[(年)|(月)|(日)]/g, '/')).getTime()
+
+          res.push({ path, title, description, time, timestamp })
+          return res
+        }
+      }, [])
+    // const articles = resolve.keys().map(key => {
+    //   const { attributes: { title, description, time }, meta: { resourcePath } } = resolve(key)
+    //   const paths = resourcePath.split('\\')
+    //   const path = paths.slice(paths.indexOf(`${process.env.blogRoot}`) + 1).join('/').replace('.md', '')
+    //   const timestamp = new Date(time.replace(/[(年)|(月)|(日)]/g, '/')).getTime()
+    //   return { path, title, description, time, timestamp }
+    // })
     const filterArticles = articles
       .sort((a, b) => {
         return a.timestamp > b.timestamp ? -1 : 1

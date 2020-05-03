@@ -15,6 +15,7 @@
         <Footer />
 
         <ns-back-top
+          style="z-index: 999999;"
           visible-offset="500"
           @scrollTop="onScrollTop"
         >
