@@ -13,7 +13,7 @@
             :src="cover"
           >
         </div>
-        <div class="w-2/3">
+        <div class="w-1/3">
           <nuxt-link
             tag="li"
             class="w-full cursor-pointer"
@@ -80,7 +80,9 @@ export default {
 
 <style lang="scss" scoped>
 .article-item {
-  @apply w-full mb-6 p-10 flex items-center;
-  border-bottom: 1px solid #eee;
+  @apply w-full mb-6 p-10 flex items-center justify-center;
+  max-width: 1400px;
+  margin: 0 auto;
+  // border-bottom: 1px solid #eee;
 }
 </style>

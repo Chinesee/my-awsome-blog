@@ -3,6 +3,7 @@
     <div class="markdown-wrapper">
       <!-- 文章标题 -->
       <h1 class="mt-3 mb-4 text-4xl text-gray-800 font-bold">{{ title }}</h1>
+      <a href="#heading">maodian</a>
 
       <!-- 文章信息 -->
       <div class="mb-4 flex items-center cursor-default">
@@ -99,6 +100,7 @@ export default {
 
   mounted() {
     this.injectEventOnImg()
+    this.generateContents()
   },
 
   beforeDestroy() {
@@ -106,6 +108,7 @@ export default {
   },
 
   methods: {
+    // 给文章的所有图片加上预览事件
     injectEventOnImg() {
       this.wrapper = document.getElementsByClassName('markdown-container')[0]
       this.scrollArea = document.getElementsByClassName('scroll-area')[0]
@@ -152,7 +155,18 @@ export default {
         wrapper.classList.remove('bg-blur')
         scrollArea.removeEventListener('scroll', this.onScroll)
       }
-    }
+    },
+
+    // 为文章生成导航目录
+    generateContents() {
+      document.getElementsByTagName('h2')[0].id = 'heading'
+      // const [h1Tags, h2Tags, h3Tags] = ['h1', 'h2', 'h3'].map(el => document.getElementsByTagName(el) || [])
+      // const contents = {
+      //   level1: h1Tags.length,
+      //   level2: h2Tags.length,
+      //   level3: h3Tags.length,
+      // }
+    },
   },
 }
 </script>
