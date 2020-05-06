@@ -52,6 +52,11 @@ import head from '~/mixins/head'
 import { IMG_SCROLL_VIEW } from '~/config/config'
 import { getPosition } from "~/util/dom"
 
+const forEach = function (array, callback, scope) {
+  for (let i = 0; i < array.length; i++) {
+    callback.call(scope, array[i], i)
+  }
+}
 export default {
   async asyncData({ params }) {
     const content = await import(`~/${process.env.blogRoot}/${params.slug}.md`)
@@ -100,7 +105,7 @@ export default {
 
   mounted() {
     this.injectEventOnImg()
-    this.generateContents()
+    this.generateTOC()
   },
 
   beforeDestroy() {
@@ -158,14 +163,31 @@ export default {
     },
 
     // 为文章生成导航目录
-    generateContents() {
-      document.getElementsByTagName('h2')[0].id = 'heading'
-      // const [h1Tags, h2Tags, h3Tags] = ['h1', 'h2', 'h3'].map(el => document.getElementsByTagName(el) || [])
+    generateTOC() {
+      const [h1Tags, h2Tags, h3Tags] = ['h1', 'h2', 'h3'].map(el => document.querySelectorAll(`#markdown-content ${el}`))
       // const contents = {
       //   level1: h1Tags.length,
       //   level2: h2Tags.length,
       //   level3: h3Tags.length,
       // }
+      const h1List = []
+      const h2List = []
+      if (h1Tags.length >= 1) {
+        forEach(h1Tags, function (value, index) {
+          const anchor = `heading-${index}`
+          const text = value.textContent
+          value.id = anchor
+          h1List.push({ text, anchor })
+        })
+      }
+      if (h2Tags.length >= 1) {
+        forEach(h2Tags, function (value, index) {
+          const anchor = `heading-${index}`
+          const text = value.textContent
+          value.id = anchor
+          h2List.push({ text, anchor })
+        })
+      }
     },
   },
 }
