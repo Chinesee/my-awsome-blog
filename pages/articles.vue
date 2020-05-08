@@ -42,7 +42,7 @@
 import head from '~/mixins/head'
 
 export default {
-  mixins: [head({ headTitle: '文章' })],
+  mixins: [head({ title: '文章' })],
 
   asyncData() {
     // const api = await Prismic.getApi(PrismicConfig.apiEndpoint)

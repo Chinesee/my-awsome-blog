@@ -1,7 +1,8 @@
-export default ({ headTitle, headDesc = '令狐少侠的个人空间' }) => {
+export default ({ title, desc = '令狐少侠的个人空间', script = [] }) => {
   return {
     head: {
-      title: `${headTitle}-${headDesc}`,
+      title: `${title}-${desc}`,
+      script,
     },
   }
 }

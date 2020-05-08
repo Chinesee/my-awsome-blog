@@ -42,4 +42,17 @@ $shadow-map: (light: $light-shadow, base: $base-shadow, heavy: $heavy-shadow);
 // transition
 $transition: all 0.3s;
 
+@mixin text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin text-overflow-multi-line($line: 3) {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+}
+
 /* purgecss end ignore */

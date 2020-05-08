@@ -68,11 +68,7 @@ export default {
   methods: {
     // 回到顶部
     onScrollTop() {
-      const scrollDelay = setTimeout(this.onScrollTop, 10)
-      this.$refs.scrollArea.scrollTop -= 150
-      if (this.$refs.scrollArea.scrollTop <= 0) {
-        clearTimeout(scrollDelay)
-      }
+      this.$refs.scrollArea.scrollTop = 0
     },
 
     // 控制头部菜单栏的展开和收起

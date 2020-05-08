@@ -1,4 +1,4 @@
-/* eslint-disable */
+// /* eslint-disable */
 export function getPosition(el) {
   let scale = 1
   const SIDE_PADDING = 100

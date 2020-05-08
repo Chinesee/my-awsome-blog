@@ -3,7 +3,6 @@
     <div class="markdown-wrapper">
       <!-- 文章标题 -->
       <h1 class="mt-3 mb-4 text-4xl text-gray-800 font-bold">{{ title }}</h1>
-      <a href="#heading">maodian</a>
 
       <!-- 文章信息 -->
       <div class="mb-4 flex items-center cursor-default">
@@ -11,7 +10,9 @@
           v-if="types[type]"
           class="w-12 h-6 mr-4 flex justify-center items-center rounded-md text-sm select-none"
           :class="types[type].classObj"
-        >{{ types[type].text }}</div>
+        >
+          {{ types[type].text }}
+        </div>
         <span
           title="本文作者"
           class="mr-4"
@@ -26,7 +27,9 @@
         <div
           title="发布时间"
           class="text-gray-500"
-        >{{ time }}</div>
+        >
+          {{ time }}
+        </div>
       </div>
 
       <!-- 文章描述 -->
@@ -38,31 +41,33 @@
       </p>
 
       <!-- 正文内容 -->
-      <component
-        id="markdown-content"
-        class="sm:w-full"
-        :is="singlePostComponent"
-      />
+      <article>
+        <component
+          id="markdown-content"
+          class="sm:w-full"
+          :is="singlePostComponent"
+        />
+      </article>
+
+      <!-- 导航目录 -->
+      <div class="nav"></div>
     </div>
   </div>
 </template>
 
 <script>
-import head from '~/mixins/head'
 import { IMG_SCROLL_VIEW } from '~/config/config'
 import { getPosition } from "~/util/dom"
 
-const forEach = function (array, callback, scope) {
-  for (let i = 0; i < array.length; i++) {
-    callback.call(scope, array[i], i)
-  }
+const repeat = function (str, num) {
+  return new Array(num + 1).join(str)
 }
 export default {
   async asyncData({ params }) {
     const content = await import(`~/${process.env.blogRoot}/${params.slug}.md`)
     const { attributes: attr } = content
     const { title, author, from, from_url, time, description, type } = attr
-    
+
     return {
       title, author, from, from_url, time, description, type,
       singlePostComponent: content.vue.component,
@@ -72,11 +77,6 @@ export default {
   head() {
     return {
       title: this.title,
-      scrollAreaTop: null,
-
-      img: null,
-      wrapper: null,
-      scrollArea: null,
     }
   },
 
@@ -87,19 +87,24 @@ export default {
           text: '原创',
           classObj: ['bg-primary', 'text-white'],
         },
-        reprint: { 
+        reprint: {
           text: '转载',
           classObj: ['bg-gray-200', 'text-gray-600'],
         },
-        translate: { 
+        translate: {
           text: '翻译',
           classObj: ['bg-success', 'text-white'],
         },
-        undefined: { 
+        undefined: {
           text: '文章',
           classObj: ['bg-gray-200', 'text-gray-600'],
         },
-      }
+      },
+      scrollAreaTop: null,
+
+      img: null,
+      wrapper: null,
+      scrollArea: null,
     }
   },
 
@@ -164,30 +169,47 @@ export default {
 
     // 为文章生成导航目录
     generateTOC() {
-      const [h1Tags, h2Tags, h3Tags] = ['h1', 'h2', 'h3'].map(el => document.querySelectorAll(`#markdown-content ${el}`))
-      // const contents = {
-      //   level1: h1Tags.length,
-      //   level2: h2Tags.length,
-      //   level3: h3Tags.length,
-      // }
-      const h1List = []
-      const h2List = []
-      if (h1Tags.length >= 1) {
-        forEach(h1Tags, function (value, index) {
-          const anchor = `heading-${index}`
-          const text = value.textContent
-          value.id = anchor
-          h1List.push({ text, anchor })
+      let toc = `<nav role='navigation' class='table-of-contents'><ul>`
+
+      var newLine, el, title, link, level, baseLevel
+
+      $('article h1, article h2, article h3').each(function(idx) {
+        const str = 'heading-'
+        el = $(this)
+        el.attr('id', `${str}${idx}`)
+        title = el.text()
+        link = `#${str}${idx}`
+
+        var prevLevel = level || 0
+        level = this.nodeName.substr(1)
+        if(!baseLevel) {
+          baseLevel = level
+        }
+
+        if(prevLevel === 0) {
+          newLine = '<li>'
+        } else if(level === prevLevel) {
+          newLine = '</li><li>'
+        } else if(level > prevLevel) {
+          newLine = repeat('<ul><li>', level - prevLevel)
+        } else if(level < prevLevel) {
+          newLine = `${repeat('</li></ul>', prevLevel - level)}</li><li>`
+        }
+        newLine = `${newLine}<a data-id='${link}'>${title}</a>`
+
+        toc += newLine
+      })
+
+      toc += `${repeat('</li></ul>', level - baseLevel)}</li></ul></nav>`
+
+      $('.nav').prepend(toc)
+
+      $('nav a').click(function (e) {
+        const { id } = e.target.dataset
+        document.querySelector(id).scrollIntoView({
+          behavior: 'smooth' 
         })
-      }
-      if (h2Tags.length >= 1) {
-        forEach(h2Tags, function (value, index) {
-          const anchor = `heading-${index}`
-          const text = value.textContent
-          value.id = anchor
-          h2List.push({ text, anchor })
-        })
-      }
+      })
     },
   },
 }
@@ -220,7 +242,95 @@ export default {
   }
 }
 
-#markdown-content {
+article {
   padding-top: 2rem;
+
+  h1,
+  h2,
+  h3 {
+    &::before {
+      content: "";
+      height: $header-height + 1rem;
+      margin-top: -($header-height + 1rem);
+      display: block;
+    }
+    &:target {
+      &::before {
+        content: "";
+        height: $header-height;
+        margin-top: -$header-height;
+        display: block;
+      }
+    }
+  }
+}
+
+$indent: 12px;
+$dot-space: 20px;
+
+$level1-size: 8px;
+$level2-size: 6px;
+$level3-size: 4px;
+$level1-color: #7184a4;
+$level2-color: $primary;
+$level3-color: $primary;
+
+.nav {
+  @apply fixed text-sm text-gray-600;
+  // position: sticky;
+  top: 150px;
+  right: 100px;
+  width: 200px;
+  a {
+    @include text-overflow;
+    @apply mb-2 block cursor-pointer;
+    position: relative;
+    padding-left: $dot-space;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      border-radius: 50%;
+      background: $level1-color;
+      transform: translateY(-50%);
+    }
+  }
+  nav > ul {
+    & > li {
+      & > a {
+        font-weight: bold;
+        &::before {
+          width: $level1-size;
+          height: $level1-size;
+        }
+      }
+
+      & > ul {
+        padding-left: $indent;
+        & > li {
+          & > a {
+            &::before {
+              width: $level2-size;
+              height: $level2-size;
+            }
+          }
+
+          & > ul {
+            padding-left: $indent;
+            & > li {
+              & > a {
+                &::before {
+                  width: $level3-size;
+                  height: $level3-size;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 </style>

@@ -56,7 +56,7 @@ import RecentArticles from '~/components/home/RecentArticles'
 export default {
   components: { Banner, RecentArticles },
 
-  mixins: [head({ headTitle: '首页' })],
+  mixins: [head({ title: '首页' })],
 
   asyncData() {
     const resolve = require.context('~/contents/', true, /\.md$/)

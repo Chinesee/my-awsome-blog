@@ -41,7 +41,7 @@
 import head from '~/mixins/head'
 
 export default {
-  mixins: [head({ headTitle: '作品' })],
+  mixins: [head({ title: '作品' })],
 
   data: () => {
     const creations = [

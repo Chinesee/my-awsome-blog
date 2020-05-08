@@ -43,7 +43,6 @@ export default {
       return {
         right: this.right,
         bottom: this.bottom,
-
       }
     },
   },
