@@ -180,6 +180,11 @@ export default {
         title = el.text()
         link = `#${str}${idx}`
 
+        $(this).scroll(function () {
+          console.log(1)
+          $(this).offset().top
+        })
+
         const prevLevel = level || 0
         level = this.nodeName.substr(1)
         if(!baseLevel) {
