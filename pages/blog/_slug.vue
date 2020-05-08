@@ -180,7 +180,7 @@ export default {
         title = el.text()
         link = `#${str}${idx}`
 
-        var prevLevel = level || 0
+        const prevLevel = level || 0
         level = this.nodeName.substr(1)
         if(!baseLevel) {
           baseLevel = level
@@ -253,14 +253,6 @@ article {
       height: $header-height + 1rem;
       margin-top: -($header-height + 1rem);
       display: block;
-    }
-    &:target {
-      &::before {
-        content: "";
-        height: $header-height;
-        margin-top: -$header-height;
-        display: block;
-      }
     }
   }
 }
