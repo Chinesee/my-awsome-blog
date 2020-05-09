@@ -25,6 +25,7 @@
     "jquery": "^3.5.1",
     "lodash.clonedeep": "^4.5.0",
     "lodash.debounce": "^4.0.8",
+    "lodash.throttle": "^4.1.1",
     "markdown-it": "^10.0.0",
     "markdown-it-abbr": "^1.0.4",
     "markdown-it-image-lazy-loading": "^1.0.2",

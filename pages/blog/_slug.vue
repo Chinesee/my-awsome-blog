@@ -56,6 +56,7 @@
 </template>
 
 <script>
+import _debounce from 'lodash.debounce'
 import { IMG_SCROLL_VIEW } from '~/config/config'
 import { getPosition } from "~/util/dom"
 
@@ -105,16 +106,19 @@ export default {
       img: null,
       wrapper: null,
       scrollArea: null,
+      headings: [],
     }
   },
 
   mounted() {
+    this.onReady()
+    this.onScroll()
     this.injectEventOnImg()
     this.generateTOC()
   },
 
   beforeDestroy() {
-    this.scrollArea.removeEventListener('scroll', this.onScroll)
+    this.scrollArea.removeEventListener('scroll', this.onImgScroll)
   },
 
   methods: {
@@ -138,13 +142,13 @@ export default {
               el.style.cssText = ''
               el.classList.remove('zoom-in')
               wrapper.classList.remove('bg-blur')
-              scrollArea.removeEventListener('scroll', this.onScroll)
+              scrollArea.removeEventListener('scroll', this.onImgScroll)
               this.scrollAreaTop = null
             } else {
               el.style.cssText = getPosition(el)
               el.classList.add('zoom-in')
               wrapper.classList.add('bg-blur')
-              scrollArea.addEventListener('scroll', this.onScroll)
+              scrollArea.addEventListener('scroll', this.onImgScroll)
               this.scrollAreaTop = scrollArea.scrollTop
             }
           }
@@ -153,7 +157,33 @@ export default {
       }
     },
 
-    onScroll({ target: { scrollTop } }) {
+    onReady() {
+      const that = this
+      window.onload = function () {
+        $('article h1, article h2, article h3').each(function() {
+          const el = $(this)
+          that.headings.push({ 
+            id: el.attr('id'),
+            top: el.offset().top
+          })
+        })
+      }
+    },
+
+    onScroll() {
+      const that = this
+      $('.scroll-area').scroll(_debounce(function (e) {
+        const { scrollTop } = e.target
+        const filters = that.headings.filter(({ top }) => scrollTop > (top - 80))
+        const id = filters[filters.length - 1]?.id
+        if (id) {
+          $('nav a.active').removeClass('active')
+          $(`nav a[data-id='#${id}']`).addClass('active')
+        }
+      }, 500))
+    },
+
+    onImgScroll({ target: { scrollTop } }) {
       const { img, wrapper, scrollArea, scrollAreaTop } = this
 
       // 如果图片滚动距离超过规定范围，则关闭图片预览
@@ -163,7 +193,7 @@ export default {
         img.classList.add('zoom-out')
         img.classList.remove('zoom-in')
         wrapper.classList.remove('bg-blur')
-        scrollArea.removeEventListener('scroll', this.onScroll)
+        scrollArea.removeEventListener('scroll', this.onImgScroll)
       }
     },
 
@@ -174,16 +204,11 @@ export default {
       var newLine, el, title, link, level, baseLevel
 
       $('article h1, article h2, article h3').each(function(idx) {
-        const str = 'heading-'
+        const id = `heading-${idx}`
         el = $(this)
-        el.attr('id', `${str}${idx}`)
+        el.attr('id', id)
         title = el.text()
-        link = `#${str}${idx}`
-
-        $(this).scroll(function () {
-          console.log(1)
-          $(this).offset().top
-        })
+        link = `#${id}`
 
         const prevLevel = level || 0
         level = this.nodeName.substr(1)
@@ -259,11 +284,24 @@ article {
       margin-top: -($header-height + 1rem);
       display: block;
     }
+    &:target {
+      animation: highlight 2s ease;
+    }
+  }
+
+  @keyframes highlight {
+    from {
+      background: $primary;
+      color: $primary;
+    }
+    to {
+      color: inherit;
+    }
   }
 }
 
 $indent: 12px;
-$dot-space: 20px;
+$dot-space: 2rem;
 
 $level1-size: 8px;
 $level2-size: 6px;
@@ -277,21 +315,32 @@ $level3-color: $primary;
   // position: sticky;
   top: 150px;
   right: 100px;
-  width: 200px;
+  width: 220px;
+  li {
+    padding: 0 0.5rem;
+  }
   a {
     @include text-overflow;
-    @apply mb-2 block cursor-pointer;
+    @apply mb-1 py-1 pr-1 block rounded cursor-pointer;
     position: relative;
     padding-left: $dot-space;
 
     &::before {
       content: "";
       position: absolute;
-      left: 0;
+      left: 0.5rem;
       top: 50%;
       border-radius: 50%;
       background: $level1-color;
       transform: translateY(-50%);
+    }
+
+    &.active {
+      background: rgba(var(--ns-primary), 0.05);
+      color: rgba(var(--ns-primary), 0.8);
+      &::before {
+        background: rgba(var(--ns-primary), 0.8);
+      }
     }
   }
   nav > ul {
