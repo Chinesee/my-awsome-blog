@@ -1,5 +1,5 @@
 <template>
-  <div class="index pt-6 px-5">
+  <div class="index">
     <div class="py-10 flex justify-center items-center">
       <div class="md:mr-20 flex flex-col justify-center xs:items-center sm:items-start">
         <p class="text-gray-700 xs:text-xl sm:text-2xl md:text-3xl font-bold xs:text-center sm:text-left whitespace-pre-line">
@@ -97,6 +97,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.index {
+  @apply pt-6;
+  width: 90%;
+  margin: 0 auto;
+}
+
 // 封面图
 .cover {
   transition: $transition;

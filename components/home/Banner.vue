@@ -3,15 +3,16 @@
     <div
       v-for="({ comp, title, desc, link }, i) in logos"
       :key="i"
-      class="mx-12 xs:mb-4 md:mb-0 flex items-center"
+      class="mx-12 xs:mb-10 md:mb-0 flex items-center"
     >
       <component
         :is="comp"
         class="xs:w-8 sm:w-12 mr-4"
       ></component>
       <div>
-        <p class="mb-1 xs:text-sm sm:text-lg text-gray-600 font-bold ">
+        <p class="mb-1 xs:text-sm sm:text-lg text-gray-600 font-bold whitespace-no-wrap">
           <a
+            rel="noopener noreferrer"
             target="_blank"
             :href="link"
           >{{ title }}</a>

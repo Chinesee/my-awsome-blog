@@ -50,6 +50,7 @@
           </nuxt-link>
           <a
             v-else-if="href"
+            rel="noopener noreferrer"
             target="_blank"
             :href="href"
           >{{ text }}</a>

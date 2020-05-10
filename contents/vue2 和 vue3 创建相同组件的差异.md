@@ -10,8 +10,6 @@ from: LearnVue
 from_url: https://learnvue.co/2020/02/building-the-same-component-in-vue2-vs-vue3/
 ---
 
-## 定义
-
 随着Vue3即将发布，许多人都在想“ Vue2与Vue3有何不同？”
 
 尽管我们之前已经写过有关最大变化的文章，但实际上并没有真正深入地了解我们的代码将如何变化。因此，为了显示这些更改，我们将在Vue2和Vue3中构建一个简单的表单组件。 

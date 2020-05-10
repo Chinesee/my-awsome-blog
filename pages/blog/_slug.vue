@@ -19,6 +19,7 @@
         >{{ author || '佚名' }}</span>
         <a
           v-if="from"
+          rel="noopener noreferrer"
           title="文章来源"
           target="_blank"
           class="mr-4 primary opacity-75 cursor-pointer"
@@ -106,12 +107,10 @@ export default {
       img: null,
       wrapper: null,
       scrollArea: null,
-      headings: [],
     }
   },
 
   mounted() {
-    this.onReady()
     this.onScroll()
     this.injectEventOnImg()
     this.generateTOC()
@@ -119,6 +118,7 @@ export default {
 
   beforeDestroy() {
     this.scrollArea.removeEventListener('scroll', this.onImgScroll)
+    $('.scroll-area').unbind('scroll')
   },
 
   methods: {
@@ -157,30 +157,26 @@ export default {
       }
     },
 
-    onReady() {
-      const that = this
-      window.onload = function () {
-        $('article h1, article h2, article h3').each(function() {
-          const el = $(this)
-          that.headings.push({ 
-            id: el.attr('id'),
-            top: el.offset().top
-          })
-        })
-      }
-    },
-
     onScroll() {
-      const that = this
+      const _this = this
       $('.scroll-area').scroll(_debounce(function (e) {
         const { scrollTop } = e.target
-        const filters = that.headings.filter(({ top }) => scrollTop > (top - 80))
-        const id = filters[filters.length - 1]?.id
-        if (id) {
+        console.log('scroll')
+
+        $('article h1, article h2, article h3').each(function() {
+          const el = $(this)
+          const offsetTop = el.offset().top
+          if (offsetTop <= 10 && offsetTop >= -50) {
+            const id = el.attr('id')
+            _this.setNavActive(id)
+            return false
+          }
+        })
+        
+        if (scrollTop >= 0 && scrollTop <= 200) {
           $('nav a.active').removeClass('active')
-          $(`nav a[data-id='#${id}']`).addClass('active')
         }
-      }, 500))
+      }, 250))
     },
 
     onImgScroll({ target: { scrollTop } }) {
@@ -199,6 +195,8 @@ export default {
 
     // 为文章生成导航目录
     generateTOC() {
+      const _this = this
+
       let toc = `<nav role='navigation' class='table-of-contents'><ul>`
 
       var newLine, el, title, link, level, baseLevel
@@ -239,7 +237,13 @@ export default {
         document.querySelector(id).scrollIntoView({
           behavior: 'smooth' 
         })
+        _this.setNavActive(id)
       })
+    },
+
+    setNavActive(id) {
+      $('nav a.active').removeClass('active')
+      $(`nav a[data-id='#${id}']`).addClass('active')
     },
   },
 }
@@ -324,6 +328,7 @@ $level3-color: $primary;
     @apply mb-1 py-1 pr-1 block rounded cursor-pointer;
     position: relative;
     padding-left: $dot-space;
+    transition: $transition;
 
     &::before {
       content: "";
@@ -344,6 +349,7 @@ $level3-color: $primary;
     }
   }
   nav > ul {
+    position: relative;
     & > li {
       & > a {
         font-weight: bold;
@@ -376,6 +382,18 @@ $level3-color: $primary;
           }
         }
       }
+    }
+
+    &::before {
+      @apply bg-gray-300;
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      width: 2px;
+      height: calc(100% - 18px);
+      transform: translateY(-50%);
+      opacity: 0.35;
     }
   }
 }

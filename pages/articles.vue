@@ -8,7 +8,7 @@
       >
         <div class="w-1/3 mr-20">
           <img
-            class="w-full h-full object-cover"
+            class="w-full h-full object-cover shadow-light"
             alt="文章封面"
             :src="cover"
           >
@@ -55,13 +55,15 @@ export default {
     const articles = resolve
       .keys()
       .reduce((res, key) => {
-        const { attributes: { cover, title, description, time }, meta: { resourcePath } } = resolve(key)
+        const { attributes: { cover, title, description, time, status }, meta: { resourcePath } } = resolve(key)
         const paths = resourcePath.split('\\')
         const path = paths
           .slice(paths.indexOf(`${process.env.blogRoot}`) + 1)
           .join('/')
           .replace('.md', '')
-        res.push({ cover, path, title, description, time })
+        if (status !== 0) {
+          res.push({ cover, path, title, description, time })
+        }
         return res
       }, [])
     return { articles }
