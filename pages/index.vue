@@ -1,7 +1,7 @@
 <template>
   <div class="index">
-    <div class="py-10 flex justify-center items-center">
-      <div class="md:mr-20 flex flex-col justify-center xs:items-center sm:items-start">
+    <div class="py-10 flex justify-between items-center">
+      <div class="flex flex-col justify-center xs:items-center sm:items-start">
         <p class="text-gray-700 xs:text-xl sm:text-2xl md:text-3xl font-bold xs:text-center sm:text-left whitespace-pre-line">
           生命相承，殊途同归
           世事变幻，但时间从不作答
@@ -26,7 +26,7 @@
       >
     </div>
 
-    <div class="mt-10 mb-16 px-10">
+    <div class="mt-10 mb-16">
       <h2 class="mb-5 text-xl font-bold">联系我</h2>
       <ul class="text-gray-600">
         <li class="mb-1">微信：czc12580520</li>
@@ -35,7 +35,7 @@
       </ul>
     </div>
 
-    <div class="mb-10 px-10">
+    <div class="mb-10">
       <h2 class="mb-5 text-xl font-bold">最近文章</h2>
       <recent-articles
         class="pt-10"
@@ -100,6 +100,7 @@ export default {
 .index {
   @apply pt-6;
   width: 90%;
+  max-width: 1240px;
   margin: 0 auto;
 }
 

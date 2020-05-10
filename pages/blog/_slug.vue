@@ -161,12 +161,11 @@ export default {
       const _this = this
       $('.scroll-area').scroll(_debounce(function (e) {
         const { scrollTop } = e.target
-        console.log('scroll')
 
         $('article h1, article h2, article h3').each(function() {
           const el = $(this)
           const offsetTop = el.offset().top
-          if (offsetTop <= 10 && offsetTop >= -50) {
+          if (offsetTop <= 50 && offsetTop >= -100) {
             const id = el.attr('id')
             _this.setNavActive(id)
             return false

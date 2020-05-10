@@ -61,11 +61,17 @@ export default {
           .slice(paths.indexOf(`${process.env.blogRoot}`) + 1)
           .join('/')
           .replace('.md', '')
+
         if (status !== 0) {
-          res.push({ cover, path, title, description, time })
+          const timestamp = new Date(time.replace(/[(年)|(月)|(日)]/g, '/')).getTime()
+          res.push({ cover, path, title, description, time, timestamp })
         }
         return res
       }, [])
+
+    articles.sort((a, b) => {
+      return a.timestamp > b.timestamp ? -1 : 1
+    })
     return { articles }
   },
 
