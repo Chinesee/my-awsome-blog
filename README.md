@@ -2,6 +2,11 @@
 
 > 使用 Nuxt.js 构建 [Nuxt.js docs](https://nuxtjs.org)
 
+## 在线访问
+
+[码云 Pages](https://chinesee.gitee.io/blog-nuxt/)
+[Netlify](https://hrspider.netlify.app/)
+
 ## 项目运行
 
 ``` bash
