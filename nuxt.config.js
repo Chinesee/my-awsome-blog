@@ -2,6 +2,7 @@ import Mode from 'frontmatter-markdown-loader/mode'
 import { markdownRenderer, generatePath } from './utils'
 import { BLOG_ROOT } from './config/config'
 const path = require('path')
+console.log(process.env.DEPLOY_ENV === 'GITEE_PAGES')
 
 export default {
   mode: 'spa',
