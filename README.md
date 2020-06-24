@@ -9,7 +9,7 @@
 $ yarn install
 
 # 启动项目
-$ yarn dev
+$ yarn serve
 
 # 构建项目
 $ yarn build
