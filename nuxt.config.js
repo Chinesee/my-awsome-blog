@@ -23,6 +23,10 @@ export default {
     ],
   },
 
+  router: {
+    base: process.env.DEPLOY_ENV === 'GITEE_PAGES' ? '/blog-nuxt/' : '/',
+  },
+
   loading: { color: '#2f58ff' },
 
   css: [

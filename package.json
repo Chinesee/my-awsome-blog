@@ -5,11 +5,11 @@
   "author": "czc",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
     "serve": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
+    "generate:gitee": "DEPLOY_ENV=GITEE_PAGES nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore --ignore-pattern modules/ --ignore-pattern plugins/ga.js ."
   },
   "browserslist": [
