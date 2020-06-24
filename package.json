@@ -9,7 +9,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "generate:gitee": "DEPLOY_ENV=GITEE_PAGES nuxt generate",
+    "generate:gitee": "cross-env DEPLOY_ENV=GITEE_PAGES nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore --ignore-pattern modules/ --ignore-pattern plugins/ga.js ."
   },
   "browserslist": [
@@ -41,6 +41,7 @@
     "@nuxtjs/style-resources": "^1.0.0",
     "@nuxtjs/tailwindcss": "^1.3.3",
     "babel-eslint": "^10.1.0",
+    "cross-env": "^7.0.2",
     "eslint": "^6.8.0",
     "frontmatter-markdown-loader": "^3.1.0",
     "node-sass": "^4.13.1",

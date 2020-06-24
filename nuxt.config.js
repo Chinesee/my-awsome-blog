@@ -64,6 +64,7 @@ export default {
   },
 
   build: {
+    // publicPath: process.env.DEPLOY_ENV === 'GITEE_PAGES' ? '/blog-nuxt/_nuxt/' : '/_nuxt/',
     extend(config, ctx) {
       config.module.rules.push({
         test: /\.md$/,
