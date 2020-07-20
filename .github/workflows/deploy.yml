@@ -1,0 +1,16 @@
+name: Deploy My Awsome Blog
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: Deploy Github Pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Dependencies
+        run: yarn install
+      - name: Generate Static Pages
+        run: yarn generate:gh-pages
