@@ -10,6 +10,7 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "generate:gh-pages": "cross-env DEPLOY_ENV=GH_PAGES nuxt generate",
+    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore --ignore-pattern modules/ --ignore-pattern plugins/ga.js ."
   },
   "browserslist": [
@@ -45,6 +46,7 @@
     "eslint": "^6.8.0",
     "frontmatter-markdown-loader": "^3.1.0",
     "node-sass": "^4.13.1",
+    "push-dir": "^0.4.1",
     "sass-loader": "^8.0.2"
   }
 }
