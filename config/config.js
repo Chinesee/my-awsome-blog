@@ -15,3 +15,6 @@ export const IMG_SCROLL_VIEW = 180
 
 // 放置博客文章的目录
 export const BLOG_ROOT = 'contents'
+
+// 部署 GitHub Pages 的仓库名称
+export const GH_REPOSITORY = '/my-awsome-blog/'

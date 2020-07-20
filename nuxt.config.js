@@ -1,6 +1,6 @@
 import Mode from 'frontmatter-markdown-loader/mode'
 import { markdownRenderer, generatePath } from './utils'
-import { BLOG_ROOT } from './config/config'
+import { BLOG_ROOT, GH_REPOSITORY } from './config/config'
 const path = require('path')
 
 export default {
@@ -24,7 +24,7 @@ export default {
   },
 
   router: {
-    base: process.env.DEPLOY_ENV === 'GITEE_PAGES' ? '/blog-nuxt/' : '/',
+    base: process.env.DEPLOY_ENV === 'GH_PAGES' ? GH_REPOSITORY : '/',
   },
 
   loading: { color: '#2f58ff' },
