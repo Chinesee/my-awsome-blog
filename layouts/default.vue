@@ -96,7 +96,7 @@ export default {
 <style lang="scss" scoped>
 .scroll-area {
   @apply pt-16 h-full overflow-y-scroll;
-  scroll-behavior: smooth; // 暂仅支持 Chrome Edge Firefox
+  scroll-behavior: smooth; // 暂仅支持 Chrome, Edge, Firefox
   overflow: overlay;
 }
 </style>
