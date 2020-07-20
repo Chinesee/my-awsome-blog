@@ -47,16 +47,16 @@ export default {
     const creations = [
       {
         img: 'https://gitee.com/chinesee/images/raw/master/img/img_011.jpg',
-        title: '意想社团 - 高校社团小程序',
+        title: '意想社团 - 高校社团 APP',
         links: {
-          repository: 'https://gitee.com/chinesee/hr-clubs',
+          repository: 'https://github.com/Chinesee/eason-club',
         },
       },
       {
         img: 'https://gitee.com/chinesee/images/raw/master/img/img_004.jpg',
         title: '意想课表 - 教务信息查询助手',
         links: {
-          repository: 'https://gitee.com/chinesee/mpvue-hr',
+          repository: 'https://github.com/Chinesee/eason-campus',
         },
       },
       {
@@ -72,7 +72,7 @@ export default {
         title: '乐享校园客户端 - 校园二手交易平台',
         links: {
           online: 'https://holdme.top/client',
-          repository: 'https://gitee.com/chinesee/love-share-client',
+          repository: 'https://github.com/Chinesee/love-share-client',
         },
       },
     ]
