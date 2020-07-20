@@ -17,5 +17,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Install Dependencies
         run: yarn install
+        working-directory: /
       - name: Generate Static Pages
         run: yarn generate:gh-pages
+        working-directory: /
