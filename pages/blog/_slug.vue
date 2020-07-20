@@ -59,7 +59,7 @@
 <script>
 import _debounce from 'lodash.debounce'
 import { IMG_SCROLL_VIEW } from '~/config/config'
-import { getPosition } from "~/util/dom"
+import { getPosition } from "~/utils/dom"
 
 const repeat = function (str, num) {
   return new Array(num + 1).join(str)
