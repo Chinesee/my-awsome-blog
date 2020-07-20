@@ -1,6 +1,7 @@
 name: Deploy My Awsome Blog
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
