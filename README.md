@@ -19,9 +19,6 @@ $ yarn serve
 # 构建项目
 $ yarn build
 $ yarn start
-
-# 生成静态页面
-$ yarn generate
 ```
 
 ## 文章格式
@@ -38,3 +35,14 @@ from | 文章来源
 from_url | 文章源地址
 author | 作者昵称
 last_edited_time | 最后编辑时间
+
+## 如何部署至 GitHub Pages？
+
+```sh
+# 生成静态页面
+yarn generate:gh-pages
+# 部署到 Github Pages
+yarn deploy
+```
+
+[详情](https://zh.nuxtjs.org/faq/github-pages)

@@ -7,6 +7,7 @@
     "start": "yarn serve",
     "serve": "nuxt",
     "build": "nuxt build",
+    "build:gh-pages": "cross-env DEPLOY_ENV=GH_PAGES nuxt build",
     "generate": "nuxt generate",
     "generate:gh-pages": "cross-env DEPLOY_ENV=GH_PAGES nuxt generate",
     "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup",

@@ -14,11 +14,11 @@ $menu-item-width: 5rem;
 $article-content-width: 800px;
 
 // Color
-$primary: rgba(var(--ns-primary), 1);
-$success: rgba(var(--ns-success), 1);
-$warning: rgba(var(--ns-warning), 1);
-$danger: rgba(var(--ns-danger), 1);
-$dark: rgba(var(--ns-dark), 1);
+$primary: #2f58ff;
+$success: #46c93a;
+$warning: #ffba00;
+$danger: #ff4757;
+$dark: #1e1e1e;
 
 @function setColor($color, $alpha) {
   @return rgba(var(--ns-#{$color}), $alpha)

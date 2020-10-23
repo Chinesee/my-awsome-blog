@@ -7,7 +7,7 @@
   >
     <!-- 博客 Logo -->
     <img
-      alt="LOGO"
+      alt="logo"
       class="w-12 absolute left-0 z-50 transition cursor-pointer"
       src="~/assets/images/logo.png"
       :class="isHeaderShow ? 'ml-6' : 'ml-4'"
@@ -64,6 +64,7 @@
 export default {
   data: () => ({
     nav: [
+      { text: '关于我', route: '/about' },
       { text: '笔记', route: '/notes' },
       { text: '文章', route: '/articles' },
       { text: '作品', route: '/creations' },
