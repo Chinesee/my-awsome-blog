@@ -1,5 +1,5 @@
 import MarkdownIt from 'markdown-it'
-import { BLOG_ROOT } from './config/config.js'
+import { BLOG_ROOT } from './config'
 const fs = require('fs')
 const path = require('path')
 

@@ -33,7 +33,7 @@
 
 <script>
 import _debounce from 'lodash.debounce'
-import { SCROLL_TOP, RESIZE_DELAY, SCROLL_DELAY, CLIENT_WIDTH } from '~/config/config'
+import { SCROLL_TOP, RESIZE_DELAY, SCROLL_DELAY, CLIENT_WIDTH } from '~/config'
 
 import Header from '~/components/partials/Header.vue'
 import Footer from '~/components/partials/Footer.vue'

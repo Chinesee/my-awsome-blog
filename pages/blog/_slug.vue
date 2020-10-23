@@ -58,7 +58,7 @@
 
 <script>
 import _debounce from 'lodash.debounce'
-import { IMG_SCROLL_VIEW } from '~/config/config'
+import { IMG_SCROLL_VIEW } from '~/config'
 import { getPosition } from "~/utils/dom"
 
 const repeat = function (str, num) {
@@ -130,7 +130,7 @@ export default {
       const imgs = document.getElementById('markdown-content').getElementsByTagName('img')
 
       if (imgs.length > 0) {
-        for(let i = 0; i < imgs.length; i += 1) {
+        for (let i = 0; i < imgs.length; i += 1) {
           imgs[i].onclick = (e) => {
             const { target } = e
             const { idx } = target.dataset
@@ -162,7 +162,7 @@ export default {
       $('.scroll-area').scroll(_debounce(function (e) {
         const { scrollTop } = e.target
 
-        $('article h1, article h2, article h3').each(function() {
+        $('article h1, article h2, article h3').each(function () {
           const el = $(this)
           const offsetTop = el.offset().top
           if (offsetTop <= 50 && offsetTop >= -100) {
@@ -171,7 +171,7 @@ export default {
             return false
           }
         })
-        
+
         if (scrollTop >= 0 && scrollTop <= 200) {
           $('nav a.active').removeClass('active')
         }
@@ -200,7 +200,7 @@ export default {
 
       var newLine, el, title, link, level, baseLevel
 
-      $('article h1, article h2, article h3').each(function(idx) {
+      $('article h1, article h2, article h3').each(function (idx) {
         const id = `heading-${idx}`
         el = $(this)
         el.attr('id', id)
@@ -209,17 +209,17 @@ export default {
 
         const prevLevel = level || 0
         level = this.nodeName.substr(1)
-        if(!baseLevel) {
+        if (!baseLevel) {
           baseLevel = level
         }
 
-        if(prevLevel === 0) {
+        if (prevLevel === 0) {
           newLine = '<li>'
-        } else if(level === prevLevel) {
+        } else if (level === prevLevel) {
           newLine = '</li><li>'
-        } else if(level > prevLevel) {
+        } else if (level > prevLevel) {
           newLine = repeat('<ul><li>', level - prevLevel)
-        } else if(level < prevLevel) {
+        } else if (level < prevLevel) {
           newLine = `${repeat('</li></ul>', prevLevel - level)}</li><li>`
         }
         newLine = `${newLine}<a data-id='${link}'>${title}</a>`
@@ -234,7 +234,7 @@ export default {
       $('nav a').click(function (e) {
         const { id } = e.target.dataset
         document.querySelector(id).scrollIntoView({
-          behavior: 'smooth' 
+          behavior: 'smooth'
         })
         _this.setNavActive(id)
       })
