@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "令狐少侠的个人博客，基于 Nuxt.js 构建",
   "author": "LeoKu",
+  "license": "MIT",
   "scripts": {
     "start": "yarn serve",
     "serve": "nuxt",
