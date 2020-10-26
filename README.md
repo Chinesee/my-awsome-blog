@@ -45,4 +45,12 @@ yarn generate:gh-pages
 yarn deploy
 ```
 
+## 自定义域名
+
+解析域名，添加 `@` 和 `www` 记录，解析到 `<你的GitHub账号名>.github.io`
+
+## 启用 Https
+
+申请证书，等待部署成功
+
 [详情](https://zh.nuxtjs.org/faq/github-pages)
