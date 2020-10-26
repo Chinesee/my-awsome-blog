@@ -2,34 +2,6 @@
   @apply h-full;
   transition: $transition;
 
-  &.full-screen {
-    @apply p-0;
-
-    #layout-container {
-      border-radius: 0;
-    }
-  }
-
-  @media (max-width: 479px) {
-    @apply p-0 bg-white;
-
-    #layout-container {
-      border-radius: 0;
-    }
-  }
-
-  @media (min-width: 480px) {
-    @apply p-0 bg-white;
-  }
-
-  @media (min-width: 980px) {
-    @apply p-8 bg-gray-200;
-  }
-
-  @media (min-width: 1280px) {
-    @apply p-10 bg-gray-200;
-  }
-
   @media (min-width: 1920px) {
     display: flex;
     justify-content: center;
@@ -39,7 +11,6 @@
 #layout-container {
   @apply relative w-full h-full bg-white overflow-hidden;
   min-height: 500px;
-  border-radius: 1.5rem;
 }
 
 .page-enter-active,

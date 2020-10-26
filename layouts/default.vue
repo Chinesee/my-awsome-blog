@@ -1,8 +1,5 @@
 <template>
-  <div
-    id="default-layout"
-    :class="{'full-screen': isFullScreen}"
-  >
+  <div id="default-layout">
     <div id="layout-container">
       <Header />
 
@@ -43,12 +40,6 @@ export default {
 
   data: () => ({
   }),
-
-  computed: {
-    isFullScreen() {
-      return this.$route.name !== 'index'
-    },
-  },
 
   watch: {
     $route() {
