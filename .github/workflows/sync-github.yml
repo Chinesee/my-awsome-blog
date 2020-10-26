@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout source codes
-      uses: actions/checkout@v1
+      uses: Chinese/my-awsome-blog@master
     - name: Mirror Github to Gitee with white list
       uses: ./.
       with:
