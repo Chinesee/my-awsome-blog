@@ -64,11 +64,11 @@
 export default {
   data: () => ({
     nav: [
-      { text: '关于我', route: '/about' },
-      { text: '笔记', route: '/notes' },
-      { text: '文章', route: '/articles' },
-      { text: '作品', route: '/creations' },
-      { text: '项目仓库', href: 'https://gitee.com/chinesee' },
+      { text: 'About', route: '/about' },
+      // { text: '笔记', route: '/notes' },
+      { text: 'Blog', route: '/articles' },
+      { text: 'Projects', route: '/creations' },
+      // { text: '项目仓库', href: 'https://gitee.com/chinesee' },
     ],
     activeClass: '',
     isMenuCollapseShow: false,
