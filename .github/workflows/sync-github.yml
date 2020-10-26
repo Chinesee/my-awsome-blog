@@ -1,0 +1,19 @@
+on: push
+name: Sync GitHub repository to Gitee
+jobs:
+  run:
+    name: Run
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v1
+    - name: Mirror Github to Gitee with white list
+      uses: ./.
+      with:
+        src: github/Chinesee
+        dst: gitee/chinesee
+        dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+        dst_token:  ${{ secrets.GITEE_TOKEN }}
+        static_list: 'my-awsome-blog'
+        force_update: true
+        debug: true
