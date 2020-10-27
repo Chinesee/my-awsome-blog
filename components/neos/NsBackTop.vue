@@ -2,9 +2,9 @@
   <div
     ref="backTop"
     class="ns-back-top"
-    :class="{'show': isBackTopShow}"
+    :class="{ 'show': isBackTopShow }"
     :style="backTopStyle"
-    @click="$emit('scrollTop')"
+    @click="$emit('scroll-top')"
   >
     <slot />
   </div>
@@ -29,10 +29,6 @@ export default {
       default: '500',
     },
   },
-
-  data: () => ({
-    timer: null,
-  }),
 
   computed: {
     isBackTopShow() {

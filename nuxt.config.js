@@ -17,6 +17,7 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' },
     ],
     script: [
       { src: 'https://cdn.bootcdn.net/ajax/libs/jquery/3.5.0/jquery.min.js' },

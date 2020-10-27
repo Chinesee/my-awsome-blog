@@ -12,16 +12,13 @@
         <app-footer />
 
         <ns-back-top
-          style="z-index: 999999;"
+          style="z-index: 999;"
           visible-offset="500"
-          @scrollTop="onScrollTop"
+          @scroll-top="onScrollTop"
         >
-          <ns-button>
-            <img
-              class="text-white"
-              src="~/assets/icons/arrow-up.svg"
-            >
-          </ns-button>
+          <div class="w-12 h-12 flex flex-col justify-center items-center shadow-lg rounded-full cursor-pointer">
+            <i class="bx bx-up-arrow-alt text-2xl"></i>
+          </div>
         </ns-back-top>
       </div>
     </div>
