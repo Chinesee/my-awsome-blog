@@ -75,8 +75,10 @@ export default {
 
     onResize() {
       if (document.body.clientWidth < CLIENT_WIDTH) {
+        this.$store.commit('SET_DEVICES', true)
         this.$store.commit('SET_HEADER_MENU_STATUS', true)
       } else {
+        this.$store.commit('SET_DEVICES', false)
         this.$store.commit('SET_HEADER_MENU_STATUS', false)
       }
     },

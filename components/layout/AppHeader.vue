@@ -1,15 +1,18 @@
 <template>
   <div
     class="app-header"
-    :class="{ 'is-hidden': !isHeaderShow }"
+    :class="[{ 'is-hidden': !isHeaderShow }, isMobile ? 'px-4' : 'px-10']"
   >
-    <!-- 博客 Logo -->
-    <div class="mr-auto">
+    <!-- Logo -->
+    <div
+      class="mr-auto cursor-pointer"
+      @click="$router.push('/')"
+    >
+      <!-- <p class="text-lg font-bold">LeoKu's &nbsp;blog</p> -->
       <img
         alt="logo"
-        class="w-12 cursor-pointer"
+        class="w-12"
         src="~/assets/images/logo.png"
-        @click="$router.push('/')"
       >
     </div>
 
@@ -19,10 +22,7 @@
         v-if="isMenuCollapse"
         @click="showMenu()"
       >
-        <img
-          class="toggle-btn"
-          src="~/assets/icons/menu.svg"
-        >
+        <i class="toggle-btn bx bx-menu-alt-right text-3xl"></i>
       </div>
 
       <ul
@@ -76,6 +76,10 @@ export default {
   }),
 
   computed: {
+    isMobile() {
+      return this.$store.state.isMobile
+    },
+
     isHeaderShow() {
       return this.$store.state.isHeaderShow || this.isMouseHover || this.whiteList.includes(this.$route.name)
     },
@@ -120,13 +124,13 @@ export default {
 
 <style lang="scss" scoped>
 .app-header {
-  @apply w-full h-full px-10 flex items-center;
+  @apply w-full h-full flex items-center;
   transition: $transition;
-  box-shadow: 0 0 25px 15px rgba(var(--ns-primary), 0.05);
   background-color: hsla(0, 0%, 100%, 0.8);
   backdrop-filter: saturate(180%) blur(5px);
 
   &.is-hidden {
+    transform: translateY(-100%);
   }
 
   .menu {
@@ -134,40 +138,9 @@ export default {
     &.is-hidden {
     }
 
-    @each $i in 0, 1, 2 {
-      &.active-#{$i} {
-        &::after {
-          opacity: 1;
-          left: $menu-item-width * $i;
-        }
-      }
-
-      &.none-active {
-        &::after {
-          display: none;
-        }
-      }
-    }
-
-    &::after {
-      @apply absolute mb-2 opacity-0;
-      content: "";
-      z-index: 10;
-      bottom: -1rem;
-      width: 2.5em;
-      height: 0.25rem;
-      border-radius: 1.5rem;
-      background: setColor(primary, 0.9);
-      transform: translateX(50%);
-      transition: $transition;
-    }
-
     .menu-item {
       @apply text-center cursor-pointer transition whitespace-no-wrap;
       width: $menu-item-width;
-      a {
-        display: block;
-      }
     }
   }
 }
