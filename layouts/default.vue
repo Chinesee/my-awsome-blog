@@ -1,27 +1,30 @@
 <template>
-  <div id="default-layout">
-    <div id="layout-container">
+  <div
+    ref="scrollArea"
+    id="default-layout"
+    class="scroll-area"
+  >
+    <header class="header">
       <app-header />
+    </header>
 
-      <div
-        ref="scrollArea"
-        class="scroll-area"
-      >
-        <nuxt />
+    <main class="content">
+      <nuxt />
+    </main>
 
-        <app-footer />
+    <footer class="footer">
+      <app-footer />
+    </footer>
 
-        <ns-back-top
-          style="z-index: 999;"
-          visible-offset="500"
-          @scroll-top="onScrollTop"
-        >
-          <div class="w-12 h-12 flex flex-col justify-center items-center shadow-lg rounded-full cursor-pointer">
-            <i class="bx bx-up-arrow-alt text-2xl"></i>
-          </div>
-        </ns-back-top>
+    <ns-back-top
+      style="z-index: 999;"
+      visible-offset="500"
+      @scroll-top="onScrollTop"
+    >
+      <div class="w-12 h-12 flex flex-col justify-center items-center shadow-lg rounded-full cursor-pointer">
+        <i class="bx bx-up-arrow-alt text-2xl"></i>
       </div>
-    </div>
+    </ns-back-top>
   </div>
 </template>
 
@@ -82,9 +85,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.scroll-area {
-  @apply pt-16 h-full overflow-y-scroll;
-  scroll-behavior: smooth; // 暂仅支持 Chrome, Edge, Firefox
-  overflow: overlay;
-}
 </style>

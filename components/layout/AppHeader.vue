@@ -1,18 +1,17 @@
 <template>
   <div
-    class="header"
-    :class="{'is-hidden': !isHeaderShow, 'px-6 justify-end': isHeaderShow}"
-    @mouseenter="onHeaderShow"
-    @mouseleave="onHeaderHide"
+    class="app-header"
+    :class="{ 'is-hidden': !isHeaderShow }"
   >
     <!-- 博客 Logo -->
-    <img
-      alt="logo"
-      class="w-12 absolute left-0 z-50 transition cursor-pointer"
-      src="~/assets/images/logo.png"
-      :class="isHeaderShow ? 'ml-6' : 'ml-4'"
-      @click="$router.push('/')"
-    >
+    <div class="mr-auto">
+      <img
+        alt="logo"
+        class="w-12 cursor-pointer"
+        src="~/assets/images/logo.png"
+        @click="$router.push('/')"
+      >
+    </div>
 
     <!-- 菜单项 -->
     <div class="relative">
@@ -112,20 +111,6 @@ export default {
   },
 
   methods: {
-    onHeaderShow() {
-      if (!this.isHeaderShow) {
-        this.isMouseHover = true
-      }
-    },
-
-    onHeaderHide() {
-      if (this.isHeaderShow) {
-        setTimeout(() => {
-          this.isMouseHover = false
-        }, 400)
-      }
-    },
-
     showMenu() {
       this.isMenuCollapseShow = !this.isMenuCollapseShow
     },
@@ -134,26 +119,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.header {
-  @apply absolute top-0 left-0 w-full h-16 flex items-center bg-white;
-  z-index: 999999;
-  height: $header-height;
-  line-height: $header-height;
+.app-header {
+  @apply w-full h-full px-10 flex items-center;
   transition: $transition;
   box-shadow: 0 0 25px 15px rgba(var(--ns-primary), 0.05);
   background-color: hsla(0, 0%, 100%, 0.8);
   backdrop-filter: saturate(180%) blur(5px);
 
   &.is-hidden {
-    @apply px-2 justify-center bg-white;
-    width: 5rem;
-    border-radius: 0 0 $lg-radius 0;
   }
 
   .menu {
-    @apply relative z-50 flex text-gray-700 select-none overflow-hidden;
+    @apply relative z-50 flex text-gray-700 select-none;
     &.is-hidden {
-      @apply hidden;
     }
 
     @each $i in 0, 1, 2 {
@@ -172,9 +150,10 @@ export default {
     }
 
     &::after {
-      @apply absolute bottom-0 mb-2 opacity-0;
+      @apply absolute mb-2 opacity-0;
       content: "";
-      z-index: 999999;
+      z-index: 10;
+      bottom: -1rem;
       width: 2.5em;
       height: 0.25rem;
       border-radius: 1.5rem;
@@ -194,15 +173,15 @@ export default {
 }
 
 .menu.is-collapse {
-  @apply absolute top-0 right-0 z-50 w-32 flex-col items-center bg-white;
+  @apply absolute top-0 right-0 z-50 w-32 flex-col items-center bg-white overflow-hidden;
   margin-top: $header-height - 0.5rem;
   border-radius: $md-radius;
   box-shadow: $base-shadow;
   &.show {
-    animation: menuShow 0.3s ease-out forwards;
+    animation: menuShow 0.2s ease-out forwards;
   }
   &.hide {
-    animation: menuHide 0.3s ease-out forwards;
+    animation: menuHide 0.2s ease-out forwards;
   }
   @keyframes menuShow {
     from {
