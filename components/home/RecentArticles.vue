@@ -42,9 +42,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.title {
-  &:hover {
-    color: setColor(primary, 0.9);
-  }
-}
 </style>

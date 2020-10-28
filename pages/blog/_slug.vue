@@ -110,7 +110,7 @@ export default {
   },
 
   mounted() {
-    this.onScroll()
+    // this.onScroll()
     this.injectEventOnImg()
     this.generateTOC()
   },
@@ -177,7 +177,6 @@ export default {
 
     onImgScroll() {
       const scrollTop = document.documentElement.scrollTop
-      console.log(scrollTop)
       const { img, wrapper, scrollAreaTop } = this
 
       // 如果图片滚动距离超过规定范围，则关闭图片预览
@@ -282,8 +281,8 @@ article {
   h3 {
     &::before {
       content: "";
-      height: $header-height + 1rem;
-      margin-top: -($header-height + 1rem);
+      height: 1rem;
+      margin-top: -1rem;
       display: block;
     }
     &:target {
@@ -314,7 +313,6 @@ $level3-color: $primary;
 
 .nav {
   @apply fixed text-sm text-gray-600;
-  // position: sticky;
   top: 150px;
   right: 100px;
   width: 220px;

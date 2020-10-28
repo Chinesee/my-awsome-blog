@@ -21,13 +21,7 @@ $success: #46c93a;
 $warning: #ffba00;
 $danger: #ff4757;
 $dark: #1e1e1e;
-
-@function setColor($color, $alpha) {
-  @return rgba(var(--ns-#{$color}), $alpha)
-}
-
 $color-map: (primary: $primary, success: $success, warning: $warning, danger: $danger);
-
 
 // Border
 $sm-radius: 0.45rem;
@@ -50,7 +44,7 @@ $transition: all 0.3s;
   white-space: nowrap;
 }
 
-@mixin text-overflow-multi-line($line: 3) {
+@mixin text-overflow-lines($line: 3) {
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;

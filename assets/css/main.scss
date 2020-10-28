@@ -3,12 +3,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 
 html {
-  width: 100%;
-  min-height: 100%;
+  @apply w-full min-h-full bg-white text-gray-700 overflow-x-hidden;
   font-family: Rubik, Helvetica, 'Microsoft YaHei', 'PingFang SC', '思源黑体';
   font-size: 16px;
   scroll-behavior: smooth; // 暂仅支持 Chrome, Edge, Firefox
-  overflow-x: hidden;
   overflow-y: overlay;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -17,8 +15,7 @@ html {
 }
 
 body {
-  @apply w-full bg-white text-gray-700;
-  font-size: 16px;
+  @apply w-full;
 }
 
 img {

@@ -1,9 +1,5 @@
 <template>
-  <div
-    ref="scrollArea"
-    id="default-layout"
-    class="scroll-area"
-  >
+  <div id="default-layout">
     <header class="header">
       <app-header />
     </header>
@@ -22,7 +18,7 @@
       @scroll-top="onScrollTop"
     >
       <div class="w-12 h-12 flex flex-col justify-center items-center shadow-lg rounded-full cursor-pointer">
-        <i class="bx bx-up-arrow-alt text-2xl"></i>
+        <i class="bx bx-up-arrow-alt mt-1 text-2xl"></i>
       </div>
     </ns-back-top>
   </div>
@@ -41,17 +37,11 @@ export default {
   data: () => ({
   }),
 
-  watch: {
-    $route() {
-      // 跳转到新路由是滚动到顶部
-      this.onScrollTop()
-    },
-  },
-
   mounted() {
-    console.log('用自己的方式发布热爱的事物')
+    console.log('%c用自己的方式发布热爱的事物 \n—— LeoKu', 'font-size: 18px; color: #4a5568;')
 
     this.onResize()
+
     window.addEventListener('resize', _debounce(this.onResize, RESIZE_DELAY))
     window.addEventListener('scroll', _debounce(this.onScroll, SCROLL_DELAY))
   },
