@@ -21,7 +21,7 @@ export default {
     },
     bottom: {
       type: String,
-      default: '5%',
+      default: '8%',
     },
 
     visibleOffset: {

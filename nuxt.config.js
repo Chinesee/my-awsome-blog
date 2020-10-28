@@ -1,5 +1,5 @@
 import Mode from 'frontmatter-markdown-loader/mode'
-import { markdownRenderer, generatePath } from './utils'
+import { markdownRenderer, generatePath } from './path-resolve'
 import { BLOG_ROOT, GH_REPOSITORY } from './config'
 const path = require('path')
 
@@ -26,6 +26,9 @@ export default {
 
   router: {
     base: process.env.DEPLOY_ENV === 'GH_PAGES' ? GH_REPOSITORY : '/',
+    scrollBehavior(to, from, savedPosition) {
+      return { x: 0, y: 0 }
+    },
   },
 
   loading: { color: '#2f58ff' },

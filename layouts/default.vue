@@ -44,7 +44,7 @@ export default {
   watch: {
     $route() {
       // 跳转到新路由是滚动到顶部
-      this.$refs.scrollArea.scrollTop = 0
+      this.onScrollTop()
     },
   },
 
@@ -53,23 +53,21 @@ export default {
 
     this.onResize()
     window.addEventListener('resize', _debounce(this.onResize, RESIZE_DELAY))
-    this.$refs.scrollArea.addEventListener('scroll', _debounce(this.onScroll, SCROLL_DELAY))
+    window.addEventListener('scroll', _debounce(this.onScroll, SCROLL_DELAY))
   },
 
   methods: {
     // 回到顶部
     onScrollTop() {
-      this.$refs.scrollArea.scrollTop = 0
+      document.documentElement.scrollTop = 0
     },
 
-    // 控制头部菜单栏的展开和收起
-    onScroll({ target: { scrollTop } }) {
-      if (scrollTop > SCROLL_TOP) {
+    // 控制回到顶部按钮
+    onScroll() {
+      if (document.documentElement.scrollTop > SCROLL_TOP) {
         this.$store.commit('SET_BACK_TOP_STATUS', true)
-        // this.$store.commit('SET_HEADER_STATUS', false)
       } else {
         this.$store.commit('SET_BACK_TOP_STATUS', false)
-        // this.$store.commit('SET_HEADER_STATUS', true)
       }
     },
 

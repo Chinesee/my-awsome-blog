@@ -106,7 +106,6 @@ export default {
 
       img: null,
       wrapper: null,
-      scrollArea: null,
     }
   },
 
@@ -117,7 +116,7 @@ export default {
   },
 
   beforeDestroy() {
-    this.scrollArea.removeEventListener('scroll', this.onImgScroll)
+    window.removeEventListener('scroll', this.onImgScroll)
     $('.scroll-area').unbind('scroll')
   },
 
@@ -125,7 +124,6 @@ export default {
     // 给文章的所有图片加上预览事件
     injectEventOnImg() {
       this.wrapper = document.getElementsByClassName('markdown-container')[0]
-      this.scrollArea = document.getElementsByClassName('scroll-area')[0]
 
       const imgs = document.getElementById('markdown-content').getElementsByTagName('img')
 
@@ -136,20 +134,19 @@ export default {
             const { idx } = target.dataset
 
             this.img = imgs[idx]
-            const { img: el, wrapper, scrollArea } = this
+            const { img: el, wrapper } = this
 
             if (imgs[idx].classList.contains('zoom-in')) {
               el.style.cssText = ''
               el.classList.remove('zoom-in')
               wrapper.classList.remove('bg-blur')
-              scrollArea.removeEventListener('scroll', this.onImgScroll)
+              window.removeEventListener('scroll', this.onImgScroll)
               this.scrollAreaTop = null
             } else {
               el.style.cssText = getPosition(el)
               el.classList.add('zoom-in')
               wrapper.classList.add('bg-blur')
-              scrollArea.addEventListener('scroll', this.onImgScroll)
-              this.scrollAreaTop = scrollArea.scrollTop
+              window.addEventListener('scroll', this.onImgScroll)
             }
           }
           imgs[i].dataset.idx = i
@@ -178,8 +175,10 @@ export default {
       }, 250))
     },
 
-    onImgScroll({ target: { scrollTop } }) {
-      const { img, wrapper, scrollArea, scrollAreaTop } = this
+    onImgScroll() {
+      const scrollTop = document.documentElement.scrollTop
+      console.log(scrollTop)
+      const { img, wrapper, scrollAreaTop } = this
 
       // 如果图片滚动距离超过规定范围，则关闭图片预览
       const abs = Math.abs(scrollTop - scrollAreaTop)
@@ -188,7 +187,7 @@ export default {
         img.classList.add('zoom-out')
         img.classList.remove('zoom-in')
         wrapper.classList.remove('bg-blur')
-        scrollArea.removeEventListener('scroll', this.onImgScroll)
+        window.removeEventListener('scroll', this.onImgScroll)
       }
     },
 

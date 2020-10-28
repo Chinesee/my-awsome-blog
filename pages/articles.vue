@@ -35,22 +35,12 @@
 </template>
 
 <script>
-// import Prismic from 'prismic-javascript'
-// import PrismicDom from 'prismic-dom'
-// import PrismicConfig from '~/prismic.config.js'
-
 import head from '~/mixins/head'
 
 export default {
   mixins: [head({ title: '文章' })],
 
   asyncData() {
-    // const api = await Prismic.getApi(PrismicConfig.apiEndpoint)
-    // const results = await api.query(
-    //   Prismic.Predicates.at('document.type', 'blog-post'),
-    // )
-    // console.log(results)
-
     const resolve = require.context('~/contents/', true, /\.md$/)
     const articles = resolve
       .keys()
@@ -91,6 +81,5 @@ export default {
   @apply w-full mb-6 p-10 flex items-center justify-center;
   max-width: 1400px;
   margin: 0 auto;
-  // border-bottom: 1px solid #eee;
 }
 </style>

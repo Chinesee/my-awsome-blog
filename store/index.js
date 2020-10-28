@@ -1,6 +1,5 @@
 export const state = () => ({
   isMobile: false,
-  isHeaderShow: false,
   isBackTopShow: false,
   isMenuCollapse: false,
 })
@@ -9,11 +8,6 @@ export const mutations = {
   // 控制导航栏的展开和收起
   SET_DEVICES(state, status) {
     state.isMobile = status
-  },
-
-  // 控制导航栏的展开和收起
-  SET_HEADER_STATUS(state, status) {
-    state.isHeaderShow = status
   },
 
   // 控制菜单是否折叠：适配移动端
