@@ -102,16 +102,12 @@ export default {
           classObj: ['bg-gray-200', 'text-gray-600'],
         },
       },
-      scrollAreaTop: null,
-
-      img: null,
-      wrapper: null,
     }
   },
 
   mounted() {
     // this.onScroll()
-    // this.injectEventOnImg()
+    this.setImgEvent()
     // this.generateTOC()
   },
 
@@ -122,36 +118,31 @@ export default {
 
   methods: {
     // 给文章的所有图片加上预览事件
-    injectEventOnImg() {
-      this.wrapper = document.getElementsByClassName('markdown-container')[0]
-
-      const imgs = document.getElementById('markdown-content').getElementsByTagName('img')
-
-      if (imgs.length > 0) {
-        for (let i = 0; i < imgs.length; i += 1) {
-          imgs[i].onclick = (e) => {
-            const { target } = e
-            const { idx } = target.dataset
-
-            this.img = imgs[idx]
-            const { img: el, wrapper } = this
-
-            if (imgs[idx].classList.contains('zoom-in')) {
-              el.style.cssText = ''
-              el.classList.remove('zoom-in')
-              wrapper.classList.remove('bg-blur')
-              window.removeEventListener('scroll', this.onImgScroll)
-              this.scrollAreaTop = null
-            } else {
-              el.style.cssText = getPosition(el)
-              el.classList.add('zoom-in')
-              wrapper.classList.add('bg-blur')
-              window.addEventListener('scroll', this.onImgScroll)
-            }
+    setImgEvent() {
+      const _this = this
+      $('#markdown-content img').each(function () {
+        $(this).on('click', function () {
+          if ($(this).hasClass('zoom-in')) {
+            _this.openImgPreview(this)
+          } else {
+            _this.closeImgPreview(this)
           }
-          imgs[i].dataset.idx = i
-        }
-      }
+        })
+      })
+    },
+
+    openImgPreview(el) {
+      $(el).removeClass('zoom-in')
+      $(el).css('transform', '')
+      $('.markdown-container:first').removeClass('bg-blur')
+      $(window).off('scroll.imgScroll')
+    },
+
+    closeImgPreview(el) {
+      $(el).addClass('zoom-in')
+      $(el).css('transform', getPosition(el))
+      $('.markdown-container:first').addClass('bg-blur')
+      $(window).on('scroll.imgScroll', { el, previousTop: $(window).scrollTop() }, this.onImgScroll)
     },
 
     onScroll() {
@@ -175,18 +166,13 @@ export default {
       }, 250))
     },
 
-    onImgScroll() {
-      const scrollTop = document.documentElement.scrollTop
-      const { img, wrapper, scrollAreaTop } = this
+    onImgScroll(e) {
+      const scrollTop = $(window).scrollTop()
 
       // 如果图片滚动距离超过规定范围，则关闭图片预览
-      const abs = Math.abs(scrollTop - scrollAreaTop)
+      const abs = Math.abs(scrollTop - e.data.previousTop)
       if (abs > IMG_SCROLL_VIEW) {
-        img.style.cssText = ''
-        img.classList.add('zoom-out')
-        img.classList.remove('zoom-in')
-        wrapper.classList.remove('bg-blur')
-        window.removeEventListener('scroll', this.onImgScroll)
+        this.openImgPreview(e.data.el)
       }
     },
 

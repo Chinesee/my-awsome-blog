@@ -14,7 +14,7 @@
       Hi, I'm LeoKu 🖖
     </p>
     <p class="my-10 xs:text-2xl md:text-6xl font-extrabold">
-      <span>Good at</span> dreaming <br>
+      <span :class="{ 'point': !isMobile }">Good at</span> dreaming <br>
       Indulge in programming <br>
       Love to contribute
     </p>
@@ -55,6 +55,12 @@
 <script>
 export default {
   name: 'HomeIntroduction',
+
+  computed: {
+    isMobile() {
+      return this.$store.state.isMobile
+    },
+  },
 }
 </script>
 
@@ -62,5 +68,16 @@ export default {
 .introduction {
   @apply flex flex-col justify-center items-center text-center;
   min-height: calc(100vh - #{$header-height});
+
+  .point {
+    @apply relative;
+    &::after {
+      @apply absolute;
+      top: 15px;
+      left: -25px;
+      z-index: -1;
+      content: url(~assets/images/underscore.png);
+    }
+  }
 }
 </style>

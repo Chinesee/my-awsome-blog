@@ -9,7 +9,7 @@ export default {
 
   head: {
     htmlAttrs: { lang: 'cmn-Hans-CN' },
-    title: '纪念碑谷 - 令狐聪的个人空间',
+    title: '令狐聪的个人空间',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
