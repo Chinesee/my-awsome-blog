@@ -3,24 +3,24 @@
     <ul class="sm:w-full">
       <li
         class="article-item"
-        v-for="({ path, cover,title, description, time }, i) in articles"
+        v-for="({ path, title, description, time }, i) in articles"
         :key="i"
       >
-        <div class="w-1/3 mr-20">
+        <!-- <div class="w-1/3 mr-20">
           <img
             class="w-full h-full object-cover shadow-light"
             alt="文章封面"
             :src="cover"
           >
-        </div>
-        <div class="w-1/3">
+        </div> -->
+        <div class="">
           <nuxt-link
             tag="li"
             class="w-full cursor-pointer"
             :to="routeTo(path)"
           >
             <h2
-              class="mb-1 text-xl font-bold truncate"
+              class="mb-1 text-3xl font-bold truncate"
               style="letter-spacing: 0.1rem;"
             >
               {{ title }}
@@ -78,7 +78,7 @@ export default {
 
 <style lang="scss" scoped>
 .article-item {
-  @apply w-full mb-6 p-10 flex items-center justify-center;
+  @apply w-full mb-6 p-10;
   max-width: 1400px;
   margin: 0 auto;
 }

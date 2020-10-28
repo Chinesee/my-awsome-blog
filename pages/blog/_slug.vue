@@ -33,14 +33,6 @@
         </div>
       </div>
 
-      <!-- 文章描述 -->
-      <p
-        v-if="description"
-        class="mb-6 text-gray-600"
-      >
-        {{ description }}
-      </p>
-
       <!-- 正文内容 -->
       <article>
         <component
@@ -109,11 +101,11 @@ export default {
     // this.onScroll()
     this.setImgEvent()
     // this.generateTOC()
-  },
 
-  beforeDestroy() {
-    window.removeEventListener('scroll', this.onImgScroll)
-    $('.scroll-area').unbind('scroll')
+    this.$once('hook:beforeDestroy', function () {
+      $(window).off('scroll.navScroll')
+      $(window).off('scroll.imgScroll')
+    })
   },
 
   methods: {
@@ -142,12 +134,16 @@ export default {
       $(el).addClass('zoom-in')
       $(el).css('transform', getPosition(el))
       $('.markdown-container:first').addClass('bg-blur')
-      $(window).on('scroll.imgScroll', { el, previousTop: $(window).scrollTop() }, this.onImgScroll)
+      $(window).on(
+        'scroll.imgScroll',
+        { el, previousTop: $(window).scrollTop() },
+        this.onImgScroll
+      )
     },
 
     onScroll() {
       const _this = this
-      $('.scroll-area').scroll(_debounce(function (e) {
+      $(window).on('scroll.navScroll', _debounce(function (e) {
         const { scrollTop } = e.target
 
         $('article h1, article h2, article h3').each(function () {
