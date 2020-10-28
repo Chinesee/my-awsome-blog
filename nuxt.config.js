@@ -1,5 +1,6 @@
 import Mode from 'frontmatter-markdown-loader/mode'
-import { markdownRenderer, generatePath } from './path-resolve'
+import { generatePath } from './path-resolve'
+import markdownRenderer from './utils/markdown'
 import { BLOG_ROOT, GH_REPOSITORY } from './config'
 const path = require('path')
 

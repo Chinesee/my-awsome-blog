@@ -30,10 +30,10 @@
     "lodash.throttle": "^4.1.1",
     "markdown-it": "^10.0.0",
     "markdown-it-abbr": "^1.0.4",
+    "markdown-it-highlight-lines": "^1.0.2",
     "markdown-it-image-lazy-loading": "^1.0.2",
     "markdown-it-prism": "2.0.3",
     "nuxt": "^2.0.0",
-    "prismic-javascript": "^2.7.1",
     "stylelint-config-recommended": "^3.0.0",
     "vue-perfect-scrollbar": "^0.2.1"
   },

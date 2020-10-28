@@ -67,6 +67,13 @@
     color: rgba(var(--ns-primary), 0.8);
     background: rgba(var(--ns-primary), 0.06);
   }
+
+  .highlighted-line {
+    background-color: #14161a;
+    display: block;
+    margin: 0 -1.575rem;
+    padding: 0 1.575rem;
+  }
 }
 
 /* purgecss end ignore */

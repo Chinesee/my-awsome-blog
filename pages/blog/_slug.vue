@@ -111,8 +111,8 @@ export default {
 
   mounted() {
     // this.onScroll()
-    this.injectEventOnImg()
-    this.generateTOC()
+    // this.injectEventOnImg()
+    // this.generateTOC()
   },
 
   beforeDestroy() {
