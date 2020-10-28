@@ -66,10 +66,10 @@ export default {
     onScroll({ target: { scrollTop } }) {
       if (scrollTop > SCROLL_TOP) {
         this.$store.commit('SET_BACK_TOP_STATUS', true)
-        this.$store.commit('SET_HEADER_STATUS', false)
+        // this.$store.commit('SET_HEADER_STATUS', false)
       } else {
         this.$store.commit('SET_BACK_TOP_STATUS', false)
-        this.$store.commit('SET_HEADER_STATUS', true)
+        // this.$store.commit('SET_HEADER_STATUS', true)
       }
     },
 

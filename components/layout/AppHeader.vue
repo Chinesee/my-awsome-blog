@@ -1,19 +1,19 @@
 <template>
   <div
     class="app-header"
-    :class="[{ 'is-hidden': !isHeaderShow }, isMobile ? 'px-4' : 'px-10']"
+    :class="[isMobile ? 'px-4' : 'px-10']"
   >
     <!-- Logo -->
     <div
-      class="mr-auto cursor-pointer"
+      class="mr-auto flex items-center cursor-pointer"
       @click="$router.push('/')"
     >
-      <!-- <p class="text-lg font-bold">LeoKu's &nbsp;blog</p> -->
       <img
         alt="logo"
-        class="w-12"
+        class="w-12 mr-4"
         src="~/assets/images/logo.png"
       >
+      <p class="text-2xl font-bold">LeoKu</p>
     </div>
 
     <!-- 菜单项 -->
@@ -28,7 +28,6 @@
       <ul
         class="menu"
         :class="[
-          isHeaderShow ? '' : 'is-hidden',
           isMenuCollapse ? 'is-collapse' : '',
           isMenuCollapseShow ? 'show' : 'hide',
           activeClass,
@@ -80,10 +79,6 @@ export default {
       return this.$store.state.isMobile
     },
 
-    isHeaderShow() {
-      return this.$store.state.isHeaderShow || this.isMouseHover || this.whiteList.includes(this.$route.name)
-    },
-
     isMenuCollapse() {
       return this.$store.state.isMenuCollapse
     },
@@ -129,14 +124,8 @@ export default {
   background-color: hsla(0, 0%, 100%, 0.8);
   backdrop-filter: saturate(180%) blur(5px);
 
-  &.is-hidden {
-    transform: translateY(-100%);
-  }
-
   .menu {
     @apply relative z-50 flex text-gray-700 select-none;
-    &.is-hidden {
-    }
 
     .menu-item {
       @apply text-center cursor-pointer transition whitespace-no-wrap;
@@ -146,38 +135,21 @@ export default {
 }
 
 .menu.is-collapse {
-  @apply absolute top-0 right-0 z-50 w-32 flex-col items-center bg-white overflow-hidden;
+  @apply absolute top-0 right-0 w-32 flex-col items-center bg-white overflow-hidden;
+  z-index: 999;
   margin-top: $header-height - 0.5rem;
   border-radius: $md-radius;
   box-shadow: $base-shadow;
+  transition: 0.2s;
   &.show {
-    animation: menuShow 0.2s ease-out forwards;
+    top: 0;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
   &.hide {
-    animation: menuHide 0.2s ease-out forwards;
-  }
-  @keyframes menuShow {
-    from {
-      max-height: 0;
-      opacity: 0;
-    }
-    to {
-      max-height: 400px;
-      opacity: 1;
-    }
-  }
-  @keyframes menuHide {
-    from {
-      max-height: 400px;
-      opacity: 1;
-    }
-    to {
-      max-height: 0;
-      opacity: 0;
-    }
-  }
-  &::after {
-    display: none;
+    top: -20px;
+    visibility: hidden;
+    opacity: 0;
   }
 }
 </style>
