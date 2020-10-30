@@ -38,7 +38,7 @@ export default {
     const articles = resolve
       .keys()
       .reduce((res, key) => {
-        const { attributes: { cover, title, description, time, status }, meta: { resourcePath } } = resolve(key)
+        const { attributes: { title, description, time, status }, meta: { resourcePath } } = resolve(key)
         const paths = resourcePath.split('\\')
         const path = paths
           .slice(paths.indexOf(`${process.env.blogRoot}`) + 1)
@@ -47,7 +47,7 @@ export default {
 
         if (status !== 0) {
           const timestamp = new Date(time.replace(/[(年)|(月)|(日)]/g, '/')).getTime()
-          res.push({ cover, path, title, description, time, timestamp })
+          res.push({ path, title, description, time, timestamp })
         }
         return res
       }, [])
