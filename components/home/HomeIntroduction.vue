@@ -73,10 +73,10 @@ export default {
     @apply relative;
     &::after {
       @apply absolute;
-      top: 15px;
-      left: -25px;
+      top: -60px;
+      left: -30px;
       z-index: -1;
-      content: url(~assets/images/underscore.png);
+      content: url(~assets/images/underscore.svg);
     }
   }
 }
