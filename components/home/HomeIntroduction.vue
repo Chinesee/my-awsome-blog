@@ -1,9 +1,6 @@
 <template>
   <section class="introduction">
-    <div
-      style="background: #eaf9fa;"
-      class="xs:w-24 xs:h-24 md:w-32 md:h-32 mb-10 p-6 flex justify-center items-center rounded-full"
-    >
+    <div class="avatar-bg xs:w-24 xs:h-24 md:w-32 md:h-32 mb-10 p-6 flex justify-center items-center rounded-full">
       <img
         alt="avatar"
         class="xs:w-16 md:w-20"
@@ -68,6 +65,10 @@ export default {
 .introduction {
   @apply flex flex-col justify-center items-center text-center;
   min-height: calc(100vh - #{$header-height});
+
+  .avatar-bg {
+    background-color: lighten($primary, 40%);
+  }
 
   .point {
     @apply relative;

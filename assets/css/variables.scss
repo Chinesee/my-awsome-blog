@@ -1,7 +1,8 @@
 /* purgecss start ignore */
 
 :root {
-  --ns-primary: 47, 88, 255;
+  // --ns-primary: 47, 88, 255;
+  --ns-primary: 255, 197, 1;
   --ns-success: 70, 201, 58;
   --ns-warning: 255, 186, 0;
   --ns-danger: 255, 71, 87;
@@ -16,7 +17,8 @@ $menu-item-width: 6rem;
 $article-content-width: 800px;
 
 // Color
-$primary: #2f58ff;
+// $primary: #2f58ff;
+$primary: #ffc501;
 $success: #46c93a;
 $warning: #ffba00;
 $danger: #ff4757;
