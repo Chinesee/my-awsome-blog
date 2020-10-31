@@ -1,8 +1,8 @@
 <template>
-  <div class="p-5 sm:p-8 md:p-10">
-    <ul class="sm:w-full">
+  <div class="articles p-4 md:p-0">
+    <ul class="article-list md:py-8">
       <li
-        class="article-item"
+        class="article-list__item"
         v-for="({ path, title, description, time }, i) in articles"
         :key="i"
       >
@@ -13,7 +13,7 @@
             :to="routeTo(path)"
           >
             <h2
-              class="mb-1 text-3xl font-bold truncate"
+              class="mb-1 text-xl md:text-3xl font-bold truncate"
               style="letter-spacing: 0.1rem;"
             >
               {{ title }}
@@ -70,9 +70,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.article-item {
-  @apply w-full mb-6 p-10;
-  max-width: 1400px;
+.articles {
+  max-width: 800px;
   margin: 0 auto;
+
+  .article-list {
+    &__item {
+      @apply w-full mb-6 p-6 rounded-lg bg-gray-100;
+      max-width: 1400px;
+    }
+  }
 }
 </style>

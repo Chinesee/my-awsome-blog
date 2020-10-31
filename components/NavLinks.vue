@@ -21,7 +21,7 @@
       >
         <nuxt-link
           v-if="!isExternal(link)"
-          class="menu-item hover:primary"
+          class="py-2"
           :class="{ 'primary': link === $route.path }"
           :to="link"
         >
@@ -29,6 +29,7 @@
         </nuxt-link>
         <a
           v-else
+          class="py-2"
           rel="noopener noreferrer"
           target="_blank"
           :href="link"
@@ -45,7 +46,6 @@ export default {
   data: () => ({
     nav: [
       { text: 'About', link: '/about' },
-      // { text: '笔记', link: '/notes' },
       { text: 'Blog', link: '/articles' },
       { text: 'Projects', link: '/creations' },
       { text: 'GitHub', link: 'https://github.com/chinesee' },
