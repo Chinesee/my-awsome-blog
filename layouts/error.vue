@@ -1,5 +1,8 @@
 <template>
-  <div class="error h-full">
+  <div
+    class="error"
+    style="min-height: 400px;"
+  >
     <error-not-found v-if="error.statusCode === 404" />
     <error-exception v-else />
   </div>

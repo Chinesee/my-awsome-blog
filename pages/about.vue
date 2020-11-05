@@ -1,95 +1,32 @@
 <template>
-  <div class="index">
-    <div class="py-10 flex justify-between items-center">
-      <div class="flex flex-col justify-center xs:items-center sm:items-start">
-        <p class="text-gray-700 xs:text-xl sm:text-2xl md:text-3xl font-bold xs:text-center sm:text-left whitespace-pre-line">
-          生命相承，殊途同归
-          世事变幻，但时间从不作答
-        </p>
-        <p class="mt-4 mb-10 text-gray-600 text-sm xs:text-center sm:text-left sm:whitespace-pre-line">
-          朽骨已在掩埋的宅邸中躺了多久，但纪念碑将于此山谷中永垂不朽。
-          孤勇之后，世界尽在眼前。
-        </p>
-        <div>
-          <ns-button
-            size="large"
-            @click="$router.push('/creations')"
-          >
-            查看我的作品
-          </ns-button>
-        </div>
-      </div>
-      <img
-        class="cover"
-        src="https://gitee.com/chinesee/images/raw/master/img/img_029.png"
-        alt="首页图片"
-      >
-    </div>
+  <div class="about">
+    <h2 class="mb-5 text-xl font-bold">令狐聪 LeoKu</h2>
+    <p class="mb-10">
+      我是一名前端开发工作者，目前在广东东莞工作和生活。我毕业于广州大学华软软件学院的软件工程专业，在 2020 年开始正式参加工作。
+      <br>
+      作为一名前端开发者，我特别欣赏那些别具一格的网站，并且我最大的爱好就是收集这些网站，以便于在我构思自己的作品时能带给我启发。我热爱设计，无论是在我的作品还是我的生活空间，我都会努力让它们拥有最佳的体验。
+    </p>
 
-    <div class="mt-10 mb-16">
-      <h2 class="mb-5 text-xl font-bold">联系我</h2>
-      <ul class="text-gray-600">
-        <li class="mb-1">微信：czc12580520</li>
-        <li class="mb-1">QQ：czc12580520</li>
-        <li class="mb-1">邮箱：czc12580520@gmail.com</li>
-      </ul>
-    </div>
-
-    <div class="mb-10">
-      <h2 class="mb-5 text-xl font-bold">最近文章</h2>
-      <recent-articles
-        class="pt-10"
-        :articles="filterArticles"
-      ></recent-articles>
-    </div>
-
-    <banner class="my-16"></banner>
+    <h2 class="mb-5 text-xl font-bold">怎么联系我</h2>
+    <ul class="text-gray-600">
+      <li class="mb-1">微信：leoku_new</li>
+      <li class="mb-1">
+        新浪微博：<a
+          href="https://weibo.com/leoku4"
+          target="_blank"
+          rel="noopener noreferrer"
+        >令狐聪Leoku</a>
+      </li>
+      <li class="mb-1">邮箱：czc12580520@gmail.com</li>
+    </ul>
   </div>
 </template>
 
 <script>
 import head from '~/mixins/head'
 
-import Banner from '~/components/home/Banner'
-import RecentArticles from '~/components/home/RecentArticles'
-
 export default {
-  components: { Banner, RecentArticles },
-
-  mixins: [head({ title: '首页' })],
-
-  asyncData() {
-    const resolve = require.context('~/contents/', true, /\.md$/)
-    const articles = resolve
-      .keys()
-      .reduce((res, key) => {
-        const { attributes: { title, description, time }, meta: { resourcePath } } = resolve(key)
-        if (title) {
-          const paths = resourcePath.split('\\')
-          const path = paths
-            .slice(paths.indexOf(`${process.env.blogRoot}`) + 1)
-            .join('/')
-            .replace('.md', '')
-          const timestamp = new Date(time.replace(/[(年)|(月)|(日)]/g, '/')).getTime()
-
-          res.push({ path, title, description, time, timestamp })
-          return res
-        }
-      }, [])
-    // const articles = resolve.keys().map(key => {
-    //   const { attributes: { title, description, time }, meta: { resourcePath } } = resolve(key)
-    //   const paths = resourcePath.split('\\')
-    //   const path = paths.slice(paths.indexOf(`${process.env.blogRoot}`) + 1).join('/').replace('.md', '')
-    //   const timestamp = new Date(time.replace(/[(年)|(月)|(日)]/g, '/')).getTime()
-    //   return { path, title, description, time, timestamp }
-    // })
-    const filterArticles = articles
-      .sort((a, b) => {
-        return a.timestamp > b.timestamp ? -1 : 1
-      })
-      .slice(0, 4)
-    return { filterArticles }
-  },
+  mixins: [head({ title: '关于' })],
 
   data: () => ({
   }),
@@ -97,35 +34,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.index {
-  @apply pt-6;
+.about {
   width: 90%;
-  max-width: 1240px;
+  max-width: 650px;
   margin: 0 auto;
-}
-
-// 封面图
-.cover {
-  transition: $transition;
-
-  @media (max-width: 820px) {
-    display: none;
-  }
-
-  @media (min-width: 821px) {
-    width: 45%;
-  }
-
-  @media (min-width: 1040px) {
-    width: 50%;
-  }
-
-  @media (min-width: 1160px) {
-    width: 60%;
-  }
-
-  @media (min-width: 1280px) {
-    width: 700px;
-  }
+  padding: 80px 0;
 }
 </style>

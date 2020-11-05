@@ -3,7 +3,7 @@ title: 如何使用码云作为图床 🖼️
 time: 2019年9月1日
 last_edited_time: 
 category: Vue
-description: 随着 Vue3 即将发布，许多人都在想“ Vue2与Vue3有何不同？”
+description: 打造一个可以免费使用的图床
 cover: https://gitee.com/chinesee/images/raw/master/img/img_008.png
 type: original
 author: 令狐少侠

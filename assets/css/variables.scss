@@ -1,8 +1,7 @@
 /* purgecss start ignore */
 
 :root {
-  // --ns-primary: 47, 88, 255;
-  --ns-primary: 255, 197, 1;
+  --ns-primary: 247, 148, 0;
   --ns-success: 70, 201, 58;
   --ns-warning: 255, 186, 0;
   --ns-danger: 255, 71, 87;
@@ -17,8 +16,7 @@ $menu-item-width: 6rem;
 $article-content-width: 800px;
 
 // Color
-// $primary: #2f58ff;
-$primary: #ffc501;
+$primary:#f79400;
 $success: #46c93a;
 $warning: #ffba00;
 $danger: #ff4757;
@@ -37,7 +35,7 @@ $base-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.06);
 $heavy-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.09);
 $shadow-map: (light: $light-shadow, base: $base-shadow, heavy: $heavy-shadow);
 
-// transition
+// Transition
 $transition: all 0.3s;
 
 @mixin text-overflow {
@@ -47,6 +45,7 @@ $transition: all 0.3s;
 }
 
 @mixin text-overflow-lines($line: 3) {
+  padding: 0 !important;
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;

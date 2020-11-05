@@ -76,8 +76,13 @@ export default {
 
   .article-list {
     &__item {
-      @apply w-full mb-6 p-6 rounded-lg bg-gray-100;
+      @apply w-full mb-6 p-6;
       max-width: 1400px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+      &:last-child {
+        border-bottom: none;
+      }
     }
   }
 }

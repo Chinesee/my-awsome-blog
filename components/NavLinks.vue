@@ -87,7 +87,7 @@ export default {
     @apply relative z-50 flex text-gray-700 select-none;
 
     .menu-item {
-      @apply text-center cursor-pointer transition whitespace-no-wrap;
+      @apply text-center transition whitespace-no-wrap;
       width: $menu-item-width;
     }
   }

@@ -1,36 +1,52 @@
 <template>
-  <div class="p-6 md:p-8 lg:p-10 transition">
+  <div class="creation p-6 md:p-8 lg:p-10 transition">
     <ul class="creation-list">
       <li
-        v-for="({ img, title, links }, i) in creations"
-        :key="i"
-        class="creation-item lg-radius base-shadow"
+        v-for="({ img, title, description, github, preview }) in creations"
+        :key="title"
+        class="creation-list__item"
       >
-        <div style="height: 15rem;">
+        <div class="img-wrapper">
           <img
             :src="img"
             class="cover-img w-full h-full object-cover"
             alt="封面图片"
           >
+        </div>
 
-          <div class="absolute bottom-0 w-full px-3 py-2">
-            <div class="relative z-50 flex items-center justify-between">
-              <h3 class="font-bold truncate">{{ title }}</h3>
-              <ul class="flex justify-end items-center">
-                <template v-for="(key, index) in Object.keys(links)">
-                  <li
-                    :key="index"
-                    :title="icons[key].label"
-                    class="ml-1 text-lg cursor-pointer"
-                    @click.stop.prevent="linkTo(links[key])"
-                  >
-                    {{ icons[key].icon }}
-                  </li>
-                </template>
-              </ul>
-            </div>
-            <div class="absolute top-0 left-0 z-40 w-full h-full bg-white opacity-75"></div>
-          </div>
+        <div class="text-content">
+          <h3 class="text-lg font-bold truncate">{{ title }}</h3>
+          <p class="desc my-2 text-sm">{{ description }}</p>
+          <ul class="links flex items-center">
+            <li
+              v-if="github"
+              class="link"
+            >
+              <a
+                class="flex items-center"
+                rel="noopener noreferrer"
+                target="_blank"
+                :href="github"
+              >
+                <i class="bx bxl-github icon"></i>
+                GitHub
+              </a>
+            </li>
+            <li
+              v-if="preview"
+              class="link"
+            >
+              <a
+                class="flex items-center"
+                rel="noopener noreferrer"
+                target="_blank"
+                :href="preview"
+              >
+                <i class="bx bx-chalkboard icon"></i>
+                Preview
+              </a>
+            </li>
+          </ul>
         </div>
       </li>
     </ul>
@@ -48,32 +64,29 @@ export default {
       {
         img: 'https://gitee.com/chinesee/images/raw/master/img/img_011.jpg',
         title: '意想社团 - 高校社团 APP',
-        links: {
-          repository: 'https://github.com/Chinesee/eason-club',
-        },
+        description: '在意想社团，你可以找到感兴趣的社团组织，也可以作为管理者来管理自己的组织。该应用可以用来宣传社团活动，加强社团间的交流。本项目使用 React Native 开发。',
+        github: 'https://github.com/Chinesee/eason-club',
       },
       {
         img: 'https://gitee.com/chinesee/images/raw/master/img/img_004.jpg',
         title: '意想课表 - 教务信息查询助手',
-        links: {
-          repository: 'https://github.com/Chinesee/eason-campus',
-        },
+        description: '微信小程序，在这里你可以查课表、查成绩、查考勤',
+        github: 'https://github.com/Chinesee/eason-campus',
+        preview: 'https://github.com/Chinesee',
       },
       {
         img: 'https://gitee.com/chinesee/images/raw/master/img/img_027.png',
         title: '乐享校园后台系统 - 校园二手交易平台',
-        links: {
-          online: 'https://hrspider.top/admin',
-          repository: 'https://gitee.com/chinesee/love-share-admin',
-        },
+        description: '我的毕业设计，是我使用 vue 做的第一个后台管理系统。',
+        github: 'https://gitee.com/chinesee/love-share-admin',
+        preview: '',
       },
       {
         img: 'https://gitee.com/chinesee/images/raw/master/img/img_028.png',
         title: '乐享校园客户端 - 校园二手交易平台',
-        links: {
-          online: 'https://holdme.top/client',
-          repository: 'https://github.com/Chinesee/love-share-client',
-        },
+        description: '我的毕业设计，一个可以发布和购买二手商品的交易平台，具有订单查询、在线沟通、商品评价等功能。',
+        github: 'https://github.com/Chinesee/love-share-client',
+        preview: '',
       },
     ]
     const icons = {
@@ -99,35 +112,79 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.creation-list {
-  $gap: 1.5rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: $gap + 0.5rem;
+.creation {
+  &-list {
+    max-width: 1000px;
+    margin: 0 auto;
 
-  @media (min-width: 768px) {
-    grid-template-columns: 1fr 1fr;
-    gap: $gap * 1.6;
-  }
-  @media (min-width: 1024px) {
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: $gap * 1.6;
-  }
-  @media (min-width: 1280px) {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    column-gap: $gap * 1.4;
-  }
+    &__item {
+      @apply mb-4 py-8 flex;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 
-  .creation-item {
-    @apply relative flex justify-center items-center overflow-hidden;
-    transition: $transition;
-    .cover-img {
-      transition: $transition;
+      .img-wrapper {
+        @apply bg-gray-200 overflow-hidden;
+        width: 350px;
+        height: 200px;
+        border-radius: 10px;
+        box-shadow: $base-shadow;
+      }
+
+      .text-content {
+        @apply ml-10 p-4 flex flex-col flex-1;
+        min-height: 200px;
+
+        .links {
+          @apply text-gray-600;
+          margin-top: auto;
+
+          .link {
+            position: relative;
+            padding: 0 0.8rem;
+            &:first-child {
+              padding-left: 0;
+            }
+            &:not(:last-child):after {
+              @apply bg-gray-400;
+              content: "";
+              position: absolute;
+              top: 50%;
+              right: 0;
+              width: 1px;
+              height: 15px;
+              transform: translateY(-50%);
+            }
+
+            .icon {
+              @apply mr-1 text-2xl;
+            }
+          }
+        }
+      }
     }
-    &:hover {
-      box-shadow: $heavy-shadow;
-      .cover-img {
-        transform: scale(1.1);
+  }
+}
+
+@media (max-width: 800px) {
+  .creation {
+    &-list {
+      margin: 0 auto;
+
+      &__item {
+        @apply mb-4 py-8 flex-col;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+        .img-wrapper {
+          width: 100%;
+        }
+
+        .text-content {
+          margin: 10px 0 0 0;
+          min-height: auto;
+
+          .desc {
+            @include text-overflow-lines;
+          }
+        }
       }
     }
   }

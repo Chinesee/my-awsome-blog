@@ -10,7 +10,7 @@
     <p class="xs:text-lg md:text-2xl font-bold">
       Hi, I'm LeoKu 🖖
     </p>
-    <p class="my-10 xs:text-2xl md:text-6xl font-extrabold">
+    <p class="my-10 xs:w-full xs:text-3xl md:text-6xl font-extrabold">
       <span :class="{ 'point': !isMobile }">Good at</span> dreaming <br>
       Indulge in programming <br>
       Love to contribute
@@ -21,12 +21,15 @@
       Keep moving
     </p>
 
-    <div
-      style="width: 10rem; height: 3rem; border-radius: 1.5rem; line-height: 3rem;"
-      class="mt-16 bg-gray-700 text-white rounded-lg cursor-pointer"
-    >
-      更多关于我
-    </div>
+    <nuxt-link to="/about">
+      <div
+        style="width: 10rem; height: 3rem; border-radius: 1.5rem; line-height: 3rem;"
+        class="mt-16 bg-gray-700 text-white rounded-lg cursor-pointer"
+      >
+        更多关于我
+      </div>
+    </nuxt-link>
+
     <div class="mt-5 flex items-center text-3xl">
       <a
         v-for="({ icon, link }) in [
