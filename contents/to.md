@@ -1,6 +1,12 @@
 ---
+title: 《致橡树》
+time: 2019年9月1日
+last_edited_time: 
 category: Vue
 description: 打造一个可以免费使用的图床
+cover: https://gitee.com/chinesee/images/raw/master/img/img_008.png
+type: original
+author: 令狐少侠
 ---
 
 # 《致橡树》
