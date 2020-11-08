@@ -18,7 +18,7 @@
     <p class="xs:text-base md:text-lg font-bold">
       A front-end developer by now <br>
       Trying various programming languages <br>
-      Keep moving
+      Keep exploring
     </p>
 
     <nuxt-link to="/about">
